@@ -1,0 +1,841 @@
+openapi: 3.0.0
+info:
+  title: Partner Api Bookings Options API
+  description: This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.
+  version: 1.0.0
+  contact:
+    name: Partner Tech
+    url: https://partner.getyourguide.com/
+  license:
+    name: Apache License, Version 2.0
+    url: https://github.com/getyourguide/partner-api-spec/blob/main/LICENSE
+servers:
+- url: https://api.getyourguide.com
+  description: Production
+- url: https://api.gygtest.net
+  description: Testing
+security:
+- ApiKeyAuth: []
+tags:
+- name: Options
+paths:
+  /{version}/options/{option_id}:
+    get:
+      operationId: OptionsGetById
+      description: Find a Tour Option by ID. The result will be an array of tour options. But the array will only contain one single tour option.
+      tags:
+      - Options
+      parameters:
+      - $ref: '#/components/parameters/version'
+      - $ref: '#/components/parameters/optionId'
+      - $ref: '#/components/parameters/cntLanguage'
+      - $ref: '#/components/parameters/currency'
+      - $ref: '#/components/parameters/dates'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    $ref: '#/components/schemas/MetaData'
+                  data:
+                    type: object
+                    properties:
+                      tour_options:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/TourOption'
+        4XX:
+          $ref: '#/components/responses/4XX'
+        default:
+          $ref: '#/components/responses/Default'
+components:
+  schemas:
+    BoundingBox:
+      type: object
+      properties:
+        sw_lat:
+          type: number
+          format: double
+        sw_long:
+          type: number
+          format: double
+        ne_lat:
+          type: number
+          format: double
+        ne_long:
+          type: number
+          format: double
+    ValidityUnit:
+      type: string
+      description: Unit of the validity field
+      enum:
+      - day
+      - hour
+      - minute
+      - month
+      - year
+      example: day
+    PickUpLocation:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: 'Indicates the source type for pickup. Possible values:
+
+            - from_areas
+
+            - from_locations
+
+            '
+        description:
+          description: Description of the pick up location translated to the language of the user.
+          example: Pick up from your hotel in Manhattan
+          type: string
+        areas:
+          type: array
+          description: Provide this if type is 'from_areas'.
+          items:
+            $ref: '#/components/schemas/LogisticsArea'
+        locations:
+          type: array
+          description: Provide this if type is 'from_locations'.
+          items:
+            $ref: '#/components/schemas/LogisticsLocation'
+        transportation_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransportationType'
+    Currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      enum:
+      - AED
+      - ARS
+      - AUD
+      - BGN
+      - CAD
+      - CHF
+      - CLP
+      - CNY
+      - COP
+      - CZK
+      - DKK
+      - EGP
+      - EUR
+      - GBP
+      - HKD
+      - HRK
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - JPY
+      - KRW
+      - MAD
+      - MXN
+      - MYR
+      - NOK
+      - NZD
+      - PHP
+      - PLN
+      - RON
+      - RUB
+      - SEK
+      - SGD
+      - THB
+      - TRY
+      - UAH
+      - USD
+      - UYU
+      - VND
+      - ZAR
+      example: USD
+      type: string
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    Special:
+      type: object
+      properties:
+        original_price:
+          $ref: '#/components/schemas/PriceField'
+        savings:
+          type: number
+          description: The maximum possible discount in percent.
+          example: 12
+        apps_only:
+          type: boolean
+          description: Flag if the special offer is only available for the GYG internal mobile apps.
+    Coordinates:
+      type: object
+      required:
+      - lat
+      - long
+      properties:
+        lat:
+          $ref: '#/components/schemas/Latitude'
+        long:
+          $ref: '#/components/schemas/Longitude'
+    StartingPrice:
+      type: object
+      description: Starting price. Should be read as e.g. "from XX.YY USD.
+      properties:
+        values:
+          type: object
+          properties:
+            amount:
+              $ref: '#/components/schemas/PriceField'
+        description:
+          type: string
+          description: Additional information about the pricing. E.g. 'per group' or 'per person' or 'per Group up to 10 people'.
+          example: individual
+    Duration:
+      type: number
+      description: Duration of the tour (to be used in combination with duration unit).
+      example: 2.5
+    DurationUnit:
+      type: string
+      description: Unit of the duration field
+      enum:
+      - day
+      - hour
+      - minute
+      example: hour
+    LogisticsArea:
+      type: object
+      required:
+      - name
+      - full_address
+      - bounding_box
+      - coordinates
+      properties:
+        name:
+          type: string
+          description: Name of the area. Shorter than full_address e.g. "Manhattan".
+        full_address:
+          type: string
+          description: Representing the area for the pick up location e.g. "Manhattan, New York, USA".
+        bounding_box:
+          $ref: '#/components/schemas/BoundingBox'
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+    FreeSale:
+      type: boolean
+      description: Indicates whether if the tour option's booking engine is free-sale (i.e. whether a booking does not require confirmation by the supplier).
+      example: true
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
+    MetaData:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          description: Status of the request
+          example: OK
+        query:
+          type: string
+          description: URL parameters used for the request sent
+          example: cnt_language=en&currency=eur
+        availableLanguages:
+          type: array
+          description: Available conduction languages aggregated across all tours
+          items:
+            $ref: '#/components/schemas/Language'
+          example:
+          - en
+          - es
+          - fr
+        exchange:
+          type: object
+          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
+          properties:
+            rate:
+              type: integer
+              example: 1
+            currency:
+              $ref: '#/components/schemas/Currency'
+        totalCount:
+          type: integer
+          description: Total amount of tours that match the search query
+          example: 127
+        limit:
+          $ref: '#/components/schemas/Limit'
+        offset:
+          $ref: '#/components/schemas/Offset'
+    Validity:
+      type: number
+      format: float
+      description: Validity period of the booking (to be used in combination with validity unit). Represents how long the ticket/voucher remains valid after booking or activation.
+      example: 30
+    PriceField:
+      description: The value of the price.
+      example: 15.15
+      type: number
+    ValidityFrom:
+      type: string
+      description: When the validity period starts counting from.
+      enum:
+      - time_booked
+      - time_selected
+      - time_activated
+      example: time_booked
+    OptionId:
+      description: The ID of the tour option.
+      example: 69232
+      type: integer
+    Latitude:
+      description: The latitude in ISO 6709 standard.
+      type: number
+      format: float
+      minimum: -90
+      maximum: 90
+      example: 28.3701884
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    Longitude:
+      description: The longitude in ISO 6709 standard.
+      type: number
+      format: float
+      minimum: -180
+      maximum: 180
+      example: -81.5545306
+    LogisticsLocation:
+      type: object
+      required:
+      - name
+      - full_address
+      - bounding_box
+      - coordinates
+      properties:
+        name:
+          type: string
+          description: Name of the location. Shorter than full_address e.g. Louvre Museum.
+        full_address:
+          type: string
+          description: Representing the location for the pick up location e.g. Louvre Museum, Paris, France.
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+    TransportationType:
+      type: object
+      required:
+      - mode
+      properties:
+        mode:
+          type: string
+          description: 'Possible values:
+
+            - bicycle
+
+            - mountain_bike
+
+            - electric_bicycle
+
+            - motorcycle
+
+            - scooter
+
+            - segway
+
+            - car
+
+            - limousine
+
+            - jeep_suv
+
+            - van
+
+            - quad_atv
+
+            - bus_coach
+
+            - electric_car
+
+            - vintage_car
+
+            - black_cab
+
+            - sailboat
+
+            - ferry
+
+            - gondola
+
+            - duck_boat
+
+            - jet_ski
+
+            - sightseeing_cruise
+
+            - water_taxi
+
+            - river_boat
+
+            - kayak
+
+            - raft
+
+            - catamaran
+
+            - speed_boat
+
+            - yacht
+
+            - canoe
+
+            - stand_up_paddle_board
+
+            - surfboard
+
+            - submarine
+
+            - other_water_transport
+
+            - train
+
+            - tram
+
+            - helicopter
+
+            - airplane
+
+            - balloon
+
+            - glider
+
+            - cable_car
+
+            - pedicab_rickshaw
+
+            - horse_carriage
+
+            - camel
+
+            - snowmobile
+
+            - sled
+
+            - other_animal
+
+            - public
+
+            - glass_bottom_boat
+
+            - lake_cruise
+
+            - banana_boat
+
+            - beer_boat
+
+            - air_boat
+
+            - dhow
+
+            - subway
+
+            - beer_bike
+
+            - trike
+
+            - tuk_tuk
+
+            - golf_cart
+
+            - motorized_tuk_tuk
+
+            - on_foot
+
+            - horse
+
+            - trolley
+
+            '
+    TourOption:
+      description: Tour option
+      type: object
+      properties:
+        option_id:
+          $ref: '#/components/schemas/OptionId'
+        tour_id:
+          $ref: '#/components/schemas/TourId'
+        title:
+          type: string
+          description: Title of the option.
+          example: 'From Abu Dhabi: Private Transfer to Dubai'
+        description:
+          type: string
+          description: Description of the option.
+        pick_up:
+          type: string
+          description: Information about the hotel pickup possibilities.
+        pick_up_location:
+          $ref: '#/components/schemas/PickUpLocation'
+        meeting_point:
+          type: string
+          description: Information about where to meet.
+        drop_off:
+          type: string
+          description: Information about the drop-off (where the tour ends).
+        duration:
+          $ref: '#/components/schemas/Duration'
+        duration_unit:
+          $ref: '#/components/schemas/DurationUnit'
+        validity:
+          $ref: '#/components/schemas/Validity'
+        validity_unit:
+          $ref: '#/components/schemas/ValidityUnit'
+        validity_from:
+          $ref: '#/components/schemas/ValidityFrom'
+        cond_language:
+          type: object
+          properties:
+            language_audio:
+              type: array
+              items:
+                $ref: '#/components/schemas/Language'
+              description: List of languages that are available as audio guide
+              example:
+              - de
+              - fr
+              - es
+              - ru
+            language_booklet:
+              type: array
+              items:
+                $ref: '#/components/schemas/Language'
+              description: List of languages that are available as booklet
+              example:
+              - de
+              - fr
+              - en
+            language_live:
+              type: array
+              items:
+                $ref: '#/components/schemas/Language'
+              description: List of languages that are spoken by the guide
+              example:
+              - de
+              - en
+        booking_parameter:
+          deprecated: true
+          description: DEPRECATED! use questions instead
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the booking parameter.
+                enum:
+                - language
+                - hotel
+                - comment
+                - supplier_requested_question
+                example: supplier_requested_question
+              description:
+                type: string
+                description: Description of the property.
+                example: Please provide the client names, flight details, and pick up and drop-off location.
+              mandatory:
+                type: boolean
+                description: Flag if this parameter / property is mandatory for booking.
+                example: true
+        questions:
+          type: object
+          properties:
+            booking_questions:
+              type: array
+              items:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    description: Name of the question.
+                    enum:
+                    - booking_child_safety_seat
+                    - booking_cruise_details
+                    - booking_customer_accommodation
+                    - booking_pick_up_location
+                    - booking_drop_off_address
+                    - booking_flight_details
+                    - booking_medical_conditions
+                    - booking_mobility_issues
+                    - booking_shipping_address
+                    - booking_wheelchair
+                    example: booking_mobility_issues
+                  description:
+                    type: string
+                    description: Description of the question.
+                    example: Please provide the flight details of the booking.
+                  mandatory:
+                    type: boolean
+                    description: Flag if this parameter / property is mandatory for booking.
+                    example: true
+            participant_questions:
+              type: array
+              items:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    description: Name of the question.
+                    enum:
+                    - traveler_dietary_restrictions
+                    - traveler_diving_levels
+                    - traveler_driver_licenses
+                    - traveler_shoe_sizes
+                    - traveler_skill_levels
+                    - traveler_ages
+                    - traveler_children_ages
+                    - traveler_dates_of_birth
+                    - traveler_heights
+                    - traveler_id_details
+                    - traveler_id_numbers
+                    - traveler_names
+                    - traveler_passport_details
+                    - traveler_passport_numbers
+                    - traveler_weights
+                    example: traveler_diving_levels
+                  description:
+                    type: string
+                    description: Description of the question.
+                    example: Please provide the traveler names for each participant in your group.
+                  mandatory:
+                    type: boolean
+                    description: Flag if this parameter / property is mandatory for booking.
+                    example: true
+            conduction_language:
+              type: object
+              properties:
+                mandatory:
+                  type: boolean
+                  description: Flag if this parameter / property is mandatory for booking.
+                  example: true
+            free_text_question:
+              type: object
+              properties:
+                mandatory:
+                  type: boolean
+                  description: Flag if this parameter / property is mandatory for booking.
+                  example: true
+                description:
+                  type: string
+                  description: Description of the free-text-question.
+                  example: Please provide the nationality of everyone in your group.
+        services:
+          type: object
+          properties:
+            prt:
+              type: boolean
+              description: If true, the option is closed after on booking. The customer will be on the tour without any other guests expect those included in the same booking.
+              example: true
+            stl:
+              type: boolean
+              description: If true, the customer does not need to wait in line.
+              example: true
+            wlc:
+              type: boolean
+              description: If true, there is wheel chair access.
+              example: true
+        coordinate_type:
+          type: string
+          description: Information about the type of the coordinates. It defines if the information is exactly enough for the customer to walk / get there.
+          enum:
+          - exact
+          - approximate
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        price:
+          oneOf:
+          - $ref: '#/components/schemas/StartingPrice'
+          - $ref: '#/components/schemas/StartingPriceDiscounted'
+        free_sale:
+          $ref: '#/components/schemas/FreeSale'
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
+    CntLanguage:
+      description: ISO 639, Language of the text content.
+      enum:
+      - ar
+      - ca
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - et
+      - fi
+      - fr
+      - he
+      - hr
+      - hu
+      - id
+      - it
+      - ja
+      - ko
+      - lt
+      - lv
+      - ms
+      - nl
+      - 'no'
+      - pl
+      - pt
+      - ro
+      - ru
+      - sk
+      - sv
+      - th
+      - tr
+      - zh
+      - zh-hant
+      example: en
+      type: string
+    TourId:
+      description: The ID of the tour.
+      example: 50872
+      type: integer
+    StartingPriceDiscounted:
+      type: object
+      description: Starting price and theoretic maximum possible discount. Should be read as e.g. "from XX.YY USD. The discounts are still bound to individual dates.
+      properties:
+        values:
+          type: object
+          properties:
+            amount:
+              $ref: '#/components/schemas/PriceField'
+            special:
+              $ref: '#/components/schemas/Special'
+        description:
+          type: string
+          description: Additional information about the pricing. E.g. 'per group' or 'per person' or 'per Group up to 10 people'.
+          example: individual
+  parameters:
+    currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      in: query
+      name: currency
+      example: USD
+      required: true
+      schema:
+        $ref: '#/components/schemas/Currency'
+    dates:
+      allowReserved: true
+      description: Check for tours that are offered on date or between dates.
+      examples:
+        multipleDates:
+          summary: Date from, Date to
+          value:
+          - '2021-05-01T00:00:00'
+          - '2021-05-01T23:59:59'
+        singleDate:
+          summary: Date from
+          value:
+          - '2021-05-01T00:00:00'
+      explode: true
+      in: query
+      name: date[]
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/Datetime'
+        type: array
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
+    optionId:
+      in: path
+      name: option_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/OptionId'
+  responses:
+    4XX:
+      description: HTTP 400, 401, 404 have the same response format.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-ACCESS-TOKEN
+externalDocs:
+  description: Further Documentation, additional resources and best practices
+  url: https://github.com/getyourguide/partner-api-spec

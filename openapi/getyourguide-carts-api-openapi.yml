@@ -1,0 +1,1139 @@
+openapi: 3.0.0
+info:
+  title: Partner Api Bookings Carts API
+  description: This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.
+  version: 1.0.0
+  contact:
+    name: Partner Tech
+    url: https://partner.getyourguide.com/
+  license:
+    name: Apache License, Version 2.0
+    url: https://github.com/getyourguide/partner-api-spec/blob/main/LICENSE
+servers:
+- url: https://api.getyourguide.com
+  description: Production
+- url: https://api.gygtest.net
+  description: Testing
+security:
+- ApiKeyAuth: []
+tags:
+- name: Carts
+paths:
+  /{version}/carts:
+    post:
+      operationId: CartsConfirm
+      summary: Confirm a shopping cart.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartsConfirmRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    $ref: '#/components/schemas/MetaData'
+                  data:
+                    $ref: '#/components/schemas/CartsConfirmResponseConfirmed'
+        4XX:
+          $ref: '#/components/responses/4XX'
+        default:
+          $ref: '#/components/responses/Default'
+  /{version}/carts/{shopping_cart_hash}:
+    get:
+      operationId: CartsGetByHash
+      summary: Get information about a shopping cart.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/version'
+      - $ref: '#/components/parameters/shoppingCartHash'
+      - $ref: '#/components/parameters/cntLanguage'
+      - $ref: '#/components/parameters/currency'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    $ref: '#/components/schemas/MetaData'
+                  data:
+                    type: object
+                    properties:
+                      shopping_cart:
+                        $ref: '#/components/schemas/CartsResponseBase'
+        4XX:
+          $ref: '#/components/responses/4XX'
+        default:
+          $ref: '#/components/responses/Default'
+components:
+  schemas:
+    QuestionsOutput:
+      description: The questions that need to be answered for this booking.
+      type: object
+      properties:
+        booking_questions:
+          $ref: '#/components/schemas/BookingQuestions'
+        participant_questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantQuestions'
+        conduction_language:
+          type: object
+          required:
+          - type
+          - value
+          properties:
+            type:
+              type: string
+              description: Conduction language type.
+              example: language_live
+            value:
+              type: string
+              description: Conduction language value.
+              example: en
+        free_text_question:
+          type: string
+          description: answer to the free-text-question.
+          example: Everyone in our group is from Germany.
+    DatetimeUTC:
+      description: The datetime in UTC of when the activity dates place.
+      example: '2017-09-01T04:00:00Z'
+      format: date-time
+      type: string
+    Currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      enum:
+      - AED
+      - ARS
+      - AUD
+      - BGN
+      - CAD
+      - CHF
+      - CLP
+      - CNY
+      - COP
+      - CZK
+      - DKK
+      - EGP
+      - EUR
+      - GBP
+      - HKD
+      - HRK
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - JPY
+      - KRW
+      - MAD
+      - MXN
+      - MYR
+      - NOK
+      - NZD
+      - PHP
+      - PLN
+      - RON
+      - RUB
+      - SEK
+      - SGD
+      - THB
+      - TRY
+      - UAH
+      - USD
+      - UYU
+      - VND
+      - ZAR
+      example: USD
+      type: string
+    BookingStatus:
+      enum:
+      - temp
+      - unconfirmed
+      - confirmed
+      - deleted
+      - canceled
+      - deleted_by_customer
+      - deleted_by_daemon
+      example: temp
+      type: string
+      description: The status of the booking. > * `temp` the booking is temporary (added to a cart). * `unconfirmed` the booking is awaiting final confirmation by the supplier. For `free-sale` bookings this happens within a couple of minutes, for non-`free-sale` bookings this can take up to 48 hours. * `confirmed` the booking is confirmed and active. * `deleted` the booking got deleted from a cart before checkout. Only bookings in status `temp` can be deleted. * `canceled` a formerly confirmed booking got cancelled. Refunds apply here, if it got canceled within the `CancellationPolicy`. * `deleted_by_customer` same as `deleted`, with the additional information that a customer deleted the booking from the cart. * `deleted_by_daemon` same as `deleted`, with the additional information that it was automatically deleted from the cart after the `BookingExpirationTime` was reached.
+    CouponInfo:
+      type: string
+      description: The code of the coupon if one was used.
+      example: test
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    Coordinates:
+      type: object
+      required:
+      - lat
+      - long
+      properties:
+        lat:
+          $ref: '#/components/schemas/Latitude'
+        long:
+          $ref: '#/components/schemas/Longitude'
+    ShoppingCartId:
+      deprecated: true
+      description: The ID of the shopping cart. (Use shopping cart hash)
+      example: 32724458
+      type: number
+    PaymentInfoConfirmed:
+      allOf:
+      - $ref: '#/components/schemas/PaymentInfoInPayment'
+      - type: object
+        properties:
+          payment_method:
+            $ref: '#/components/schemas/PaymentMethod'
+          coupon_info:
+            $ref: '#/components/schemas/CouponInfo'
+          invoice_reference:
+            $ref: '#/components/schemas/InvoiceReference'
+    Booking:
+      type: object
+      properties:
+        booking_id:
+          $ref: '#/components/schemas/BookingId'
+        booking_hash:
+          $ref: '#/components/schemas/BookingHash'
+        booking_status:
+          $ref: '#/components/schemas/BookingStatus'
+        shopping_cart_id:
+          $ref: '#/components/schemas/ShoppingCartId'
+        shopping_cart_hash:
+          $ref: '#/components/schemas/ShoppingCartHash'
+        bookable:
+          $ref: '#/components/schemas/Bookable'
+        ticket:
+          description: Only present if the booking is confirmed and active.
+          $ref: '#/components/schemas/Ticket'
+    CategoryId:
+      description: ID of the category.
+      example: 33
+      type: integer
+    CartsConfirmRequest:
+      type: object
+      properties:
+        base_data:
+          type: object
+          properties:
+            cnt_language:
+              $ref: '#/components/schemas/CntLanguage'
+            currency:
+              $ref: '#/components/schemas/PaymentCurrency'
+        data:
+          type: object
+          properties:
+            shopping_cart:
+              type: object
+              properties:
+                shopping_cart_hash:
+                  $ref: '#/components/schemas/ShoppingCartHash'
+                billing:
+                  $ref: '#/components/schemas/Billing'
+                traveler:
+                  $ref: '#/components/schemas/Traveler'
+                payment:
+                  oneOf:
+                  - $ref: '#/components/schemas/MasterBill'
+              required:
+              - shopping_cart_hash
+              - billing
+              - traveler
+              - payment
+    CancelUrl:
+      description: Url the customer will be redirected to by the payment provider, after failed completing the transaction.
+      type: string
+      format: uri
+      example: https://failure.example
+    Status:
+      type: string
+      enum:
+      - completed
+      - open
+      - in_payment
+      - invalid
+      description: "The status of the shopping cart:\n  * `open`: the shopping cart is open and needs to be checked out\n  * `completed`: the transaction is completed\n  * `in_payment`: the transaction is ongoing, this status only occurs with 2-step checkout (PayPal or 3DS CC)\n  * `invalid`: the shopping cart is invalid\n"
+    BookingId:
+      deprecated: true
+      description: The id of the booking. (Use booking hash)
+      example: 13822240
+      type: integer
+    Email:
+      description: Correspondence email.
+      example: address@example.com
+      format: email
+      type: string
+    AddressLine1:
+      description: Street and house number.
+      example: 1000 Fulton Avenue
+      type: string
+      maxLength: 44
+    Invoice:
+      description: Indicates wether an invoice is required for this purchase.
+      example: false
+      type: boolean
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
+    CompanyName:
+      description: Name of the company.
+      example: GetYourGuide
+      type: string
+      maxLength: 44
+    DatetimeType:
+      description: Is the datetime a date or a datetime. This is needed as some activities only have a day on which they take place.
+      enum:
+      - date
+      - datetime
+      example: datetime
+      type: string
+    CurrentlyCancellableAtNoFee:
+      description: Indicates whether this booking is currently cancellable at no fee.
+      example: true
+      type: boolean
+    ShoppingCartHash:
+      description: The hash of the shopping cart.
+      example: 0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K
+      type: string
+    CartsConfirmResponseConfirmed:
+      type: object
+      properties:
+        shopping_cart_id:
+          $ref: '#/components/schemas/ShoppingCartId'
+        shopping_cart_hash:
+          $ref: '#/components/schemas/ShoppingCartHash'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        traveler:
+          $ref: '#/components/schemas/Traveler'
+        status:
+          $ref: '#/components/schemas/Status'
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Booking'
+        payment_info:
+          $ref: '#/components/schemas/PaymentInfoConfirmed'
+    PaymentCurrency:
+      description: ISO 4217, The currency that can be used for payment. It is used in the meta data object in the POST @ /bookings and /carts call.
+      enum:
+      - AED
+      - AUD
+      - CAD
+      - CHF
+      - EUR
+      - GBP
+      - NZD
+      - PLN
+      - SEK
+      - USD
+      example: EUR
+      type: string
+    City:
+      description: Name of the city.
+      example: Berlin
+      type: string
+      maxLength: 44
+    MetaData:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          description: Status of the request
+          example: OK
+        query:
+          type: string
+          description: URL parameters used for the request sent
+          example: cnt_language=en&currency=eur
+        availableLanguages:
+          type: array
+          description: Available conduction languages aggregated across all tours
+          items:
+            $ref: '#/components/schemas/Language'
+          example:
+          - en
+          - es
+          - fr
+        exchange:
+          type: object
+          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
+          properties:
+            rate:
+              type: integer
+              example: 1
+            currency:
+              $ref: '#/components/schemas/Currency'
+        totalCount:
+          type: integer
+          description: Total amount of tours that match the search query
+          example: 127
+        limit:
+          $ref: '#/components/schemas/Limit'
+        offset:
+          $ref: '#/components/schemas/Offset'
+    PaymentMethod:
+      type: string
+      enum:
+      - cc
+      - pp
+      - dd
+      description: "The payment method used to pay:\n  * `cc`: credit card\n  * `pp`: PayPal\n  * `dd`: direct debit (SEPA, only available in Germany)\n"
+      example: cc
+    FirstName:
+      description: The first name
+      example: John
+      type: string
+      maxLength: 44
+    CancellationPolicyText:
+      description: Cancellation policy text. Kept for backwards compatibility, please use CancellationPolicy.cancellation_policy_text instead.
+      deprecated: true
+      example: Your activity is non-refundable
+      type: string
+    TravelerBase:
+      type: object
+      properties:
+        salutation_code:
+          $ref: '#/components/schemas/SalutationCode'
+        first_name:
+          $ref: '#/components/schemas/FirstName'
+        last_name:
+          $ref: '#/components/schemas/LastName'
+        email:
+          $ref: '#/components/schemas/Email'
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+    PaymentProcess:
+      type: object
+      description: Information for 2 step checkout such as PayPal or 3DS Credit Card.
+      properties:
+        payment_url:
+          type: string
+          description: Url the customer should be redirected to, to complete the transaction.
+          format: uri
+          example: https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=EC-666887694144543663P
+        return_url:
+          $ref: '#/components/schemas/ReturnUrl'
+        cancel_url:
+          $ref: '#/components/schemas/CancelUrl'
+    OptionId:
+      description: The ID of the tour option.
+      example: 69232
+      type: integer
+    PriceField:
+      description: The value of the price.
+      example: 15.15
+      type: number
+    PaymentCurrency-2:
+      type: string
+      description: The currency in which the payment has been processed.
+      example: EUR
+    PaymentInfoInPayment:
+      properties:
+        payment_currency:
+          $ref: '#/components/schemas/PaymentCurrency-2'
+        total_price:
+          $ref: '#/components/schemas/PriceField'
+        precoupon_price:
+          $ref: '#/components/schemas/PriceField'
+    State:
+      description: State within the country.
+      example: California
+      type: string
+    Country:
+      description: ISO code of the country of the location (ISO 3166-1).
+      example: US
+      type: string
+    TourId:
+      description: The ID of the tour.
+      example: 50872
+      type: integer
+    BookingHash:
+      description: The hash of the booking. This identifies the booking.
+      example: WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M
+      type: string
+    ReturnUrl:
+      description: Url the customer will be redirected to by the payment provider, after successful completing the transaction.
+      type: string
+      format: uri
+      example: https://success.example
+    ParticipantQuestions:
+      description: The questions at participant level that need to be answered for this booking.
+      type: object
+      properties:
+        traveler_dietary_restrictions:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant dietary restrictions.
+              example: Only vegan food
+        traveler_diving_level:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant diving level.
+              example: Advanced diver
+        traveler_driver_license:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant driver's license information.
+              example: Class B driver's license 123456789X
+        traveler_shoe_size:
+          type: object
+          required:
+          - amount
+          - unit
+          properties:
+            amount:
+              type: string
+              description: Participant shoe size amount.
+              example: 43
+            unit:
+              type: string
+              description: Participant shoe size unit.
+              example: EUR
+        traveler_skill_level:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant skill level.
+              example: Intermediate
+        traveler_age:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant age.
+              example: 30
+        traveler_children_age:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Child/Infant age.
+              example: 2
+        traveler_date_of_birth:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              format: date
+              description: Participant's date of birth, date format `Y-m-d`.
+              example: '2000-08-13'
+        traveler_height:
+          type: object
+          required:
+          - amount
+          - unit
+          properties:
+            amount:
+              type: string
+              description: Participant height amount.
+              example: 180
+            unit:
+              type: string
+              description: Participant height unit.
+              example: cm
+        traveler_id_details:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant's ID details.
+              example: ID details
+        traveler_id_number:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant's ID number.
+              example: ABC123XYZ
+        traveler_name:
+          type: object
+          required:
+          - first_name
+          - last_name
+          properties:
+            first_name:
+              type: string
+              description: Participant's first name.
+              example: John
+            last_name:
+              type: string
+              description: Participant's last name.
+              example: Doe
+        traveler_passport_details:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant's passport details.
+              example: Country USA Expiry 2025-05-20
+        traveler_passport_number:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Participant's passport number.
+              example: AB1234567
+        traveler_weight:
+          type: object
+          required:
+          - amount
+          - unit
+          properties:
+            amount:
+              type: string
+              description: Participant weight amount.
+              example: 70
+            unit:
+              type: string
+              description: Participant weight unit.
+              example: kg
+    LastName:
+      description: The last name
+      example: Doe
+      type: string
+      maxLength: 44
+    PhoneNumber:
+      description: International phone number, in the ITU E.123 standard.
+      example: '+49123456789'
+      type: string
+    Traveler:
+      allOf:
+      - $ref: '#/components/schemas/TravelerBase'
+      - type: object
+        required:
+        - first_name
+        - last_name
+        - email
+        - phone_number
+    BookingParameters:
+      deprecated: true
+      description: DEPRECATED! use questions instead
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Name of the property
+            enum:
+            - language
+            - hotel
+            - comment
+            - supplier_requested_question
+            example: language
+          value_1:
+            type: string
+            description: First / Primary value of the property
+            example: language_live
+          value_2:
+            type: string
+            description: The language property requires a second value (e.g. value_1 = language_live, value_2 = en).
+            example: en
+          mandatory:
+            type: boolean
+            description: The mandatory booking parameters can be retrieved from the options endpoint
+            example: true
+    IsCompany:
+      description: Is the payee a company.
+      example: false
+      type: boolean
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    BillingBase:
+      type: object
+      properties:
+        salutation_code:
+          $ref: '#/components/schemas/SalutationCode'
+        first_name:
+          $ref: '#/components/schemas/FirstName'
+        last_name:
+          $ref: '#/components/schemas/LastName'
+        email:
+          $ref: '#/components/schemas/Email'
+        is_company:
+          $ref: '#/components/schemas/IsCompany'
+        company_name:
+          $ref: '#/components/schemas/CompanyName'
+        invoice:
+          $ref: '#/components/schemas/Invoice'
+        address_line_1:
+          $ref: '#/components/schemas/AddressLine1'
+        address_line_2:
+          $ref: '#/components/schemas/AddressLine2'
+        city:
+          $ref: '#/components/schemas/City'
+        postal_code:
+          $ref: '#/components/schemas/PostalCode'
+        state:
+          $ref: '#/components/schemas/State'
+        country_code:
+          $ref: '#/components/schemas/Country'
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+    Latitude:
+      description: The latitude in ISO 6709 standard.
+      type: number
+      format: float
+      minimum: -90
+      maximum: 90
+      example: 28.3701884
+    CartsResponseBase:
+      type: object
+      properties:
+        shopping_cart_id:
+          $ref: '#/components/schemas/ShoppingCartId'
+        shopping_cart_hash:
+          $ref: '#/components/schemas/ShoppingCartHash'
+        billing:
+          $ref: '#/components/schemas/BillingBase'
+        traveler:
+          $ref: '#/components/schemas/TravelerBase'
+        status:
+          $ref: '#/components/schemas/Status'
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Booking'
+        payment_process:
+          $ref: '#/components/schemas/PaymentProcess'
+        payment_info:
+          $ref: '#/components/schemas/PaymentInfoInPayment'
+    MasterBill:
+      description: MasterBill payment method, requires MasterBill API access.
+      type: object
+      properties:
+        master_bill:
+          type: boolean
+          description: Needs to be set to "true" for MasterBill checkout.
+          example: true
+    SupplierBookingCodes:
+      type: array
+      items:
+        type: object
+        properties:
+          ticket_hash:
+            type: string
+            example: 7H8N87D3QAH16XVABGPCR311U66XELRG
+          label:
+            type: string
+            example: 'Ticket #1 (ADULT)'
+          type:
+            description: The encoding algorithm used for the bar/qr code.
+            type: string
+            example: qr_code
+            enum:
+            - text
+            - barcode_code39
+            - barcode_code128
+            - qr_code
+            - data_matrix
+            - ean13
+            - itf
+            - pdf_file
+            - code25interleaved
+            - aztec
+          code:
+            description: The sting that will be encoded into the barcode.
+            type: string
+            example: JRUFX567YOMTSI7RG5K3UL2XC6RECSGQ-E9VNO
+          pricing_category_id:
+            type: integer
+            example: 2167696
+    Billing:
+      allOf:
+      - $ref: '#/components/schemas/BillingBase'
+      - type: object
+        required:
+        - first_name
+        - last_name
+        - email
+        - country_code
+        - phone_number
+    PostalCode:
+      description: Postal/zip code.
+      example: '14050'
+      type: string
+      maxLength: 44
+    Longitude:
+      description: The longitude in ISO 6709 standard.
+      type: number
+      format: float
+      minimum: -180
+      maximum: 180
+      example: -81.5545306
+    Bookable:
+      type: object
+      properties:
+        tour_id:
+          $ref: '#/components/schemas/TourId'
+        option_id:
+          $ref: '#/components/schemas/OptionId'
+        datetime:
+          $ref: '#/components/schemas/Datetime'
+        datetime_utc:
+          $ref: '#/components/schemas/DatetimeUTC'
+        datetime_type:
+          $ref: '#/components/schemas/DatetimeType'
+        opening_hours:
+          type: array
+          items:
+            type: object
+            properties:
+              opening_time:
+                $ref: '#/components/schemas/Datetime'
+              closing_time:
+                $ref: '#/components/schemas/Datetime'
+        price:
+          $ref: '#/components/schemas/PriceField'
+        valid_until:
+          $ref: '#/components/schemas/Datetime'
+        cancellation_policy_text:
+          $ref: '#/components/schemas/CancellationPolicyText'
+        currently_cancellable_at_no_fee:
+          $ref: '#/components/schemas/CurrentlyCancellableAtNoFee'
+        categories:
+          type: array
+          description: The price categories used for this booking.
+          items:
+            type: object
+            properties:
+              category_id:
+                $ref: '#/components/schemas/CategoryId'
+              name:
+                type: string
+                example: Adults
+              number_of_participants:
+                type: integer
+                example: 1
+        booking_parameters:
+          $ref: '#/components/schemas/BookingParameters'
+        questions:
+          $ref: '#/components/schemas/QuestionsOutput'
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
+    AddressLine2:
+      description: Additional information which did not fit in the first row.
+      example: c/o Amy Winter
+      type: string
+      maxLength: 44
+    InvoiceReference:
+      type: string
+      description: The invoice reference number.
+      example: GCI-0032724458
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
+    CntLanguage:
+      description: ISO 639, Language of the text content.
+      enum:
+      - ar
+      - ca
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - et
+      - fi
+      - fr
+      - he
+      - hr
+      - hu
+      - id
+      - it
+      - ja
+      - ko
+      - lt
+      - lv
+      - ms
+      - nl
+      - 'no'
+      - pl
+      - pt
+      - ro
+      - ru
+      - sk
+      - sv
+      - th
+      - tr
+      - zh
+      - zh-hant
+      example: en
+      type: string
+    SalutationCode:
+      description: Salutation code. m=Mr. f=Mrs. c=empty
+      enum:
+      - m
+      - f
+      - c
+      example: m
+      type: string
+    BookingQuestions:
+      description: The questions at booking level that need to be answered for this booking.
+      type: object
+      properties:
+        booking_customer_accommodation:
+          type: object
+          required:
+          - value
+          deprecated: true
+          properties:
+            value:
+              type: string
+              description: Booking accommodation / hotel value.
+              example: Hilton Miami Downtown hotel
+        booking_pick_up_location:
+          type: object
+          required:
+          - full_address
+          - coordinates
+          properties:
+            full_address:
+              type: string
+              description: Address to be picked up.
+              example: 1601 Biscayne Blvd, Miami, FL 33132, United States
+            coordinates:
+              $ref: '#/components/schemas/Coordinates'
+        booking_flight_details:
+          type: object
+          required:
+          - flight_number
+          - time_of_arrival
+          properties:
+            flight_number:
+              type: string
+              description: Flight number for the booking.
+              example: PT1021
+            time_of_arrival:
+              type: string
+              description: Time of arrival for the flight.
+              example: 12:20am
+        booking_child_safety_seat:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking child safety seat value.
+              example: We would need two safety seats
+        booking_cruise_details:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking cruise details value.
+              example: Arrival of my cruise is at 12:20am
+        booking_drop_off_address:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking drop-off address value.
+              example: Drop off address is at the Hilton Miami Downtown hotel
+        booking_medical_conditions:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking medical conditions value.
+              example: No medical conditions
+        booking_mobility_issues:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking mobility issues value.
+              example: No mobility issues
+        booking_shipping_address:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking shipping address value.
+              example: Shipping address is at the Miami St. 123
+        booking_wheelchair:
+          type: object
+          required:
+          - value
+          properties:
+            value:
+              type: string
+              description: Booking wheelchair value.
+              example: We would require a wheelchair
+    Ticket:
+      type: object
+      properties:
+        booking_reference:
+          type: string
+          example: GYG7VMWR9HZ3
+        supplier_booking_codes:
+          $ref: '#/components/schemas/SupplierBookingCodes'
+        emergency_phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        emergency_email:
+          $ref: '#/components/schemas/Email'
+        ticket_url:
+          type: string
+          format: uri
+          description: Download link for ticket PDF
+          example: https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG
+        ticket_hash:
+          type: string
+          example: 7H8N87D3QAH16XVABGPCR311U66XELRG
+  parameters:
+    currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      in: query
+      name: currency
+      example: USD
+      required: true
+      schema:
+        $ref: '#/components/schemas/Currency'
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
+    shoppingCartHash:
+      in: path
+      name: shopping_cart_hash
+      required: true
+      schema:
+        $ref: '#/components/schemas/ShoppingCartHash'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
+  responses:
+    4XX:
+      description: HTTP 400, 401, 404 have the same response format.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-ACCESS-TOKEN
+externalDocs:
+  description: Further Documentation, additional resources and best practices
+  url: https://github.com/getyourguide/partner-api-spec
