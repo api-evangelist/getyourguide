@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/getyourguide-partner-openapi.yml
+format: custom-json
+notes: >-
+  Derived from the Partner API OpenAPI. Errors are NOT RFC 9457 problem+json;
+  they use a custom envelope. The envelope carries an errors[] array of
+  {errorCode, errorMessage} where errorCode is a GetYourGuide-internal integer.
+  The spec collapses 400/401/404 into one 4XX response shape and 403/405/429/500
+  into a default response; only one concrete internal code is published in the
+  spec examples.
+envelope:
+  fields:
+    descriptor: Issuing entity, e.g. "GetYourGuide AG"
+    apiVersion: API version echoed back
+    method: Internal action name, e.g. getBookingByHashAction
+    date: RFC 3339 timestamp
+    status: Literal "ERROR"
+    query: The query string used for the request
+    errors: Array of {errorCode:int, errorMessage:string}
+    helpURL: Link to documentation
+  errors_item:
+    errorCode: GetYourGuide internal integer error code
+    errorMessage: Verbose human-readable description
+http_responses:
+- statuses: [400, 401, 404]
+  response: 4XX
+  media_type: application/json
+  schema: Error
+  description: >-
+    Client errors (bad request, invalid/expired access token, resource not
+    found) share the 4XX Error envelope.
+  source_operation: openapi/getyourguide-partner-openapi.yml (all operations)
+- statuses: [403, 405, 429, 500]
+  response: default
+  description: >-
+    Forbidden, method-not-allowed, rate-limited, and server errors return the
+    default response with no additional structured detail.
+  source_operation: openapi/getyourguide-partner-openapi.yml (all operations)
+- statuses: [400]
+  response: '400'
+  description: Explicit Bad Request on GET /{version}/tours (ToursQuery).
+  source_operation: openapi/getyourguide-partner-openapi.yml#ToursQuery
+- statuses: [500]
+  response: '500'
+  description: Explicit Internal Server Error on GET /{version}/tours (ToursQuery).
+  source_operation: openapi/getyourguide-partner-openapi.yml#ToursQuery
+known_codes:
+- errorCode: 25
+  errorMessage: Unauthorized. The access token is invalid.
+  http: 401
+  source: openapi Error schema example

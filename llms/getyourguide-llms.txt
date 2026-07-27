@@ -1,0 +1,43 @@
+# GetYourGuide
+
+> GetYourGuide is a Berlin-based online travel marketplace for booking tours, activities, attraction tickets, and experiences worldwide. Its public Partner API gives affiliates and technology partners programmatic access to the marketplace: search tours and activities, browse categories and options, check availability and price breakdowns, read supplier profiles and reviews, and create shopping carts and bookings. RESTful JSON, secured with an API access token (X-ACCESS-TOKEN header) over TLS.
+
+## APIs
+
+- [GetYourGuide Partner API reference](https://code.getyourguide.com/partner-api-spec/): Swagger UI for the Partner API.
+- [Partner API OpenAPI spec (GitHub)](https://github.com/getyourguide/partner-api-spec): Open-source OpenAPI 3.0 specification (Apache-2.0).
+- [Getting started wiki](https://github.com/getyourguide/partner-api-spec/wiki/Getting-started): Onboarding guide.
+
+## Specs
+
+- [OpenAPI (bundled)](openapi/getyourguide-partner-openapi.yml): 17 operations across tours, options, categories, suppliers, reviews, carts, bookings, and configuration.
+
+## Artifacts
+
+- [Authentication](authentication/getyourguide-authentication.yml): apiKey, X-ACCESS-TOKEN header.
+- [Conventions](conventions/getyourguide-conventions.yml): auth, offset/limit pagination, _metadata/data envelope, custom error envelope, no idempotency contract.
+- [Error catalog](errors/getyourguide-problem-types.yml): custom JSON error envelope with integer errorCode.
+- [Data model](data-model/getyourguide-data-model.yml): Tour, Option, Category, Supplier, Review, Cart, Booking entity graph.
+- [Lifecycle](lifecycle/getyourguide-lifecycle.yml): URI-path versioning.
+- [Sandbox](sandbox/getyourguide-sandbox.yml): testing host https://api.gygtest.net.
+- [MCP (candidate tools)](mcp/getyourguide-mcp.yml): derived tool list.
+- [Conformance](conformance/getyourguide-conformance.yml): OpenAPI 3.0, REST/JSON, TLS, RFC 9116.
+
+## Hosts
+
+- Production: https://api.getyourguide.com
+- Testing: https://api.gygtest.net
+
+## Security
+
+- [security.txt](well-known/getyourguide-security.txt)
+- [Vulnerability disclosure (HackerOne)](https://hackerone.com/getyourguide_vdp)
+- [Security policy](https://www.getyourguide.com/security)
+
+## Company
+
+- [Developer / open source](https://code.getyourguide.com/)
+- [GitHub organization](https://github.com/getyourguide)
+- [Engineering blog](https://www.getyourguide.careers/category/tech-engineering)
+- [Terms of use](https://www.getyourguide.com/terms_of_use/)
+- [Privacy policy](https://www.getyourguide.com/privacy_policy/)

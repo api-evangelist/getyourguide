@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of GetYourGuide hosts
+notes: >-
+  security.txt (RFC 9116) is served identically across api.getyourguide.com,
+  supplier-api.getyourguide.com, and partner.getyourguide.com. The other
+  /.well-known/* paths on partner.getyourguide.com return a soft-200 SPA HTML
+  shell (not a real discovery document) and are therefore recorded as not-present.
+hosts:
+- host: https://api.getyourguide.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: getyourguide-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://supplier-api.getyourguide.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: getyourguide-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://partner.getyourguide.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: getyourguide-security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: soft-200 SPA HTML, not a real OIDC discovery document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: soft-200 SPA HTML, not a real plugin manifest
+- host: https://www.getyourguide.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: bot protection blocks direct probe

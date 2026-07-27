@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/getyourguide-partner-openapi.yml (servers[]) + partner-api-spec wiki
+notes: >-
+  The Partner API publishes a dedicated testing environment. The OpenAPI declares
+  two servers: a Production host and a Testing host. Bookings/carts created
+  against the testing host are non-binding. No public magic test tokens are
+  documented in the OpenAPI itself; partners receive test access tokens through
+  the partner onboarding process.
+environments:
+- mode: production
+  base_url: https://api.getyourguide.com
+- mode: testing
+  base_url: https://api.gygtest.net
+  description: >-
+    Sandbox/testing environment mirroring the production Partner API for
+    integration testing without creating real bookings.
+auth:
+  parameter: X-ACCESS-TOKEN
+  detail: >-
+    A separate test access token is issued for the testing environment; the
+    live token is used only against api.getyourguide.com.
+test_values:
+  documented_in_spec: false
+  detail: >-
+    Example tour deep-links in the spec reference the gygtest domain
+    (e.g. www-getyourguide-com.partner.gygtest.com), confirming the test
+    environment, but no fixed magic tour_ids or booking payloads are published;
+    obtain test catalog data via the testing host's /tours search.

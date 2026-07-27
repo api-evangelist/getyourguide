@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/getyourguide-partner-openapi.yml
+skills:
+- file: getyourguide-search-and-book.md
+  name: Search a tour and create a booking
+  api: openapi/getyourguide-partner-openapi.yml
+  operations: [ToursQuery, ToursByIdQuery, ToursByIdOptions, tours-by-id-availability, tours-by-id-price-breakdown, BookingsCreate, CartsConfirm]
+- file: getyourguide-manage-booking.md
+  name: Retrieve and cancel a booking
+  api: openapi/getyourguide-partner-openapi.yml
+  operations: [BookingsGetByHash, bookingsDeleteByHash, CartsGetByHash]

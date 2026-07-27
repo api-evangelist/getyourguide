@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/getyourguide-partner-openapi.yml
+notes: >-
+  Cross-cutting standards conformance derived from the Partner API OpenAPI and
+  docs. GetYourGuide publishes no formal compliance program page for the Partner
+  API, so no Compliance pointer is asserted.
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Published OpenAPI 3.0.0 specification (github.com/getyourguide/partner-api-spec)
+- id: rest-json
+  conforms: true
+  evidence: RESTful resource paths, application/json media type throughout
+- id: tls
+  conforms: true
+  evidence: HTTPS-only; TLSv1.3 on api.getyourguide.com (see security/getyourguide-domain-security.yml)
+- id: api-key-auth
+  conforms: true
+  evidence: apiKey securityScheme (X-ACCESS-TOKEN header)
+- id: pagination-offset-limit
+  conforms: true
+  evidence: limit/offset params with totalCount in _metadata envelope
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: well-known/getyourguide-security.txt served on api hosts
+- id: oauth2
+  conforms: false
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom envelope, not application/problem+json
+- id: webhooks
+  conforms: false
+  evidence: No webhook/callback surface declared in the spec
+- id: asyncapi
+  conforms: false

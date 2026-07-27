@@ -1,0 +1,86 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/getyourguide-partner-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the Partner API OpenAPI schemas and
+  path structure. Relationships are inferred from id-reference fields
+  (tour_id, supplier_id, category_id, option_id, booking_hash,
+  shopping_cart_hash) and from the resource path hierarchy.
+entities:
+- name: Tour
+  key: tour_id
+  description: A bookable tour or activity in the GetYourGuide marketplace.
+- name: Option
+  key: option_id
+  description: A bookable option (variant) of a tour.
+- name: Category
+  key: category_id
+  description: A taxonomy category a tour is tagged with.
+- name: Supplier
+  key: supplier_id
+  description: The local operator that runs the tour.
+- name: Review
+  description: A customer review attached to a tour.
+- name: Availability
+  description: Availability calendar/slots for a tour.
+- name: PriceBreakdown
+  description: Detailed price breakdown for a tour option.
+- name: ShoppingCart
+  key: shopping_cart_hash
+  description: A cart aggregating one or more bookings before confirmation.
+- name: Booking
+  key: booking_hash
+  description: A confirmed (or pending) booking of a tour option.
+- name: Location
+  description: A geographic location associated with a tour.
+- name: Picture
+  description: A media asset associated with a tour.
+relationships:
+- from: Tour
+  to: Supplier
+  type: belongs_to
+  via: supplier_id
+- from: Tour
+  to: Option
+  type: has_many
+  via: /{version}/tours/{tour_id}/options
+- from: Tour
+  to: Category
+  type: has_many
+  via: categories[].category_id
+- from: Tour
+  to: Review
+  type: has_many
+  via: /{version}/reviews/tour/{tour_id}
+- from: Tour
+  to: Availability
+  type: has_one
+  via: /{version}/tours/{tour_id}/availability
+- from: Tour
+  to: Location
+  type: has_many
+  via: locations[]
+- from: Tour
+  to: Picture
+  type: has_many
+  via: pictures[]
+- from: Option
+  to: Tour
+  type: belongs_to
+  via: tour_id
+- from: Option
+  to: PriceBreakdown
+  type: has_one
+  via: /{version}/tours/{tour_id}/price-breakdown
+- from: Booking
+  to: Option
+  type: belongs_to
+  via: bookable (option_id)
+- from: ShoppingCart
+  to: Booking
+  type: has_many
+  via: bookings[]
+- from: Booking
+  to: ShoppingCart
+  type: belongs_to
+  via: shopping_cart_hash

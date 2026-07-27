@@ -1,0 +1,28 @@
+{
+  "provider": "getyourguide",
+  "sources": [
+    "getyourguide-bookings-api-openapi.yml",
+    "getyourguide-carts-api-openapi.yml",
+    "getyourguide-categories-api-openapi.yml",
+    "getyourguide-configuration-api-openapi.yml",
+    "getyourguide-options-api-openapi.yml",
+    "getyourguide-reviews-api-openapi.yml",
+    "getyourguide-suppliers-api-openapi.yml",
+    "getyourguide-tours-api-openapi.yml"
+  ],
+  "outputs": [
+    "getyourguide-bookings-api-openapi.yml",
+    "getyourguide-carts-api-openapi.yml",
+    "getyourguide-categories-api-openapi.yml",
+    "getyourguide-configuration-api-openapi.yml",
+    "getyourguide-options-api-openapi.yml",
+    "getyourguide-reviews-api-openapi.yml",
+    "getyourguide-suppliers-api-openapi.yml",
+    "getyourguide-tours-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

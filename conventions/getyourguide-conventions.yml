@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/getyourguide-partner-openapi.yml
+notes: >-
+  Cross-cutting request/response semantics for the GetYourGuide Partner API,
+  derived from the published OpenAPI (github.com/getyourguide/partner-api-spec)
+  and its wiki. Cross-links authentication/, errors/, and lifecycle/.
+authentication:
+  style: api-key
+  location: header
+  parameter: X-ACCESS-TOKEN
+  transport: TLS (HTTPS only)
+  ref: authentication/getyourguide-authentication.yml
+versioning:
+  style: uri-path-parameter
+  detail: >-
+    Every resource path carries a {version} path parameter (e.g.
+    /1/tours, /1/bookings). The version is supplied by the client on each call.
+  ref: lifecycle/getyourguide-lifecycle.yml
+pagination:
+  style: offset-limit
+  request_params:
+  - limit
+  - offset
+  response_fields:
+  - _metadata.totalCount
+  - _metadata.limit
+  - _metadata.offset
+  detail: >-
+    List endpoints (e.g. GET /{version}/tours) accept limit and offset query
+    parameters; the _metadata envelope returns totalCount, limit, and offset.
+response_envelope:
+  shape: metadata-and-data
+  fields:
+  - _metadata
+  - data
+  detail: >-
+    Successful responses wrap results in an object with a _metadata block
+    (descriptor, date, status, query, totalCount, limit, offset,
+    availableLanguages) and a data block carrying the resource payload.
+error_envelope:
+  shape: custom
+  format: not-rfc9457
+  fields:
+  - descriptor
+  - apiVersion
+  - method
+  - date
+  - status
+  - query
+  - errors
+  - helpURL
+  detail: >-
+    Errors return a custom JSON envelope with an errors[] array of
+    {errorCode (GetYourGuide internal integer), errorMessage}. Not RFC 9457
+    problem+json.
+  ref: errors/getyourguide-problem-types.yml
+localization:
+  currency_param: currency
+  language_param: cnt_language
+  detail: >-
+    Requests accept currency and cnt_language query parameters; responses
+    surface availableLanguages in _metadata.
+idempotency:
+  supported: false
+  detail: >-
+    The Partner API does not document an idempotency-key header or parameter.
+    The booking flow is instead made safe by a two-step cart/confirm model
+    (POST /{version}/bookings creates or adds to a cart, POST /{version}/carts
+    confirms it) with server-issued booking_hash and shopping_cart_hash
+    identifiers used to reference and cancel bookings.
+rate_limiting:
+  documented: false
+  detail: No rate-limit headers or quotas are declared in the OpenAPI spec.

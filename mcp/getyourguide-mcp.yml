@@ -1,0 +1,70 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/getyourguide-partner-openapi.yml
+notes: >-
+  GetYourGuide publishes no official hosted/remote MCP server. A community npm
+  package "getyourguide-mcp" exists (github.com/chrischall/getyourguide-mcp,
+  AI-authored) but is NOT first-party, so it is not treated as an official
+  server. The tool list below is a candidate derived one-to-one from the Partner
+  API operations.
+community_reference:
+  name: getyourguide-mcp
+  registry: npm
+  url: https://www.npmjs.com/package/getyourguide-mcp
+  official: false
+server:
+  name: getyourguide-partner
+  transport: stdio
+tools:
+- name: search_tours
+  description: Search tours and activities in the marketplace.
+  source_operation: openapi/getyourguide-partner-openapi.yml#ToursQuery
+- name: get_tour
+  description: Get a tour by id.
+  source_operation: openapi/getyourguide-partner-openapi.yml#ToursByIdQuery
+- name: get_tour_availability
+  description: Get availability for a tour.
+  source_operation: openapi/getyourguide-partner-openapi.yml#tours-by-id-availability
+- name: get_tour_options
+  description: List options for a tour.
+  source_operation: openapi/getyourguide-partner-openapi.yml#ToursByIdOptions
+- name: get_tour_price_breakdown
+  description: Get the price breakdown for a tour option.
+  source_operation: openapi/getyourguide-partner-openapi.yml#tours-by-id-price-breakdown
+- name: get_option
+  description: Get a tour option by id.
+  source_operation: openapi/getyourguide-partner-openapi.yml#OptionsGetById
+- name: list_categories
+  description: List tour categories.
+  source_operation: openapi/getyourguide-partner-openapi.yml#CategoriesList
+- name: get_category
+  description: Get a category by id.
+  source_operation: openapi/getyourguide-partner-openapi.yml#CategoriesGetById
+- name: get_supplier
+  description: Get a supplier by id.
+  source_operation: openapi/getyourguide-partner-openapi.yml#Suppliers
+- name: get_reviews
+  description: Get reviews for a tour.
+  source_operation: openapi/getyourguide-partner-openapi.yml#Reviews
+- name: create_booking
+  description: Create a booking / add to a shopping cart.
+  source_operation: openapi/getyourguide-partner-openapi.yml#BookingsCreate
+- name: get_booking
+  description: Get a booking by hash.
+  source_operation: openapi/getyourguide-partner-openapi.yml#BookingsGetByHash
+- name: cancel_booking
+  description: Cancel (delete) a booking by hash.
+  source_operation: openapi/getyourguide-partner-openapi.yml#bookingsDeleteByHash
+- name: confirm_cart
+  description: Confirm a shopping cart.
+  source_operation: openapi/getyourguide-partner-openapi.yml#CartsConfirm
+- name: get_cart
+  description: Get a shopping cart by hash.
+  source_operation: openapi/getyourguide-partner-openapi.yml#CartsGetByHash
+- name: get_configuration
+  description: Get API configuration.
+  source_operation: openapi/getyourguide-partner-openapi.yml#configurationVersion
+- name: get_payment_configuration
+  description: Get payment configuration.
+  source_operation: openapi/getyourguide-partner-openapi.yml#configurationPayment

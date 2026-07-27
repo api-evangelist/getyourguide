@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for GetYourGuide Partner API
+  version: 1.0.0
+extends: openapi/getyourguide-partner-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-19'
+    x-api-evangelist-provider: getyourguide
+    x-authentication: api-key (X-ACCESS-TOKEN header)
+    x-pagination: offset-limit
+    x-error-format: custom-json (not rfc9457)
+    x-sandbox: https://api.gygtest.net
+- target: $.info.contact
+  update:
+    x-security-txt: https://api.getyourguide.com/.well-known/security.txt
+    x-vulnerability-disclosure: https://hackerone.com/getyourguide_vdp

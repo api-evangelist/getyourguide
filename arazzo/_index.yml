@@ -1,0 +1,9 @@
+generated: '2026-07-19'
+method: derived
+workflows:
+- file: getyourguide-search-and-book.yml
+  workflowId: searchAndBook
+  title: Search a tour and create a booking
+  summary: >-
+    Search the marketplace, list a tour's options, check availability, create a
+    booking/cart, and confirm the cart — grounded in real Partner API operationIds.

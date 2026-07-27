@@ -1,24 +1,338 @@
 aid: getyourguide
 name: GetYourGuide
-description: GetYourGuide is a company surfaced as a portfolio company of battery-ventures, softbank-vision-fund
-  and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the
-  enrichment pipeline.
+description: >-
+  GetYourGuide is a Berlin-based online travel marketplace for booking tours,
+  activities, attraction tickets, and experiences in destinations around the
+  world. Founded in 2009, the company connects travelers with local activity
+  suppliers and operators, and exposes a public Partner API that gives affiliates,
+  agencies, and technology partners programmatic access to the GetYourGuide
+  marketplace catalog — searching tours and activities, retrieving categories,
+  options, availability, price breakdowns, supplier details, and reviews, and
+  creating shopping carts and bookings. The RESTful Partner API uses JSON,
+  is secured over TLS with an API access token (X-ACCESS-TOKEN header), and
+  publishes its OpenAPI specification as open source on GitHub. GetYourGuide is
+  backed by Battery Ventures and SoftBank Vision Fund.
 url: https://raw.githubusercontent.com/api-evangelist/getyourguide/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
 - softbank-vision-fund
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Travel
+- Tourism
+- Tours and Activities
+- Marketplace
+- Booking
+- Experiences
+- Affiliate
+- Partner API
+- Ecommerce
+image: https://cdn.getyourguide.com/tf/assets/static/logos/gyg-logo.svg
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: getyourguide:getyourguide-bookings-api
+  name: GetYourGuide Bookings API
+  description: The Bookings API from GetYourGuide — 2 operation(s) for bookings.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-bookings-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-carts-api
+  name: GetYourGuide Carts API
+  description: The Carts API from GetYourGuide — 2 operation(s) for carts.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Carts
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-carts-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-categories-api
+  name: GetYourGuide Categories API
+  description: The Categories API from GetYourGuide — 2 operation(s) for categories.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-categories-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-configuration-api
+  name: GetYourGuide Configuration API
+  description: The Configuration API from GetYourGuide — 2 operation(s) for configuration.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-configuration-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-options-api
+  name: GetYourGuide Options API
+  description: The Options API from GetYourGuide — 1 operation(s) for options.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Options
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-options-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-reviews-api
+  name: GetYourGuide Reviews API
+  description: The Reviews API from GetYourGuide — 1 operation(s) for reviews.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-reviews-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-suppliers-api
+  name: GetYourGuide Suppliers API
+  description: The Suppliers API from GetYourGuide — 1 operation(s) for suppliers.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Suppliers
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-suppliers-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+- aid: getyourguide:getyourguide-tours-api
+  name: GetYourGuide Tours API
+  description: The Tours API from GetYourGuide — 5 operation(s) for tours.
+  humanURL: https://code.getyourguide.com/partner-api-spec/
+  baseURL: https://api.getyourguide.com
+  tags:
+  - Tours
+  properties:
+  - type: OpenAPI
+    url: openapi/getyourguide-tours-api-openapi.yml
+  - type: APIReference
+    url: https://code.getyourguide.com/partner-api-spec/
+  - type: GettingStarted
+    url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+  - type: Authentication
+    url: authentication/getyourguide-authentication.yml
+  - type: Sandbox
+    url: sandbox/getyourguide-sandbox.yml
+  - type: Conventions
+    url: conventions/getyourguide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/getyourguide-problem-types.yml
+  - type: DataModel
+    url: data-model/getyourguide-data-model.yml
+  - type: Conformance
+    url: conformance/getyourguide-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/getyourguide-lifecycle.yml
+common:
+- type: DeveloperPortal
+  url: https://code.getyourguide.com/
+- type: Documentation
+  url: https://github.com/getyourguide/partner-api-spec
+- type: APIReference
+  url: https://code.getyourguide.com/partner-api-spec/
+- type: GettingStarted
+  url: https://github.com/getyourguide/partner-api-spec/wiki/Getting-started
+- type: GitHubOrganization
+  url: https://github.com/getyourguide
+- type: OpenSource
+  url: https://code.getyourguide.com/
+- type: Blog
+  url: https://www.getyourguide.careers/category/tech-engineering
+- type: Support
+  url: https://supply.getyourguide.support/
+- type: TermsOfService
+  url: https://www.getyourguide.com/terms_of_use/
+- type: PrivacyPolicy
+  url: https://www.getyourguide.com/privacy_policy/
+- type: Security
+  url: https://www.getyourguide.com/security
+- type: VulnerabilityDisclosure
+  url: security/getyourguide-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/getyourguide-domain-security.yml
+- type: SecurityTxt
+  url: well-known/getyourguide-security.txt
+- type: WellKnown
+  url: well-known/getyourguide-well-known.yml
+- type: Authentication
+  url: authentication/getyourguide-authentication.yml
+- type: Conventions
+  url: conventions/getyourguide-conventions.yml
+- type: ErrorCatalog
+  url: errors/getyourguide-problem-types.yml
+- type: DataModel
+  url: data-model/getyourguide-data-model.yml
+- type: Conformance
+  url: conformance/getyourguide-conformance.yml
+- type: Lifecycle
+  url: lifecycle/getyourguide-lifecycle.yml
+- type: Sandbox
+  url: sandbox/getyourguide-sandbox.yml
+- type: MCPServer
+  url: mcp/getyourguide-mcp.yml
+- type: LLMsTxt
+  url: llms/getyourguide-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Search a tour and create a booking
+  url: arazzo/getyourguide-search-and-book.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

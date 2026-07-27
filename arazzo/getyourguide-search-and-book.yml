@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Search a tour and create a booking
+  version: 1.0.0
+  description: >-
+    Search the GetYourGuide marketplace, pick a tour option, check availability,
+    then create and confirm a booking via the two-step cart flow.
+sourceDescriptions:
+- name: partnerApi
+  url: ../openapi/getyourguide-partner-openapi.yml
+  type: openapi
+workflows:
+- workflowId: searchAndBook
+  summary: Find a tour and book one of its options.
+  description: >-
+    Run against the testing host (https://api.gygtest.net) with a test
+    X-ACCESS-TOKEN to avoid creating real bookings.
+  inputs:
+    type: object
+    properties:
+      version:
+        type: string
+        default: '1'
+      accessToken:
+        type: string
+      currency:
+        type: string
+        default: EUR
+      cnt_language:
+        type: string
+        default: en
+      q:
+        type: string
+    required: [accessToken]
+  steps:
+  - stepId: searchTours
+    description: Search for tours matching the query.
+    operationId: ToursQuery
+    parameters:
+    - name: version
+      in: path
+      value: $inputs.version
+    - name: X-ACCESS-TOKEN
+      in: header
+      value: $inputs.accessToken
+    - name: currency
+      in: query
+      value: $inputs.currency
+    - name: cnt_language
+      in: query
+      value: $inputs.cnt_language
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tourId: $response.body#/data/tours/0/tour_id
+  - stepId: listOptions
+    description: List bookable options for the selected tour.
+    operationId: ToursByIdOptions
+    parameters:
+    - name: version
+      in: path
+      value: $inputs.version
+    - name: tour_id
+      in: path
+      value: $steps.searchTours.outputs.tourId
+    - name: X-ACCESS-TOKEN
+      in: header
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: checkAvailability
+    description: Check availability for the tour.
+    operationId: tours-by-id-availability
+    parameters:
+    - name: version
+      in: path
+      value: $inputs.version
+    - name: tour_id
+      in: path
+      value: $steps.searchTours.outputs.tourId
+    - name: X-ACCESS-TOKEN
+      in: header
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: createBooking
+    description: Create a booking / shopping cart for the chosen option.
+    operationId: BookingsCreate
+    parameters:
+    - name: version
+      in: path
+      value: $inputs.version
+    - name: X-ACCESS-TOKEN
+      in: header
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      shoppingCartHash: $response.body#/data/bookings/shopping_cart_hash
+  - stepId: confirmCart
+    description: Confirm the shopping cart to finalize the booking.
+    operationId: CartsConfirm
+    parameters:
+    - name: version
+      in: path
+      value: $inputs.version
+    - name: X-ACCESS-TOKEN
+      in: header
+      value: $inputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    tourId: $steps.searchTours.outputs.tourId
+    shoppingCartHash: $steps.createBooking.outputs.shoppingCartHash
