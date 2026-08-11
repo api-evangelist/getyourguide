@@ -278,6 +278,8 @@ apis:
   - type: Lifecycle
     url: lifecycle/getyourguide-lifecycle.yml
 common:
+- type: Overlay
+  url: overlays/getyourguide-partner-overlay.yaml
 - type: DeveloperPortal
   url: https://code.getyourguide.com/
 - type: Documentation
