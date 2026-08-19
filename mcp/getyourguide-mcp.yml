@@ -2,12 +2,9 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/getyourguide-partner-openapi.yml
-notes: >-
-  GetYourGuide publishes no official hosted/remote MCP server. A community npm
-  package "getyourguide-mcp" exists (github.com/chrischall/getyourguide-mcp,
-  AI-authored) but is NOT first-party, so it is not treated as an official
-  server. The tool list below is a candidate derived one-to-one from the Partner
-  API operations.
+notes: GetYourGuide publishes no official hosted/remote MCP server. A community npm package "getyourguide-mcp"
+  exists (github.com/chrischall/getyourguide-mcp, AI-authored) but is NOT first-party, so it is not treated
+  as an official server. The tool list below is a candidate derived one-to-one from the Partner API operations.
 community_reference:
   name: getyourguide-mcp
   registry: npm
@@ -68,3 +65,9 @@ tools:
 - name: get_payment_configuration
   description: Get payment configuration.
   source_operation: openapi/getyourguide-partner-openapi.yml#configurationPayment
+deployment:
+  mode: none
+  verified: derived
+  tools: 17
+  checked: '2026-08-12'
+  source: catalog MCP census

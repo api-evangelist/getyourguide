@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Api Bookings Suppliers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ACCESS-TOKEN",
+      "value": "{{X-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Suppliers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Suppliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/suppliers/:supplier_id",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "supplier_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

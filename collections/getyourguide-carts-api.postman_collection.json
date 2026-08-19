@@ -1,0 +1,544 @@
+{
+  "item": [
+    {
+      "id": "958d11f5-2d90-4f34-9371-12e90759b5d0",
+      "name": "Carts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9072767-3d11-4003-8b0d-a95c186aead6",
+          "name": "Confirm a shopping cart.",
+          "request": {
+            "name": "Confirm a shopping cart.",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "carts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"data\": {\n    \"shopping_cart\": {\n      \"shopping_cart_hash\": \"<string>\",\n      \"billing\": \"<object>\",\n      \"traveler\": \"<object>\",\n      \"payment\": {\n        \"master_bill\": \"<boolean>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e20e8b85-decc-4bea-b44b-841549d15668",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"en\",\n    \"currency\": \"EUR\"\n  },\n  \"data\": {\n    \"shopping_cart\": {\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"billing\": \"<object>\",\n      \"traveler\": \"<object>\",\n      \"payment\": {\n        \"master_bill\": true\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"shopping_cart_id\": 32724458,\n    \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n    \"billing\": \"<object>\",\n    \"traveler\": \"<object>\",\n    \"status\": \"completed\",\n    \"bookings\": [\n      {\n        \"booking_id\": 13822240,\n        \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n        \"booking_status\": \"temp\",\n        \"shopping_cart_id\": 32724458,\n        \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n        \"bookable\": {\n          \"tour_id\": 50872,\n          \"option_id\": 69232,\n          \"datetime\": \"2017-09-01T00:00:00\",\n          \"datetime_utc\": \"2017-09-01T04:00:00Z\",\n          \"datetime_type\": \"datetime\",\n          \"opening_hours\": [\n            {\n              \"opening_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"closing_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"opening_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"closing_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"price\": 15.15,\n          \"valid_until\": \"2017-09-01T00:00:00\",\n          \"cancellation_policy_text\": \"Your activity is non-refundable\",\n          \"currently_cancellable_at_no_fee\": true,\n          \"categories\": [\n            {\n              \"category_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number_of_participants\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"category_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number_of_participants\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"booking_parameters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"questions\": {\n            \"booking_questions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participant_questions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"conduction_language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"free_text_question\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"ticket\": {\n          \"booking_reference\": \"GYG7VMWR9HZ3\",\n          \"supplier_booking_codes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"emergency_phone_number\": \"+49123456789\",\n          \"emergency_email\": \"address@example.com\",\n          \"ticket_url\": \"https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG\",\n          \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\"\n        }\n      },\n      {\n        \"booking_id\": 13822240,\n        \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n        \"booking_status\": \"temp\",\n        \"shopping_cart_id\": 32724458,\n        \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n        \"bookable\": {\n          \"tour_id\": 50872,\n          \"option_id\": 69232,\n          \"datetime\": \"2017-09-01T00:00:00\",\n          \"datetime_utc\": \"2017-09-01T04:00:00Z\",\n          \"datetime_type\": \"datetime\",\n          \"opening_hours\": [\n            {\n              \"opening_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"closing_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"opening_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"closing_time\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"price\": 15.15,\n          \"valid_until\": \"2017-09-01T00:00:00\",\n          \"cancellation_policy_text\": \"Your activity is non-refundable\",\n          \"currently_cancellable_at_no_fee\": true,\n          \"categories\": [\n            {\n              \"category_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number_of_participants\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"category_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"number_of_participants\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"booking_parameters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"questions\": {\n            \"booking_questions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"participant_questions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"conduction_language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"free_text_question\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"ticket\": {\n          \"booking_reference\": \"GYG7VMWR9HZ3\",\n          \"supplier_booking_codes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"emergency_phone_number\": \"+49123456789\",\n          \"emergency_email\": \"address@example.com\",\n          \"ticket_url\": \"https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG\",\n          \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\"\n        }\n      }\n    ],\n    \"payment_info\": {\n      \"payment_currency\": \"EUR\",\n      \"total_price\": 15.15,\n      \"precoupon_price\": 15.15,\n      \"payment_method\": \"cc\",\n      \"coupon_info\": \"test\",\n      \"invoice_reference\": \"GCI-0032724458\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dbff915-be90-412b-a369-509113cf3be0",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"en\",\n    \"currency\": \"EUR\"\n  },\n  \"data\": {\n    \"shopping_cart\": {\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"billing\": \"<object>\",\n      \"traveler\": \"<object>\",\n      \"payment\": {\n        \"master_bill\": true\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b1f2d70-5a84-4339-b0df-059b17319a5d",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"en\",\n    \"currency\": \"EUR\"\n  },\n  \"data\": {\n    \"shopping_cart\": {\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"billing\": \"<object>\",\n      \"traveler\": \"<object>\",\n      \"payment\": {\n        \"master_bill\": true\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3ab05ba-9e94-4c74-9ad4-99bfc203b985",
+          "name": "Get information about a shopping cart.",
+          "request": {
+            "name": "Get information about a shopping cart.",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "carts",
+                ":shopping_cart_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shopping_cart_hash",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a0bb863-dd50-4a4e-bde1-5aee01ef2bad",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "carts",
+                    ":shopping_cart_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shopping_cart_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"shopping_cart\": {\n      \"shopping_cart_id\": 32724458,\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"billing\": {\n        \"salutation_code\": \"m\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"address@example.com\",\n        \"is_company\": false,\n        \"company_name\": \"GetYourGuide\",\n        \"invoice\": false,\n        \"address_line_1\": \"1000 Fulton Avenue\",\n        \"address_line_2\": \"c/o Amy Winter\",\n        \"city\": \"Berlin\",\n        \"postal_code\": \"14050\",\n        \"state\": \"California\",\n        \"country_code\": \"US\",\n        \"phone_number\": \"+49123456789\"\n      },\n      \"traveler\": {\n        \"salutation_code\": \"m\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"address@example.com\",\n        \"phone_number\": \"+49123456789\"\n      },\n      \"status\": \"completed\",\n      \"bookings\": [\n        {\n          \"booking_id\": 13822240,\n          \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n          \"booking_status\": \"temp\",\n          \"shopping_cart_id\": 32724458,\n          \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n          \"bookable\": {\n            \"tour_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"option_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"datetime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"datetime_utc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"datetime_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"opening_hours\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"valid_until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellation_policy_text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currently_cancellable_at_no_fee\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"categories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"booking_parameters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"ticket\": {\n            \"booking_reference\": \"GYG7VMWR9HZ3\",\n            \"supplier_booking_codes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"emergency_phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"emergency_email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_url\": \"https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG\",\n            \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\"\n          }\n        },\n        {\n          \"booking_id\": 13822240,\n          \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n          \"booking_status\": \"temp\",\n          \"shopping_cart_id\": 32724458,\n          \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n          \"bookable\": {\n            \"tour_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"option_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"datetime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"datetime_utc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"datetime_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"opening_hours\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"valid_until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellation_policy_text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currently_cancellable_at_no_fee\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"categories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"booking_parameters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"ticket\": {\n            \"booking_reference\": \"GYG7VMWR9HZ3\",\n            \"supplier_booking_codes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"emergency_phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"emergency_email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_url\": \"https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG\",\n            \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\"\n          }\n        }\n      ],\n      \"payment_process\": {\n        \"payment_url\": \"https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=EC-666887694144543663P\",\n        \"return_url\": \"https://success.example\",\n        \"cancel_url\": \"https://failure.example\"\n      },\n      \"payment_info\": {\n        \"payment_currency\": \"EUR\",\n        \"total_price\": 15.15,\n        \"precoupon_price\": 15.15\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4eb990f-a40e-493b-91e4-d7489d63997b",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "carts",
+                    ":shopping_cart_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shopping_cart_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4fae0e0-0172-4e84-bb09-a34b530e978e",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "carts",
+                    ":shopping_cart_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shopping_cart_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getyourguide.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3228d013-5869-4d9b-9eca-621a83e6fe27",
+    "name": "Partner Api Bookings Carts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.\n\nContact Support:\n Name: Partner Tech",
+      "type": "text/plain"
+    }
+  }
+}

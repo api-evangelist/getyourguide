@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "3d8f73d0-849b-49c9-bc4e-89c9d6fb1c60",
+      "name": "Options",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d03e63e5-62cc-4ce7-a901-53ae3f5b6ad3",
+          "name": "Options Get By Id",
+          "request": {
+            "name": "Options Get By Id",
+            "description": {
+              "content": "Find a Tour Option by ID. The result will be an array of tour options. But the array will only contain one single tour option.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":version",
+                "options",
+                ":option_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                },
+                {
+                  "disabled": false,
+                  "key": "date[]",
+                  "value": "<dateTime>",
+                  "description": "Check for tours that are offered on date or between dates."
+                },
+                {
+                  "disabled": false,
+                  "key": "date[]",
+                  "value": "<dateTime>",
+                  "description": "Check for tours that are offered on date or between dates."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "option_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d917a34e-5264-4476-a099-d580ffc1511d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "options",
+                    ":option_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "option_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"tour_options\": [\n      {\n        \"option_id\": 69232,\n        \"tour_id\": 50872,\n        \"title\": \"From Abu Dhabi: Private Transfer to Dubai\",\n        \"description\": \"string\",\n        \"pick_up\": \"string\",\n        \"pick_up_location\": {\n          \"type\": \"string\",\n          \"description\": \"Pick up from your hotel in Manhattan\",\n          \"areas\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"locations\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": false\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": false\n            }\n          ],\n          \"transportation_types\": [\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"meeting_point\": \"string\",\n        \"drop_off\": \"string\",\n        \"duration\": 2.5,\n        \"duration_unit\": \"hour\",\n        \"validity\": 30,\n        \"validity_unit\": \"day\",\n        \"validity_from\": \"time_booked\",\n        \"cond_language\": {\n          \"language_audio\": [\n            \"de\",\n            \"fr\",\n            \"es\",\n            \"ru\"\n          ],\n          \"language_booklet\": [\n            \"de\",\n            \"fr\",\n            \"en\"\n          ],\n          \"language_live\": [\n            \"de\",\n            \"en\"\n          ]\n        },\n        \"booking_parameter\": [\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": [\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            }\n          ],\n          \"participant_questions\": [\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            }\n          ],\n          \"conduction_language\": {\n            \"mandatory\": true\n          },\n          \"free_text_question\": {\n            \"mandatory\": true,\n            \"description\": \"Please provide the nationality of everyone in your group.\"\n          }\n        },\n        \"services\": {\n          \"prt\": true,\n          \"stl\": true,\n          \"wlc\": true\n        },\n        \"coordinate_type\": \"approximate\",\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"free_sale\": true\n      },\n      {\n        \"option_id\": 69232,\n        \"tour_id\": 50872,\n        \"title\": \"From Abu Dhabi: Private Transfer to Dubai\",\n        \"description\": \"string\",\n        \"pick_up\": \"string\",\n        \"pick_up_location\": {\n          \"type\": \"string\",\n          \"description\": \"Pick up from your hotel in Manhattan\",\n          \"areas\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"locations\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": 6304\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": 5399.65187346758\n            }\n          ],\n          \"transportation_types\": [\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"meeting_point\": \"string\",\n        \"drop_off\": \"string\",\n        \"duration\": 2.5,\n        \"duration_unit\": \"hour\",\n        \"validity\": 30,\n        \"validity_unit\": \"day\",\n        \"validity_from\": \"time_booked\",\n        \"cond_language\": {\n          \"language_audio\": [\n            \"de\",\n            \"fr\",\n            \"es\",\n            \"ru\"\n          ],\n          \"language_booklet\": [\n            \"de\",\n            \"fr\",\n            \"en\"\n          ],\n          \"language_live\": [\n            \"de\",\n            \"en\"\n          ]\n        },\n        \"booking_parameter\": [\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": [\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            }\n          ],\n          \"participant_questions\": [\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            }\n          ],\n          \"conduction_language\": {\n            \"mandatory\": true\n          },\n          \"free_text_question\": {\n            \"mandatory\": true,\n            \"description\": \"Please provide the nationality of everyone in your group.\"\n          }\n        },\n        \"services\": {\n          \"prt\": true,\n          \"stl\": true,\n          \"wlc\": true\n        },\n        \"coordinate_type\": \"exact\",\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"free_sale\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "769e9358-9fa5-44a2-a4aa-3b1e41551a54",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "options",
+                    ":option_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "option_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42086cb0-303d-42d1-b1d0-54a3afbc9c17",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "options",
+                    ":option_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "option_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getyourguide.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c11fa333-e456-4406-8ea7-9f5c74ef00c0",
+    "name": "Partner Api Bookings Options API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.\n\nContact Support:\n Name: Partner Tech",
+      "type": "text/plain"
+    }
+  }
+}

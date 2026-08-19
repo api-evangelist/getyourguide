@@ -1,0 +1,812 @@
+{
+  "item": [
+    {
+      "id": "3852ffac-dbe1-42c4-9cc7-37ca4608c4de",
+      "name": "Bookings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "246869b0-2d94-4b61-a6a4-63faf8d16fb7",
+          "name": "Create a new booking.",
+          "request": {
+            "name": "Create a new booking.",
+            "description": {
+              "content": "A booking request can create a shopping cart or add to an existing shopping cart. Either coupon or bookable must be sent in the body of the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":version",
+                "bookings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"data\": {\n    \"booking\": {\n      \"shopping_cart_hash\": \"<string>\",\n      \"bookable\": {\n        \"option_id\": \"<integer>\",\n        \"datetime\": \"<dateTime>\",\n        \"price\": \"<number>\",\n        \"categories\": [\n          {\n            \"category_id\": \"<integer>\",\n            \"number_of_participants\": \"<integer>\"\n          },\n          {\n            \"category_id\": \"<integer>\",\n            \"number_of_participants\": \"<integer>\"\n          }\n        ],\n        \"external_reference_id\": \"<string>\",\n        \"booking_parameters\": [\n          {\n            \"name\": \"<string>\",\n            \"value_1\": \"<string>\",\n            \"value_2\": \"<string>\",\n            \"mandatory\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value_1\": \"<string>\",\n            \"value_2\": \"<string>\",\n            \"mandatory\": \"<boolean>\"\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": {\n            \"booking_customer_accommodation\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_pick_up_location\": {\n              \"full_address\": \"<string>\",\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"booking_flight_details\": {\n              \"flight_number\": \"<string>\",\n              \"time_of_arrival\": \"<string>\"\n            },\n            \"booking_child_safety_seat\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_cruise_details\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_drop_off_address\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_medical_conditions\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_mobility_issues\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_shipping_address\": {\n              \"value\": \"<string>\"\n            },\n            \"booking_wheelchair\": {\n              \"value\": \"<string>\"\n            }\n          },\n          \"participant_questions\": [\n            {\n              \"category_id\": \"<integer>\",\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"category_id\": \"<integer>\",\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ],\n          \"conduction_language\": {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          \"free_text_question\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc68bb1e-97a9-41c1-b03e-803494b00cdc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"en\",\n    \"currency\": \"EUR\"\n  },\n  \"data\": {\n    \"booking\": {\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"bookable\": {\n        \"option_id\": 69232,\n        \"datetime\": \"2017-09-01T00:00:00\",\n        \"price\": 15.15,\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"number_of_participants\": 5\n          },\n          {\n            \"category_id\": 33,\n            \"number_of_participants\": 5\n          }\n        ],\n        \"external_reference_id\": \"just_any_string\",\n        \"booking_parameters\": [\n          {\n            \"name\": \"language\",\n            \"value_1\": \"language_live\",\n            \"value_2\": \"en\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"language\",\n            \"value_1\": \"language_live\",\n            \"value_2\": \"en\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": {\n            \"booking_customer_accommodation\": {\n              \"value\": \"Hilton Miami Downtown hotel\"\n            },\n            \"booking_pick_up_location\": {\n              \"full_address\": \"1601 Biscayne Blvd, Miami, FL 33132, United States\",\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"booking_flight_details\": {\n              \"flight_number\": \"PT1021\",\n              \"time_of_arrival\": \"12:20am\"\n            },\n            \"booking_child_safety_seat\": {\n              \"value\": \"We would need two safety seats\"\n            },\n            \"booking_cruise_details\": {\n              \"value\": \"Arrival of my cruise is at 12:20am\"\n            },\n            \"booking_drop_off_address\": {\n              \"value\": \"Drop off address is at the Hilton Miami Downtown hotel\"\n            },\n            \"booking_medical_conditions\": {\n              \"value\": \"No medical conditions\"\n            },\n            \"booking_mobility_issues\": {\n              \"value\": \"No mobility issues\"\n            },\n            \"booking_shipping_address\": {\n              \"value\": \"Shipping address is at the Miami St. 123\"\n            },\n            \"booking_wheelchair\": {\n              \"value\": \"We would require a wheelchair\"\n            }\n          },\n          \"participant_questions\": [\n            {\n              \"category_id\": 33,\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"category_id\": 33,\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ],\n          \"conduction_language\": {\n            \"type\": \"language_live\",\n            \"value\": \"en\"\n          },\n          \"free_text_question\": \"Everyone in our group is from Germany.\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"bookings\": {\n      \"shopping_cart_id\": 32724458,\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"booking_id\": 13822240,\n      \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n      \"status\": \"temp\",\n      \"return_code\": 0,\n      \"reservation_expires_at\": \"2023-09-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15c25a63-e951-43b4-a9f5-b11aa44e7d89",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"en\",\n    \"currency\": \"EUR\"\n  },\n  \"data\": {\n    \"booking\": {\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"bookable\": {\n        \"option_id\": 69232,\n        \"datetime\": \"2017-09-01T00:00:00\",\n        \"price\": 15.15,\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"number_of_participants\": 5\n          },\n          {\n            \"category_id\": 33,\n            \"number_of_participants\": 5\n          }\n        ],\n        \"external_reference_id\": \"just_any_string\",\n        \"booking_parameters\": [\n          {\n            \"name\": \"language\",\n            \"value_1\": \"language_live\",\n            \"value_2\": \"en\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"language\",\n            \"value_1\": \"language_live\",\n            \"value_2\": \"en\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": {\n            \"booking_customer_accommodation\": {\n              \"value\": \"Hilton Miami Downtown hotel\"\n            },\n            \"booking_pick_up_location\": {\n              \"full_address\": \"1601 Biscayne Blvd, Miami, FL 33132, United States\",\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"booking_flight_details\": {\n              \"flight_number\": \"PT1021\",\n              \"time_of_arrival\": \"12:20am\"\n            },\n            \"booking_child_safety_seat\": {\n              \"value\": \"We would need two safety seats\"\n            },\n            \"booking_cruise_details\": {\n              \"value\": \"Arrival of my cruise is at 12:20am\"\n            },\n            \"booking_drop_off_address\": {\n              \"value\": \"Drop off address is at the Hilton Miami Downtown hotel\"\n            },\n            \"booking_medical_conditions\": {\n              \"value\": \"No medical conditions\"\n            },\n            \"booking_mobility_issues\": {\n              \"value\": \"No mobility issues\"\n            },\n            \"booking_shipping_address\": {\n              \"value\": \"Shipping address is at the Miami St. 123\"\n            },\n            \"booking_wheelchair\": {\n              \"value\": \"We would require a wheelchair\"\n            }\n          },\n          \"participant_questions\": [\n            {\n              \"category_id\": 33,\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"category_id\": 33,\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ],\n          \"conduction_language\": {\n            \"type\": \"language_live\",\n            \"value\": \"en\"\n          },\n          \"free_text_question\": \"Everyone in our group is from Germany.\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c525883d-9d4f-4e9d-8255-5dd29727cc3b",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_data\": {\n    \"cnt_language\": \"en\",\n    \"currency\": \"EUR\"\n  },\n  \"data\": {\n    \"booking\": {\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"bookable\": {\n        \"option_id\": 69232,\n        \"datetime\": \"2017-09-01T00:00:00\",\n        \"price\": 15.15,\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"number_of_participants\": 5\n          },\n          {\n            \"category_id\": 33,\n            \"number_of_participants\": 5\n          }\n        ],\n        \"external_reference_id\": \"just_any_string\",\n        \"booking_parameters\": [\n          {\n            \"name\": \"language\",\n            \"value_1\": \"language_live\",\n            \"value_2\": \"en\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"language\",\n            \"value_1\": \"language_live\",\n            \"value_2\": \"en\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": {\n            \"booking_customer_accommodation\": {\n              \"value\": \"Hilton Miami Downtown hotel\"\n            },\n            \"booking_pick_up_location\": {\n              \"full_address\": \"1601 Biscayne Blvd, Miami, FL 33132, United States\",\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"booking_flight_details\": {\n              \"flight_number\": \"PT1021\",\n              \"time_of_arrival\": \"12:20am\"\n            },\n            \"booking_child_safety_seat\": {\n              \"value\": \"We would need two safety seats\"\n            },\n            \"booking_cruise_details\": {\n              \"value\": \"Arrival of my cruise is at 12:20am\"\n            },\n            \"booking_drop_off_address\": {\n              \"value\": \"Drop off address is at the Hilton Miami Downtown hotel\"\n            },\n            \"booking_medical_conditions\": {\n              \"value\": \"No medical conditions\"\n            },\n            \"booking_mobility_issues\": {\n              \"value\": \"No mobility issues\"\n            },\n            \"booking_shipping_address\": {\n              \"value\": \"Shipping address is at the Miami St. 123\"\n            },\n            \"booking_wheelchair\": {\n              \"value\": \"We would require a wheelchair\"\n            }\n          },\n          \"participant_questions\": [\n            {\n              \"category_id\": 33,\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"category_id\": 33,\n              \"participant_answers\": {\n                \"traveler_dietary_restrictions\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_diving_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_driver_license\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_shoe_size\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_skill_level\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_children_age\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_date_of_birth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_id_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_details\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_passport_number\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"traveler_weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ],\n          \"conduction_language\": {\n            \"type\": \"language_live\",\n            \"value\": \"en\"\n          },\n          \"free_text_question\": \"Everyone in our group is from Germany.\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d50cd634-dba6-4de9-86e0-87b9dc3dc520",
+          "name": "Get information about a booking",
+          "request": {
+            "name": "Get information about a booking",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "bookings",
+                ":booking_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_hash",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "840d94e3-bacc-49fb-bd54-59f2bc4088b0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings",
+                    ":booking_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"booking\": {\n    \"booking_id\": 13822240,\n    \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n    \"booking_status\": \"temp\",\n    \"shopping_cart_id\": 32724458,\n    \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n    \"bookable\": {\n      \"tour_id\": 50872,\n      \"option_id\": 69232,\n      \"datetime\": \"2017-09-01T00:00:00\",\n      \"datetime_utc\": \"2017-09-01T04:00:00Z\",\n      \"datetime_type\": \"datetime\",\n      \"opening_hours\": [\n        {\n          \"opening_time\": \"2017-09-01T00:00:00\",\n          \"closing_time\": \"2017-09-01T00:00:00\"\n        },\n        {\n          \"opening_time\": \"2017-09-01T00:00:00\",\n          \"closing_time\": \"2017-09-01T00:00:00\"\n        }\n      ],\n      \"price\": 15.15,\n      \"valid_until\": \"2017-09-01T00:00:00\",\n      \"cancellation_policy_text\": \"Your activity is non-refundable\",\n      \"currently_cancellable_at_no_fee\": true,\n      \"categories\": [\n        {\n          \"category_id\": 33,\n          \"name\": \"Adults\",\n          \"number_of_participants\": 1\n        },\n        {\n          \"category_id\": 33,\n          \"name\": \"Adults\",\n          \"number_of_participants\": 1\n        }\n      ],\n      \"booking_parameters\": [\n        {\n          \"name\": \"language\",\n          \"value_1\": \"language_live\",\n          \"value_2\": \"en\",\n          \"mandatory\": true\n        },\n        {\n          \"name\": \"language\",\n          \"value_1\": \"language_live\",\n          \"value_2\": \"en\",\n          \"mandatory\": true\n        }\n      ],\n      \"questions\": {\n        \"booking_questions\": {\n          \"booking_customer_accommodation\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_pick_up_location\": {\n            \"full_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_flight_details\": {\n            \"flight_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"time_of_arrival\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_child_safety_seat\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_cruise_details\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_drop_off_address\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_medical_conditions\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_mobility_issues\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_shipping_address\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"booking_wheelchair\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"participant_questions\": [\n          {\n            \"traveler_dietary_restrictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_diving_level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_driver_license\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_shoe_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_skill_level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_age\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_children_age\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_date_of_birth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_id_details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_id_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_passport_details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_passport_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"traveler_dietary_restrictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_diving_level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_driver_license\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_shoe_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_skill_level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_age\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_children_age\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_date_of_birth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_id_details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_id_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_passport_details\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_passport_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"traveler_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"conduction_language\": {\n          \"type\": \"language_live\",\n          \"value\": \"en\"\n        },\n        \"free_text_question\": \"Everyone in our group is from Germany.\"\n      }\n    },\n    \"ticket\": {\n      \"booking_reference\": \"GYG7VMWR9HZ3\",\n      \"supplier_booking_codes\": [\n        {\n          \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\",\n          \"label\": \"Ticket #1 (ADULT)\",\n          \"type\": \"qr_code\",\n          \"code\": \"JRUFX567YOMTSI7RG5K3UL2XC6RECSGQ-E9VNO\",\n          \"pricing_category_id\": 2167696\n        },\n        {\n          \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\",\n          \"label\": \"Ticket #1 (ADULT)\",\n          \"type\": \"qr_code\",\n          \"code\": \"JRUFX567YOMTSI7RG5K3UL2XC6RECSGQ-E9VNO\",\n          \"pricing_category_id\": 2167696\n        }\n      ],\n      \"emergency_phone_number\": \"+49123456789\",\n      \"emergency_email\": \"address@example.com\",\n      \"ticket_url\": \"https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG\",\n      \"ticket_hash\": \"7H8N87D3QAH16XVABGPCR311U66XELRG\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0316b023-d90a-4a54-89a2-04a0232e0b6a",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings",
+                    ":booking_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1177c02e-48c1-46de-9692-71c835051d37",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings",
+                    ":booking_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a576554-000c-4f67-b02f-90af91abdb01",
+          "name": "Delete (Cancel) a booking.",
+          "request": {
+            "name": "Delete (Cancel) a booking.",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "bookings",
+                ":booking_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_hash",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00b3bc82-54df-4b55-9240-76f4456802d0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings",
+                    ":booking_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"bookings\": {\n      \"shopping_cart_id\": 32724458,\n      \"shopping_cart_hash\": \"0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K\",\n      \"booking_id\": 13822240,\n      \"booking_hash\": \"WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M\",\n      \"booking_status\": \"temp\",\n      \"return_code\": 0\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8000638-7c87-42fd-9266-4cb3cea4d304",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings",
+                    ":booking_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca479b70-5984-4db9-aa46-4e062bc6c242",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "bookings",
+                    ":booking_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_hash",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getyourguide.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "68a31465-0ea0-4c0b-9322-0ad9ed76104b",
+    "name": "Partner Api Bookings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.\n\nContact Support:\n Name: Partner Tech",
+      "type": "text/plain"
+    }
+  }
+}

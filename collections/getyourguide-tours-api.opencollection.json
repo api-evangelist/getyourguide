@@ -1,0 +1,277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Api Bookings Tours API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ACCESS-TOKEN",
+      "value": "{{X-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tours",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for tours by different parameters such as a query or geographical coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/tours",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              },
+              {
+                "name": "preformatted",
+                "value": "",
+                "type": "query",
+                "description": "The amount of content to deliver with the search results."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Mutually exclusive with 'coordinates' parameter! Query string, can be location name or IATA code. For IATA the query parameter looks like this: 'q=iata:jfk'"
+              },
+              {
+                "name": "coordinates[]",
+                "value": "",
+                "type": "query",
+                "description": "Mutually exclusive with 'q' parameter! Search by latitude, longitude and radius passed as URL array.'"
+              },
+              {
+                "name": "date[]",
+                "value": "",
+                "type": "query",
+                "description": "Check for tours that are offered on date or between dates."
+              },
+              {
+                "name": "cond_language[]",
+                "value": "",
+                "type": "query",
+                "description": "The conduction language(s) of a tour. When given, the results contain only tours that are available in the specified language(s)."
+              },
+              {
+                "name": "price[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter for price in the query."
+              },
+              {
+                "name": "categories[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter for categories for a given query via 'q' or 'coordinates', also works stand-alone as the main query parameter."
+              },
+              {
+                "name": "rating[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter for Tours with the given ratings. Single value min rating. Otherwise [min, max]."
+              },
+              {
+                "name": "duration[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter for min and/or max duration in minutes. Single Value max. duration. Otherwise [min, max]."
+              },
+              {
+                "name": "flags[]",
+                "value": "",
+                "type": "query",
+                "description": "Various flags about properties of the tour (multiple selection allowed)."
+              },
+              {
+                "name": "sortfield",
+                "value": "",
+                "type": "query",
+                "description": "Defines the sort field. Behavior per value:\n  - `popularity`: returns recommended results (an internal ranking, not raw popularity). `sortdirection` is ignored.\n  - `rating`: ranks using internal signals in addition to `overall_rating`; results are not strictly ordered by the `overall_rating` response field alone.\n  - `price`: sorts by price.\n  - `duration`: sorts by duration.\n"
+              },
+              {
+                "name": "sortdirection",
+                "value": "",
+                "type": "query",
+                "description": "Defines the sort order. Ignored when `sortfield=popularity`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for tours by different parameters such as a query or geographical coordinates."
+        },
+        {
+          "info": {
+            "name": "Search for tours by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/tours/:tour_id",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tour_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              },
+              {
+                "name": "preformatted",
+                "value": "",
+                "type": "query",
+                "description": "The amount of content to deliver with the search results."
+              }
+            ]
+          },
+          "docs": "Search for tours by id"
+        },
+        {
+          "info": {
+            "name": "Find availability of a tour.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/tours/:tour_id/availability",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tour_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt-language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Find availability of a tour."
+        },
+        {
+          "info": {
+            "name": "Find all options of a tour.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/tours/:tour_id/options",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tour_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              },
+              {
+                "name": "date[]",
+                "value": "",
+                "type": "query",
+                "description": "Check for tours that are offered on date or between dates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Find all options of a tour."
+        },
+        {
+          "info": {
+            "name": "tours-by-id-price-breakdown",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getyourguide.com/:version/tours/:tour_id/price-breakdown",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tour_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find pricing information for a tour by date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

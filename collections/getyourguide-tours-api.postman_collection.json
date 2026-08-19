@@ -1,0 +1,1773 @@
+{
+  "item": [
+    {
+      "id": "e5040d1c-6d21-4b4d-822e-b570db7d5762",
+      "name": "Tours",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c4c180b-62ae-4893-bcae-4f038949a514",
+          "name": "Search for tours by different parameters such as a query or geographical coordinates.",
+          "request": {
+            "name": "Search for tours by different parameters such as a query or geographical coordinates.",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "tours"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                },
+                {
+                  "disabled": false,
+                  "key": "preformatted",
+                  "value": "<string>",
+                  "description": "The amount of content to deliver with the search results."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Mutually exclusive with 'coordinates' parameter! Query string, can be location name or IATA code. For IATA the query parameter looks like this: 'q=iata:jfk'"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates[]",
+                  "value": "<number>",
+                  "description": "Mutually exclusive with 'q' parameter! Search by latitude, longitude and radius passed as URL array.'"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates[]",
+                  "value": "<number>",
+                  "description": "Mutually exclusive with 'q' parameter! Search by latitude, longitude and radius passed as URL array.'"
+                },
+                {
+                  "disabled": false,
+                  "key": "date[]",
+                  "value": "<dateTime>",
+                  "description": "Check for tours that are offered on date or between dates."
+                },
+                {
+                  "disabled": false,
+                  "key": "date[]",
+                  "value": "<dateTime>",
+                  "description": "Check for tours that are offered on date or between dates."
+                },
+                {
+                  "disabled": false,
+                  "key": "cond_language[]",
+                  "value": "<string>",
+                  "description": "The conduction language(s) of a tour. When given, the results contain only tours that are available in the specified language(s)."
+                },
+                {
+                  "disabled": false,
+                  "key": "cond_language[]",
+                  "value": "<string>",
+                  "description": "The conduction language(s) of a tour. When given, the results contain only tours that are available in the specified language(s)."
+                },
+                {
+                  "disabled": false,
+                  "key": "price[]",
+                  "value": "<number>",
+                  "description": "Filter for price in the query."
+                },
+                {
+                  "disabled": false,
+                  "key": "price[]",
+                  "value": "<number>",
+                  "description": "Filter for price in the query."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories[]",
+                  "value": "<integer>",
+                  "description": "Filter for categories for a given query via 'q' or 'coordinates', also works stand-alone as the main query parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories[]",
+                  "value": "<integer>",
+                  "description": "Filter for categories for a given query via 'q' or 'coordinates', also works stand-alone as the main query parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "rating[]",
+                  "value": "<float>",
+                  "description": "Filter for Tours with the given ratings. Single value min rating. Otherwise [min, max]."
+                },
+                {
+                  "disabled": false,
+                  "key": "rating[]",
+                  "value": "<float>",
+                  "description": "Filter for Tours with the given ratings. Single value min rating. Otherwise [min, max]."
+                },
+                {
+                  "disabled": false,
+                  "key": "duration[]",
+                  "value": "<integer>",
+                  "description": "Filter for min and/or max duration in minutes. Single Value max. duration. Otherwise [min, max]."
+                },
+                {
+                  "disabled": false,
+                  "key": "duration[]",
+                  "value": "<integer>",
+                  "description": "Filter for min and/or max duration in minutes. Single Value max. duration. Otherwise [min, max]."
+                },
+                {
+                  "disabled": false,
+                  "key": "flags[]",
+                  "value": "<string>",
+                  "description": "Various flags about properties of the tour (multiple selection allowed)."
+                },
+                {
+                  "disabled": false,
+                  "key": "flags[]",
+                  "value": "<string>",
+                  "description": "Various flags about properties of the tour (multiple selection allowed)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortfield",
+                  "value": "<string>",
+                  "description": "Defines the sort field. Behavior per value:\n  - `popularity`: returns recommended results (an internal ranking, not raw popularity). `sortdirection` is ignored.\n  - `rating`: ranks using internal signals in addition to `overall_rating`; results are not strictly ordered by the `overall_rating` response field alone.\n  - `price`: sorts by price.\n  - `duration`: sorts by duration.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortdirection",
+                  "value": "<string>",
+                  "description": "Defines the sort order. Ignored when `sortfield=popularity`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77193670-9e6f-4793-81a2-e15dce2c89f7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "preformatted",
+                      "value": "full"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iata:jfk"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "48.85693"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "2.3412"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    },
+                    {
+                      "key": "cond_language[]",
+                      "value": "de"
+                    },
+                    {
+                      "key": "cond_language[]",
+                      "value": "en"
+                    },
+                    {
+                      "key": "price[]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "price[]",
+                      "value": "200"
+                    },
+                    {
+                      "key": "categories[]",
+                      "value": "55"
+                    },
+                    {
+                      "key": "categories[]",
+                      "value": "56"
+                    },
+                    {
+                      "key": "rating[]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "rating[]",
+                      "value": "5"
+                    },
+                    {
+                      "key": "duration[]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "duration[]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "flags[]",
+                      "value": "private"
+                    },
+                    {
+                      "key": "sortfield",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortdirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"tours\": [\n      {\n        \"tour_id\": 50872,\n        \"tour_code\": \"deprecated\",\n        \"cond_language\": [\n          \"en\",\n          \"de\",\n          \"es\"\n        ],\n        \"title\": \"2-Park 2-Day Universal Orlando™ Theme Park Tickets\",\n        \"abstract\": \"Universal Orlando Resort is an entire universe of action and thrills with two jaw-dropping theme parks, exceptional shopping and incredible entere unforgettable experiences together. You can have the ultimate adventure, enjoy fun with your kids, rejuvenatainment\",\n        \"description\": \"At both Universal Studios Florida and Universal's Islands of Adventure ... The ticket must be used by the first use date printed on the ticket. The ticket will expire in full on the expiration date printed on ticket. Unused days shall be forfeited. These tickets are not valid for residents of the UK and Ireland\",\n        \"is_auto_translation\": false,\n        \"is_english_fallback\": false,\n        \"additional_information\": \"Tickets must be used by the same person on all days...you must present the actual Universal Orlando ticket to receive entry to the parks.\",\n        \"items_to_bring\": [\n          \"Comfortable shoes\",\n          \"Sunscreen\"\n        ],\n        \"not_allowed\": [\n          \"Alcohol\",\n          \"Pets\"\n        ],\n        \"not_suitable_for\": [\n          \"Children under 3 years\",\n          \"People with impeded movement.\"\n        ],\n        \"bestseller\": false,\n        \"certified\": true,\n        \"has_pick_up\": true,\n        \"overall_rating\": 4.5,\n        \"number_of_ratings\": 25,\n        \"highlights\": [\n          \"string\",\n          \"string\"\n        ],\n        \"inclusions\": \"• Entry to both Universal Studios Florida and Universal’s Islands of Adventure for 2-days\",\n        \"exclusions\": \"Parking\",\n        \"pictures\": [\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          },\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          }\n        ],\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          },\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          }\n        ],\n        \"health_advisory\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          }\n        ],\n        \"health_requirement\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          }\n        ],\n        \"locations\": [\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          },\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          }\n        ],\n        \"url\": \"https://FVMg.rkjk46R+tM,db8APtrUxyW3S6TMFkWQNS\",\n        \"translations\": [\n          \"en\",\n          \"en\"\n        ],\n        \"free_sale\": true,\n        \"guide_type\": \"none\",\n        \"mobile_voucher\": true,\n        \"supplier_id\": 90545,\n        \"durations\": [\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          },\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          }\n        ],\n        \"opening_hours\": [\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          },\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          }\n        ],\n        \"cancellation_policy\": {\n          \"cancellable\": true,\n          \"cancellation_fee_unit\": \"fixed\",\n          \"cancellation_fee_value\": 10,\n          \"cancellation_offset_minutes\": 2880,\n          \"cancellation_policy_text\": \"You can cancel your booking up to 48 hours before the start of the activity for a full refund.\"\n        },\n        \"cancellation_policy_text\": \"Your activity is non-refundable\",\n        \"itineraries\": [\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"tour_id\": 50872,\n        \"tour_code\": \"deprecated\",\n        \"cond_language\": [\n          \"en\",\n          \"de\",\n          \"es\"\n        ],\n        \"title\": \"2-Park 2-Day Universal Orlando™ Theme Park Tickets\",\n        \"abstract\": \"Universal Orlando Resort is an entire universe of action and thrills with two jaw-dropping theme parks, exceptional shopping and incredible entere unforgettable experiences together. You can have the ultimate adventure, enjoy fun with your kids, rejuvenatainment\",\n        \"description\": \"At both Universal Studios Florida and Universal's Islands of Adventure ... The ticket must be used by the first use date printed on the ticket. The ticket will expire in full on the expiration date printed on ticket. Unused days shall be forfeited. These tickets are not valid for residents of the UK and Ireland\",\n        \"is_auto_translation\": false,\n        \"is_english_fallback\": false,\n        \"additional_information\": \"Tickets must be used by the same person on all days...you must present the actual Universal Orlando ticket to receive entry to the parks.\",\n        \"items_to_bring\": [\n          \"Comfortable shoes\",\n          \"Sunscreen\"\n        ],\n        \"not_allowed\": [\n          \"Alcohol\",\n          \"Pets\"\n        ],\n        \"not_suitable_for\": [\n          \"Children under 3 years\",\n          \"People with impeded movement.\"\n        ],\n        \"bestseller\": false,\n        \"certified\": true,\n        \"has_pick_up\": true,\n        \"overall_rating\": 4.5,\n        \"number_of_ratings\": 25,\n        \"highlights\": [\n          \"string\",\n          \"string\"\n        ],\n        \"inclusions\": \"• Entry to both Universal Studios Florida and Universal’s Islands of Adventure for 2-days\",\n        \"exclusions\": \"Parking\",\n        \"pictures\": [\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          },\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          }\n        ],\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          },\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          }\n        ],\n        \"health_advisory\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          }\n        ],\n        \"health_requirement\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          }\n        ],\n        \"locations\": [\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          },\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          }\n        ],\n        \"url\": \"https://XCwRFWq.nyvQftTJV\",\n        \"translations\": [\n          \"en\",\n          \"en\"\n        ],\n        \"free_sale\": true,\n        \"guide_type\": \"instructor\",\n        \"mobile_voucher\": true,\n        \"supplier_id\": 90545,\n        \"durations\": [\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          },\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          }\n        ],\n        \"opening_hours\": [\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          },\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          }\n        ],\n        \"cancellation_policy\": {\n          \"cancellable\": true,\n          \"cancellation_fee_unit\": \"fixed\",\n          \"cancellation_fee_value\": 10,\n          \"cancellation_offset_minutes\": 2880,\n          \"cancellation_policy_text\": \"You can cancel your booking up to 48 hours before the start of the activity for a full refund.\"\n        },\n        \"cancellation_policy_text\": \"Your activity is non-refundable\",\n        \"itineraries\": [\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6adba99-b737-40eb-8575-e45e143698d4",
+              "name": "Missing Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "preformatted",
+                      "value": "full"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iata:jfk"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "48.85693"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "2.3412"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    },
+                    {
+                      "key": "cond_language[]",
+                      "value": "de"
+                    },
+                    {
+                      "key": "cond_language[]",
+                      "value": "en"
+                    },
+                    {
+                      "key": "price[]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "price[]",
+                      "value": "200"
+                    },
+                    {
+                      "key": "categories[]",
+                      "value": "55"
+                    },
+                    {
+                      "key": "categories[]",
+                      "value": "56"
+                    },
+                    {
+                      "key": "rating[]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "rating[]",
+                      "value": "5"
+                    },
+                    {
+                      "key": "duration[]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "duration[]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "flags[]",
+                      "value": "private"
+                    },
+                    {
+                      "key": "sortfield",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortdirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "396b00dc-1936-4e87-ad78-0a73dd4676b1",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "preformatted",
+                      "value": "full"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iata:jfk"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "48.85693"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "2.3412"
+                    },
+                    {
+                      "key": "coordinates[]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    },
+                    {
+                      "key": "cond_language[]",
+                      "value": "de"
+                    },
+                    {
+                      "key": "cond_language[]",
+                      "value": "en"
+                    },
+                    {
+                      "key": "price[]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "price[]",
+                      "value": "200"
+                    },
+                    {
+                      "key": "categories[]",
+                      "value": "55"
+                    },
+                    {
+                      "key": "categories[]",
+                      "value": "56"
+                    },
+                    {
+                      "key": "rating[]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "rating[]",
+                      "value": "5"
+                    },
+                    {
+                      "key": "duration[]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "duration[]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "flags[]",
+                      "value": "private"
+                    },
+                    {
+                      "key": "sortfield",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortdirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8916853-d7f6-4049-a43b-985484a2f7cf",
+          "name": "Search for tours by id",
+          "request": {
+            "name": "Search for tours by id",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "tours",
+                ":tour_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                },
+                {
+                  "disabled": false,
+                  "key": "preformatted",
+                  "value": "<string>",
+                  "description": "The amount of content to deliver with the search results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tour_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "648b66e5-d6bc-4872-8905-6943e4d53a52",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "preformatted",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"tours\": [\n      {\n        \"tour_id\": 50872,\n        \"tour_code\": \"deprecated\",\n        \"cond_language\": [\n          \"en\",\n          \"de\",\n          \"es\"\n        ],\n        \"title\": \"2-Park 2-Day Universal Orlando™ Theme Park Tickets\",\n        \"abstract\": \"Universal Orlando Resort is an entire universe of action and thrills with two jaw-dropping theme parks, exceptional shopping and incredible entere unforgettable experiences together. You can have the ultimate adventure, enjoy fun with your kids, rejuvenatainment\",\n        \"description\": \"At both Universal Studios Florida and Universal's Islands of Adventure ... The ticket must be used by the first use date printed on the ticket. The ticket will expire in full on the expiration date printed on ticket. Unused days shall be forfeited. These tickets are not valid for residents of the UK and Ireland\",\n        \"is_auto_translation\": false,\n        \"is_english_fallback\": false,\n        \"additional_information\": \"Tickets must be used by the same person on all days...you must present the actual Universal Orlando ticket to receive entry to the parks.\",\n        \"items_to_bring\": [\n          \"Comfortable shoes\",\n          \"Sunscreen\"\n        ],\n        \"not_allowed\": [\n          \"Alcohol\",\n          \"Pets\"\n        ],\n        \"not_suitable_for\": [\n          \"Children under 3 years\",\n          \"People with impeded movement.\"\n        ],\n        \"bestseller\": false,\n        \"certified\": true,\n        \"has_pick_up\": true,\n        \"overall_rating\": 4.5,\n        \"number_of_ratings\": 25,\n        \"highlights\": [\n          \"string\",\n          \"string\"\n        ],\n        \"inclusions\": \"• Entry to both Universal Studios Florida and Universal’s Islands of Adventure for 2-days\",\n        \"exclusions\": \"Parking\",\n        \"pictures\": [\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          },\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          }\n        ],\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          },\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          }\n        ],\n        \"health_advisory\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          }\n        ],\n        \"health_requirement\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          }\n        ],\n        \"locations\": [\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          },\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          }\n        ],\n        \"url\": \"http://kUvejEHlt.ywvbbNFzWJBZxHwhiiqI9+dhFvkJNEpuWL.3rGCWIPNqIYGep\",\n        \"translations\": [\n          \"en\",\n          \"en\"\n        ],\n        \"free_sale\": true,\n        \"guide_type\": \"live_tour_guide\",\n        \"mobile_voucher\": true,\n        \"supplier_id\": 90545,\n        \"durations\": [\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          },\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          }\n        ],\n        \"opening_hours\": [\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          },\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          }\n        ],\n        \"cancellation_policy\": {\n          \"cancellable\": true,\n          \"cancellation_fee_unit\": \"percentage\",\n          \"cancellation_fee_value\": 10,\n          \"cancellation_offset_minutes\": 2880,\n          \"cancellation_policy_text\": \"You can cancel your booking up to 48 hours before the start of the activity for a full refund.\"\n        },\n        \"cancellation_policy_text\": \"Your activity is non-refundable\",\n        \"itineraries\": [\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"tour_id\": 50872,\n        \"tour_code\": \"deprecated\",\n        \"cond_language\": [\n          \"en\",\n          \"de\",\n          \"es\"\n        ],\n        \"title\": \"2-Park 2-Day Universal Orlando™ Theme Park Tickets\",\n        \"abstract\": \"Universal Orlando Resort is an entire universe of action and thrills with two jaw-dropping theme parks, exceptional shopping and incredible entere unforgettable experiences together. You can have the ultimate adventure, enjoy fun with your kids, rejuvenatainment\",\n        \"description\": \"At both Universal Studios Florida and Universal's Islands of Adventure ... The ticket must be used by the first use date printed on the ticket. The ticket will expire in full on the expiration date printed on ticket. Unused days shall be forfeited. These tickets are not valid for residents of the UK and Ireland\",\n        \"is_auto_translation\": false,\n        \"is_english_fallback\": false,\n        \"additional_information\": \"Tickets must be used by the same person on all days...you must present the actual Universal Orlando ticket to receive entry to the parks.\",\n        \"items_to_bring\": [\n          \"Comfortable shoes\",\n          \"Sunscreen\"\n        ],\n        \"not_allowed\": [\n          \"Alcohol\",\n          \"Pets\"\n        ],\n        \"not_suitable_for\": [\n          \"Children under 3 years\",\n          \"People with impeded movement.\"\n        ],\n        \"bestseller\": false,\n        \"certified\": true,\n        \"has_pick_up\": true,\n        \"overall_rating\": 4.5,\n        \"number_of_ratings\": 25,\n        \"highlights\": [\n          \"string\",\n          \"string\"\n        ],\n        \"inclusions\": \"• Entry to both Universal Studios Florida and Universal’s Islands of Adventure for 2-days\",\n        \"exclusions\": \"Parking\",\n        \"pictures\": [\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          },\n          {\n            \"id\": 66317,\n            \"url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"ssl_url\": \"https://img-getyourguide-com.partner.gygtest.com/img/tour_img-436036-[format_id].jpg\",\n            \"verified\": false,\n            \"copyright\": \"Copyrights of this image belongs to ACME Inc\"\n          }\n        ],\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          },\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\"\n          }\n        ],\n        \"health_advisory\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Frequent_cleaning\",\n            \"text\": \"All areas that customers touch are frequently cleaned\"\n          }\n        ],\n        \"health_requirement\": [\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          },\n          {\n            \"tag_id\": 161578,\n            \"name\": \"Mask_required\",\n            \"text\": \"You are required to bring and wear a mask\"\n          }\n        ],\n        \"locations\": [\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          },\n          {\n            \"location_id\": 3850,\n            \"type\": \"poi\",\n            \"name\": \"Epcot Theme Park\",\n            \"english_name\": \"Epcot Theme Park\",\n            \"city\": \"string\",\n            \"country\": \"US\",\n            \"coordinates\": {\n              \"lat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"long\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"parent_id\": 191\n          }\n        ],\n        \"url\": \"https://vaZwxNQzTEptaorRGjwxeSw.zlJjXPpHBfjqgTc2p\",\n        \"translations\": [\n          \"en\",\n          \"en\"\n        ],\n        \"free_sale\": true,\n        \"guide_type\": \"self_guided\",\n        \"mobile_voucher\": true,\n        \"supplier_id\": 90545,\n        \"durations\": [\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          },\n          {\n            \"duration\": 2.5,\n            \"unit\": \"hour\"\n          }\n        ],\n        \"opening_hours\": [\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          },\n          {\n            \"opening_time\": \"2017-09-01T00:00:00\",\n            \"closing_time\": \"2017-09-01T00:00:00\"\n          }\n        ],\n        \"cancellation_policy\": {\n          \"cancellable\": true,\n          \"cancellation_fee_unit\": \"fixed\",\n          \"cancellation_fee_value\": 10,\n          \"cancellation_offset_minutes\": 2880,\n          \"cancellation_policy_text\": \"You can cancel your booking up to 48 hours before the start of the activity for a full refund.\"\n        },\n        \"cancellation_policy_text\": \"Your activity is non-refundable\",\n        \"itineraries\": [\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"day_number\": 1,\n            \"title\": \"Day 1: Arrival in Cusco\",\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c7b5865-8159-43c1-98e1-f96b9d00b14e",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "preformatted",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0d61267-6628-4c04-b485-89bf130aa613",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "preformatted",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd332856-5867-46d2-b994-f5de77cfd549",
+          "name": "Find availability of a tour.",
+          "request": {
+            "name": "Find availability of a tour.",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "tours",
+                ":tour_id",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt-language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tour_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b3b208f-56fc-47af-a3d4-41356407b0f2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt-language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tour_id\": 50872,\n  \"participants_range\": {\n    \"min\": 1,\n    \"max\": 20\n  },\n  \"categories\": [\n    {\n      \"ticket_category\": \"adult\",\n      \"name\": \"Adults\",\n      \"age_range\": {\n        \"min\": 1,\n        \"max\": 20\n      },\n      \"independently_bookable\": true\n    },\n    {\n      \"ticket_category\": \"adult\",\n      \"name\": \"Adults\",\n      \"age_range\": {\n        \"min\": 1,\n        \"max\": 20\n      },\n      \"independently_bookable\": true\n    }\n  ],\n  \"available_dates\": [\n    {\n      \"date\": \"2019-12-04\",\n      \"has_deal\": true\n    },\n    {\n      \"date\": \"1964-03-02\",\n      \"has_deal\": true\n    }\n  ],\n  \"update_timestamp\": \"2023-01-23T04:56:07\",\n  \"addons\": [\n    {\n      \"id\": 1934,\n      \"name\": \"Free drinks\",\n      \"max_quantity\": 10\n    },\n    {\n      \"id\": 1934,\n      \"name\": \"Free drinks\",\n      \"max_quantity\": 10\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0664e58b-f1dd-411b-a796-69d570b38c2c",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt-language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dcf3b36-7f3c-4996-a00b-795cf11d67a2",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt-language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5756e376-8131-4d86-92e2-88a2dbbe7f6f",
+          "name": "Find all options of a tour.",
+          "request": {
+            "name": "Find all options of a tour.",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "tours",
+                ":tour_id",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                },
+                {
+                  "disabled": false,
+                  "key": "date[]",
+                  "value": "<dateTime>",
+                  "description": "Check for tours that are offered on date or between dates."
+                },
+                {
+                  "disabled": false,
+                  "key": "date[]",
+                  "value": "<dateTime>",
+                  "description": "Check for tours that are offered on date or between dates."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tour_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30ddabfb-72b8-4ba2-ae81-78a9f9956952",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"tour_options\": [\n      {\n        \"option_id\": 69232,\n        \"tour_id\": 50872,\n        \"title\": \"From Abu Dhabi: Private Transfer to Dubai\",\n        \"description\": \"string\",\n        \"pick_up\": \"string\",\n        \"pick_up_location\": {\n          \"type\": \"string\",\n          \"description\": \"Pick up from your hotel in Manhattan\",\n          \"areas\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"locations\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": true\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": false\n            }\n          ],\n          \"transportation_types\": [\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"meeting_point\": \"string\",\n        \"drop_off\": \"string\",\n        \"duration\": 2.5,\n        \"duration_unit\": \"hour\",\n        \"validity\": 30,\n        \"validity_unit\": \"day\",\n        \"validity_from\": \"time_booked\",\n        \"cond_language\": {\n          \"language_audio\": [\n            \"de\",\n            \"fr\",\n            \"es\",\n            \"ru\"\n          ],\n          \"language_booklet\": [\n            \"de\",\n            \"fr\",\n            \"en\"\n          ],\n          \"language_live\": [\n            \"de\",\n            \"en\"\n          ]\n        },\n        \"booking_parameter\": [\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": [\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            }\n          ],\n          \"participant_questions\": [\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            }\n          ],\n          \"conduction_language\": {\n            \"mandatory\": true\n          },\n          \"free_text_question\": {\n            \"mandatory\": true,\n            \"description\": \"Please provide the nationality of everyone in your group.\"\n          }\n        },\n        \"services\": {\n          \"prt\": true,\n          \"stl\": true,\n          \"wlc\": true\n        },\n        \"coordinate_type\": \"approximate\",\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"free_sale\": true\n      },\n      {\n        \"option_id\": 69232,\n        \"tour_id\": 50872,\n        \"title\": \"From Abu Dhabi: Private Transfer to Dubai\",\n        \"description\": \"string\",\n        \"pick_up\": \"string\",\n        \"pick_up_location\": {\n          \"type\": \"string\",\n          \"description\": \"Pick up from your hotel in Manhattan\",\n          \"areas\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"locations\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": \"string\"\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"full_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"bounding_box\": \"string\"\n            }\n          ],\n          \"transportation_types\": [\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"mode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"meeting_point\": \"string\",\n        \"drop_off\": \"string\",\n        \"duration\": 2.5,\n        \"duration_unit\": \"hour\",\n        \"validity\": 30,\n        \"validity_unit\": \"day\",\n        \"validity_from\": \"time_booked\",\n        \"cond_language\": {\n          \"language_audio\": [\n            \"de\",\n            \"fr\",\n            \"es\",\n            \"ru\"\n          ],\n          \"language_booklet\": [\n            \"de\",\n            \"fr\",\n            \"en\"\n          ],\n          \"language_live\": [\n            \"de\",\n            \"en\"\n          ]\n        },\n        \"booking_parameter\": [\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          },\n          {\n            \"name\": \"supplier_requested_question\",\n            \"description\": \"Please provide the client names, flight details, and pick up and drop-off location.\",\n            \"mandatory\": true\n          }\n        ],\n        \"questions\": {\n          \"booking_questions\": [\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"booking_mobility_issues\",\n              \"description\": \"Please provide the flight details of the booking.\",\n              \"mandatory\": true\n            }\n          ],\n          \"participant_questions\": [\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            },\n            {\n              \"question\": \"traveler_diving_levels\",\n              \"description\": \"Please provide the traveler names for each participant in your group.\",\n              \"mandatory\": true\n            }\n          ],\n          \"conduction_language\": {\n            \"mandatory\": true\n          },\n          \"free_text_question\": {\n            \"mandatory\": true,\n            \"description\": \"Please provide the nationality of everyone in your group.\"\n          }\n        },\n        \"services\": {\n          \"prt\": true,\n          \"stl\": true,\n          \"wlc\": true\n        },\n        \"coordinate_type\": \"exact\",\n        \"coordinates\": {\n          \"lat\": 28.3701884,\n          \"long\": -81.5545306\n        },\n        \"price\": {\n          \"values\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"individual\"\n        },\n        \"free_sale\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e40bce8d-86f9-474b-8370-5570d23c9f98",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec4a218d-fe47-40a8-8ddd-44ccd69206d4",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T00:00:00"
+                    },
+                    {
+                      "key": "date[]",
+                      "value": "2021-05-01T23:59:59"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "376d796d-1bcd-420c-8718-312640474bb4",
+          "name": "tours-by-id-price-breakdown",
+          "request": {
+            "name": "tours-by-id-price-breakdown",
+            "description": {
+              "content": "Find pricing information for a tour by date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":version",
+                "tours",
+                ":tour_id",
+                "price-breakdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tour_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base_data\": {\n    \"currency\": \"<string>\"\n  },\n  \"data\": {\n    \"date\": \"<date>\",\n    \"participants\": {\n      \"key_0\": \"<integer>\"\n    },\n    \"addons\": [\n      {\n        \"id\": \"<long>\",\n        \"quantity\": \"<integer>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"quantity\": \"<integer>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97d5536b-9e40-41da-b371-f5cf42e476a8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "price-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tour_options\": [\n    {\n      \"option_id\": 1231,\n      \"time_slots\": [\n        {\n          \"date_time\": \"2023-03-01T00:00:00\",\n          \"vacancies\": 10,\n          \"unavailability_reason\": {\n            \"reason_group\": \"not_enough_spots\"\n          },\n          \"price_breakdown\": {\n            \"price_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"individuals\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"groups\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deal_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"date_time\": \"2023-03-01T00:00:00\",\n          \"vacancies\": 10,\n          \"unavailability_reason\": {\n            \"reason_group\": \"not_enough_spots\"\n          },\n          \"price_breakdown\": {\n            \"price_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"individuals\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"groups\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deal_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"next_available_date\": \"2002-11-09\",\n      \"opening_hours\": [\n        {\n          \"from\": \"14:00\",\n          \"to\": \"18:00\"\n        },\n        {\n          \"from\": \"14:00\",\n          \"to\": \"18:00\"\n        }\n      ]\n    },\n    {\n      \"option_id\": 1231,\n      \"time_slots\": [\n        {\n          \"date_time\": \"2023-03-01T00:00:00\",\n          \"vacancies\": 10,\n          \"unavailability_reason\": {\n            \"reason_group\": \"not_enough_spots\"\n          },\n          \"price_breakdown\": {\n            \"price_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"individuals\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"groups\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deal_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"date_time\": \"2023-03-01T00:00:00\",\n          \"vacancies\": 10,\n          \"unavailability_reason\": {\n            \"reason_group\": \"not_enough_spots\"\n          },\n          \"price_breakdown\": {\n            \"price_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"individuals\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"groups\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deal_summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"next_available_date\": \"2004-10-31\",\n      \"opening_hours\": [\n        {\n          \"from\": \"14:00\",\n          \"to\": \"18:00\"\n        },\n        {\n          \"from\": \"14:00\",\n          \"to\": \"18:00\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a2e3381-5569-439f-963c-1d205b875786",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "price-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96e9e2e9-30b3-4967-8e73-68f248e126ae",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "tours",
+                    ":tour_id",
+                    "price-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tour_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getyourguide.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "877aca17-71db-45b5-8a74-f6f8f696a0bd",
+    "name": "Partner Api Bookings Tours API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.\n\nContact Support:\n Name: Partner Tech",
+      "type": "text/plain"
+    }
+  }
+}

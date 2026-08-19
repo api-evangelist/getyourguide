@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Api Bookings Configuration API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ACCESS-TOKEN",
+      "value": "{{X-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the configuration for an API version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/configuration/:version",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              }
+            ]
+          },
+          "docs": "This endpoint is not based on the base url as it is version independent."
+        },
+        {
+          "info": {
+            "name": "configurationPayment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/configuration/payment",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "ISO 3166-1, The country where to payment originates. Should be the same value as the country_code field of the Billing Address Object."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

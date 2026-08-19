@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "f0c0f98d-b5f9-4855-b1d6-6770a5e9c2ac",
+      "name": "Suppliers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b681864-92fe-4714-af81-a1487371d6f8",
+          "name": "Suppliers",
+          "request": {
+            "name": "Suppliers",
+            "description": {},
+            "url": {
+              "path": [
+                ":version",
+                "suppliers",
+                ":supplier_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cnt_language",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217, The currency with which you would like to pay."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "supplier_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7a9ea42-bfbf-4e5c-bcf2-17c2e7f49958",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "suppliers",
+                    ":supplier_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "supplier_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_metadata\": {\n    \"descriptor\": \"GetYourGuide AG\",\n    \"date\": \"2017-09-01T00:00:00\",\n    \"status\": \"OK\",\n    \"query\": \"cnt_language=en&currency=eur\",\n    \"availableLanguages\": [\n      \"en\",\n      \"es\",\n      \"fr\"\n    ],\n    \"exchange\": {\n      \"rate\": 1,\n      \"currency\": \"USD\"\n    },\n    \"totalCount\": 127,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"data\": {\n    \"supplier\": [\n      {\n        \"supplier_id\": 26045,\n        \"name\": \"GetYourGuide Tours & Tickets GmbH\",\n        \"email\": \"deprecated@email.address\",\n        \"phone_number\": \"+49123456789\",\n        \"description\": \"Description of the supplier\",\n        \"rating\": 4.5,\n        \"number_of_reviews\": 5,\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\",\n            \"parent_id\": 33,\n            \"number_of_tours\": 10\n          },\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\",\n            \"parent_id\": 33,\n            \"number_of_tours\": 10\n          }\n        ],\n        \"logo_url\": \"http://ZTTjKRUupYoXIrZcuHbrBCSgjCPWt.qwwxONtr7mjS.qCu2qUXn2HDE+irIy8Lq,UQStxreR7.d2ITrP1PTypqsVafO\",\n        \"address\": {\n          \"street\": \"Sonnenburger Straße 73\",\n          \"zipCode\": \"14050\",\n          \"country\": \"Germany\",\n          \"city\": \"Berlin\",\n          \"state\": \"Berlin\"\n        }\n      },\n      {\n        \"supplier_id\": 26045,\n        \"name\": \"GetYourGuide Tours & Tickets GmbH\",\n        \"email\": \"deprecated@email.address\",\n        \"phone_number\": \"+49123456789\",\n        \"description\": \"Description of the supplier\",\n        \"rating\": 4.5,\n        \"number_of_reviews\": 5,\n        \"categories\": [\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\",\n            \"parent_id\": 33,\n            \"number_of_tours\": 10\n          },\n          {\n            \"category_id\": 33,\n            \"name\": \"Theme Parks & Amusement Parks\",\n            \"parent_id\": 33,\n            \"number_of_tours\": 10\n          }\n        ],\n        \"logo_url\": \"http://L.pvrbt2Bi0q3\",\n        \"address\": {\n          \"street\": \"Sonnenburger Straße 73\",\n          \"zipCode\": \"14050\",\n          \"country\": \"Germany\",\n          \"city\": \"Berlin\",\n          \"state\": \"Berlin\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "855b380e-4e37-4d09-a7df-0838d0c264bf",
+              "name": "HTTP 400, 401, 404 have the same response format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "suppliers",
+                    ":supplier_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "supplier_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"descriptor\": \"GetYourGuide AG\",\n  \"apiVersion\": \"1\",\n  \"method\": \"getBookingByHashAction\",\n  \"date\": \"2017-09-01T00:00:00\",\n  \"status\": \"ERROR\",\n  \"query\": \"cnt_language=en&currency=eur\",\n  \"errors\": [\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    },\n    {\n      \"errorCode\": 25,\n      \"errorMessage\": \"Unauthorized. The access token is invalid.\"\n    }\n  ],\n  \"helpURL\": \"https://api.getyourguide.com/doc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b0d699b-41d9-434b-8a27-3a27c976dc77",
+              "name": "Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":version",
+                    "suppliers",
+                    ":supplier_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cnt_language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "supplier_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getyourguide.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "609f6b73-8cd7-4116-8391-286d12be26dd",
+    "name": "Partner Api Bookings Suppliers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.\n\nContact Support:\n Name: Partner Tech",
+      "type": "text/plain"
+    }
+  }
+}

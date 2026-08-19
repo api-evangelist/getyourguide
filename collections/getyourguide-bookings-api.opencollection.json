@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Api Bookings API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ACCESS-TOKEN",
+      "value": "{{X-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bookings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getyourguide.com/:version/bookings",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A booking request can create a shopping cart or add to an existing shopping cart. Either coupon or bookable must be sent in the body of the request."
+        },
+        {
+          "info": {
+            "name": "Get information about a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/bookings/:booking_hash",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "booking_hash",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              }
+            ]
+          },
+          "docs": "Get information about a booking"
+        },
+        {
+          "info": {
+            "name": "Delete (Cancel) a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getyourguide.com/:version/bookings/:booking_hash",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "booking_hash",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              }
+            ]
+          },
+          "docs": "Delete (Cancel) a booking."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

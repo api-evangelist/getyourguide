@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Partner Api Bookings Options API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ACCESS-TOKEN",
+      "value": "{{X-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OptionsGetById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getyourguide.com/:version/options/:option_id",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "option_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cnt_language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "ISO 4217, The currency with which you would like to pay."
+              },
+              {
+                "name": "date[]",
+                "value": "",
+                "type": "query",
+                "description": "Check for tours that are offered on date or between dates."
+              }
+            ]
+          },
+          "docs": "Find a Tour Option by ID. The result will be an array of tour options. But the array will only contain one single tour option."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
