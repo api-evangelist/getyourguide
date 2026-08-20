@@ -42,6 +42,17 @@ tags:
 - Tours and Activities
 - Marketplace
 - Booking
+- Experience
+- Affiliates
+- Partner API
+- E-Commerce
+tags_raw:
+- Company
+- Travel
+- Tourism
+- Tours and Activities
+- Marketplace
+- Booking
 - Experiences
 - Affiliate
 - Partner API
@@ -87,6 +98,8 @@ apis:
   humanURL: https://code.getyourguide.com/partner-api-spec/
   baseURL: https://api.getyourguide.com
   tags:
+  - Cart
+  tags_raw:
   - Carts
   properties:
   - type: OpenAPI
