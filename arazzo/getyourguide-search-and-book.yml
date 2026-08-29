@@ -6,8 +6,14 @@ info:
     Search the GetYourGuide marketplace, pick a tour option, check availability,
     then create and confirm a booking via the two-step cart flow.
 sourceDescriptions:
-- name: partnerApi
-  url: ../openapi/getyourguide-partner-openapi.yml
+- name: bookingsApi
+  url: ../openapi/getyourguide-bookings-api-openapi.yml
+  type: openapi
+- name: cartsApi
+  url: ../openapi/getyourguide-carts-api-openapi.yml
+  type: openapi
+- name: toursApi
+  url: ../openapi/getyourguide-tours-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: searchAndBook
