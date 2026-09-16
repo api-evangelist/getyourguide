@@ -1,17 +1,13 @@
 aid: getyourguide
 name: GetYourGuide
-description: >-
-  GetYourGuide is a Berlin-based online travel marketplace for booking tours,
-  activities, attraction tickets, and experiences in destinations around the
-  world. Founded in 2009, the company connects travelers with local activity
-  suppliers and operators, and exposes a public Partner API that gives affiliates,
-  agencies, and technology partners programmatic access to the GetYourGuide
-  marketplace catalog — searching tours and activities, retrieving categories,
-  options, availability, price breakdowns, supplier details, and reviews, and
-  creating shopping carts and bookings. The RESTful Partner API uses JSON,
-  is secured over TLS with an API access token (X-ACCESS-TOKEN header), and
-  publishes its OpenAPI specification as open source on GitHub. GetYourGuide is
-  backed by Battery Ventures and SoftBank Vision Fund.
+description: GetYourGuide is a Berlin-based online travel marketplace for booking tours, activities, attraction
+  tickets, and experiences in destinations around the world. Founded in 2009, the company connects travelers
+  with local activity suppliers and operators, and exposes a public Partner API that gives affiliates,
+  agencies, and technology partners programmatic access to the GetYourGuide marketplace catalog — searching
+  tours and activities, retrieving categories, options, availability, price breakdowns, supplier details,
+  and reviews, and creating shopping carts and bookings. The RESTful Partner API uses JSON, is secured
+  over TLS with an API access token (X-ACCESS-TOKEN header), and publishes its OpenAPI specification as
+  open source on GitHub. GetYourGuide is backed by Battery Ventures and SoftBank Vision Fund.
 url: https://raw.githubusercontent.com/api-evangelist/getyourguide/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -48,7 +44,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-09-16'
 tags:
 - Company
 - Travel
@@ -305,6 +301,8 @@ apis:
   - type: Lifecycle
     url: lifecycle/getyourguide-lifecycle.yml
 common:
+- type: Website
+  url: https://getyourguide.com
 - type: Overlay
   url: overlays/getyourguide-partner-overlay.yaml
 - type: DeveloperPortal
@@ -353,7 +351,10 @@ common:
   url: sandbox/getyourguide-sandbox.yml
 - type: X-MCPServerCandidate
   url: mcp/getyourguide-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/getyourguide-llms.txt
 - type: AgentSkill
