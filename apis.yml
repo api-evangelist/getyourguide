@@ -80,6 +80,8 @@ apis:
   humanURL: https://code.getyourguide.com/partner-api-spec/
   baseURL: https://api.getyourguide.com
   tags:
+  - Booking
+  tags_raw:
   - Bookings
   properties:
   - type: OpenAPI
