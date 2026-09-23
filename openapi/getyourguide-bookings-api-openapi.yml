@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Partner Api Bookings API
+  title: Partner Bookings API
   description: This GetYourGuide Partner API provides access to GetYourGuide’s marketplace for tours and activities. It has a RESTful interface and uses the JSON media format. Access is secured via SSL and an API access token. Further documentation can be found in the public GitHub repository linked below. Do not forget to also check out the GitHub wiki for some more extensive guides.
   version: 1.0.0
   contact:
@@ -23,7 +23,7 @@ paths:
     post:
       operationId: BookingsCreate
       description: A booking request can create a shopping cart or add to an existing shopping cart. Either coupon or bookable must be sent in the body of the request.
-      summary: Create a new booking.
+      summary: Create a new booking
       tags:
       - Bookings
       parameters:
@@ -77,7 +77,7 @@ paths:
           $ref: '#/components/responses/Default'
     delete:
       operationId: bookingsDeleteByHash
-      summary: Delete (Cancel) a booking.
+      summary: Delete (Cancel) a booking
       tags:
       - Bookings
       parameters:
@@ -98,6 +98,20 @@ paths:
           $ref: '#/components/responses/Default'
 components:
   schemas:
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    ReturnCode:
+      description: The return code of the booking service.
+      example: 0
+      type: number
+    ExternalReferenceId:
+      description: The external reference ID. The reseller can supply a reference number under which this booking is referenced in his system. This field contains that number.
+      maxLength: 255
+      example: just_any_string
+      type: string
     QuestionsOutput:
       description: The questions that need to be answered for this booking.
       type: object
@@ -126,191 +140,6 @@ components:
           type: string
           description: answer to the free-text-question.
           example: Everyone in our group is from Germany.
-    DatetimeUTC:
-      description: The datetime in UTC of when the activity dates place.
-      example: '2017-09-01T04:00:00Z'
-      format: date-time
-      type: string
-    Currency:
-      description: ISO 4217, The currency with which you would like to pay.
-      enum:
-      - AED
-      - ARS
-      - AUD
-      - BGN
-      - CAD
-      - CHF
-      - CLP
-      - CNY
-      - COP
-      - CZK
-      - DKK
-      - EGP
-      - EUR
-      - GBP
-      - HKD
-      - HRK
-      - HUF
-      - IDR
-      - ILS
-      - INR
-      - JPY
-      - KRW
-      - MAD
-      - MXN
-      - MYR
-      - NOK
-      - NZD
-      - PHP
-      - PLN
-      - RON
-      - RUB
-      - SEK
-      - SGD
-      - THB
-      - TRY
-      - UAH
-      - USD
-      - UYU
-      - VND
-      - ZAR
-      example: USD
-      type: string
-    BookingStatus:
-      enum:
-      - temp
-      - unconfirmed
-      - confirmed
-      - deleted
-      - canceled
-      - deleted_by_customer
-      - deleted_by_daemon
-      example: temp
-      type: string
-      description: The status of the booking. > * `temp` the booking is temporary (added to a cart). * `unconfirmed` the booking is awaiting final confirmation by the supplier. For `free-sale` bookings this happens within a couple of minutes, for non-`free-sale` bookings this can take up to 48 hours. * `confirmed` the booking is confirmed and active. * `deleted` the booking got deleted from a cart before checkout. Only bookings in status `temp` can be deleted. * `canceled` a formerly confirmed booking got cancelled. Refunds apply here, if it got canceled within the `CancellationPolicy`. * `deleted_by_customer` same as `deleted`, with the additional information that a customer deleted the booking from the cart. * `deleted_by_daemon` same as `deleted`, with the additional information that it was automatically deleted from the cart after the `BookingExpirationTime` was reached.
-    Language:
-      type: string
-      description: ISO 639 formatted language
-      example: en
-    Version:
-      description: The version of the API, currently only 1 is available.
-      example: '1'
-      type: string
-      format: integer
-    Coordinates:
-      type: object
-      required:
-      - lat
-      - long
-      properties:
-        lat:
-          $ref: '#/components/schemas/Latitude'
-        long:
-          $ref: '#/components/schemas/Longitude'
-    BookingCreateResponse:
-      type: object
-      properties:
-        shopping_cart_id:
-          $ref: '#/components/schemas/ShoppingCartId'
-        shopping_cart_hash:
-          $ref: '#/components/schemas/ShoppingCartHash'
-        booking_id:
-          $ref: '#/components/schemas/BookingId'
-        booking_hash:
-          $ref: '#/components/schemas/BookingHash'
-        status:
-          $ref: '#/components/schemas/BookingStatus'
-        return_code:
-          $ref: '#/components/schemas/ReturnCode'
-        reservation_expires_at:
-          $ref: '#/components/schemas/BookingExpirationTime'
-    ShoppingCartId:
-      deprecated: true
-      description: The ID of the shopping cart. (Use shopping cart hash)
-      example: 32724458
-      type: number
-    CategoryId:
-      description: ID of the category.
-      example: 33
-      type: integer
-    Booking:
-      type: object
-      properties:
-        booking_id:
-          $ref: '#/components/schemas/BookingId'
-        booking_hash:
-          $ref: '#/components/schemas/BookingHash'
-        booking_status:
-          $ref: '#/components/schemas/BookingStatus'
-        shopping_cart_id:
-          $ref: '#/components/schemas/ShoppingCartId'
-        shopping_cart_hash:
-          $ref: '#/components/schemas/ShoppingCartHash'
-        bookable:
-          $ref: '#/components/schemas/Bookable'
-        ticket:
-          description: Only present if the booking is confirmed and active.
-          $ref: '#/components/schemas/Ticket'
-    BookingDeleteResponseEnvelope:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/BookingDeleteResponse'
-    ExternalReferenceId:
-      description: The external reference ID. The reseller can supply a reference number under which this booking is referenced in his system. This field contains that number.
-      maxLength: 255
-      example: just_any_string
-      type: string
-    BookingId:
-      deprecated: true
-      description: The id of the booking. (Use booking hash)
-      example: 13822240
-      type: integer
-    Email:
-      description: Correspondence email.
-      example: address@example.com
-      format: email
-      type: string
-    Limit:
-      description: Number of items to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 500
-      default: 10
-      example: 10
-    DatetimeType:
-      description: Is the datetime a date or a datetime. This is needed as some activities only have a day on which they take place.
-      enum:
-      - date
-      - datetime
-      example: datetime
-      type: string
-    CurrentlyCancellableAtNoFee:
-      description: Indicates whether this booking is currently cancellable at no fee.
-      example: true
-      type: boolean
-    BookingDeleteResponse:
-      type: object
-      properties:
-        bookings:
-          type: object
-          properties:
-            shopping_cart_id:
-              $ref: '#/components/schemas/ShoppingCartId'
-            shopping_cart_hash:
-              $ref: '#/components/schemas/ShoppingCartHash'
-            booking_id:
-              $ref: '#/components/schemas/BookingId'
-            booking_hash:
-              $ref: '#/components/schemas/BookingHash'
-            booking_status:
-              $ref: '#/components/schemas/BookingStatus'
-            return_code:
-              $ref: '#/components/schemas/ReturnCode'
-    ShoppingCartHash:
-      description: The hash of the shopping cart.
-      example: 0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K
-      type: string
     PaymentCurrency:
       description: ISO 4217, The currency that can be used for payment. It is used in the meta data object in the POST @ /bookings and /carts call.
       enum:
@@ -326,158 +155,66 @@ components:
       - USD
       example: EUR
       type: string
-    BookingCreateActivity:
-      type: object
-      properties:
-        base_data:
-          type: object
-          properties:
-            cnt_language:
-              $ref: '#/components/schemas/CntLanguage'
-            currency:
-              $ref: '#/components/schemas/PaymentCurrency'
-        data:
-          type: object
-          properties:
-            booking:
-              type: object
-              description: The booking object, you may specify an already existing shopping cart the booking shall be added to. If no `shopping_cart_hash` is specified a new cart is automatically created for the booking.
-              properties:
-                shopping_cart_hash:
-                  $ref: '#/components/schemas/ShoppingCartHash'
-                bookable:
-                  type: object
-                  properties:
-                    external_reference_id:
-                      $ref: '#/components/schemas/ExternalReferenceId'
-                    option_id:
-                      $ref: '#/components/schemas/OptionId'
-                    datetime:
-                      $ref: '#/components/schemas/Datetime'
-                    price:
-                      $ref: '#/components/schemas/PriceField'
-                    categories:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          category_id:
-                            $ref: '#/components/schemas/CategoryId'
-                          number_of_participants:
-                            type: integer
-                            example: 5
-                        required:
-                        - category_id
-                        - number_of_participants
-                    booking_parameters:
-                      $ref: '#/components/schemas/BookingParameters'
-                    questions:
-                      $ref: '#/components/schemas/Questions'
-                  required:
-                  - option_id
-                  - datetime
-                  - price
-                  - categories
-    MetaData:
+    Error:
       type: object
       properties:
         descriptor:
           type: string
           example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
         date:
           $ref: '#/components/schemas/Datetime'
         status:
           type: string
-          description: Status of the request
-          example: OK
+          example: ERROR
         query:
           type: string
-          description: URL parameters used for the request sent
           example: cnt_language=en&currency=eur
-        availableLanguages:
+        errors:
           type: array
-          description: Available conduction languages aggregated across all tours
           items:
-            $ref: '#/components/schemas/Language'
-          example:
-          - en
-          - es
-          - fr
-        exchange:
-          type: object
-          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
-          properties:
-            rate:
-              type: integer
-              example: 1
-            currency:
-              $ref: '#/components/schemas/Currency'
-        totalCount:
-          type: integer
-          description: Total amount of tours that match the search query
-          example: 127
-        limit:
-          $ref: '#/components/schemas/Limit'
-        offset:
-          $ref: '#/components/schemas/Offset'
-    CancellationPolicyText:
-      description: Cancellation policy text. Kept for backwards compatibility, please use CancellationPolicy.cancellation_policy_text instead.
-      deprecated: true
-      example: Your activity is non-refundable
-      type: string
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
     BookingsGetByHashResponse:
       type: object
       properties:
         booking:
           $ref: '#/components/schemas/Booking'
-    OptionId:
-      description: The ID of the tour option.
-      example: 69232
-      type: integer
-    PriceField:
-      description: The value of the price.
-      example: 15.15
-      type: number
-    Questions:
-      description: The questions that need to be answered for this booking.
-      type: object
-      properties:
-        booking_questions:
-          $ref: '#/components/schemas/BookingQuestions'
-        participant_questions:
-          type: array
-          items:
-            type: object
-            required:
-            - category_id
-            - participant_answers
-            properties:
-              category_id:
-                $ref: '#/components/schemas/CategoryId'
-              participant_answers:
-                $ref: '#/components/schemas/ParticipantQuestions'
-        conduction_language:
-          type: object
-          required:
-          - type
-          - value
-          properties:
-            type:
-              type: string
-              description: Conduction language type.
-              example: language_live
-            value:
-              type: string
-              description: Conduction language value.
-              example: en
-        free_text_question:
-          type: string
-          description: answer to the free-text-question.
-          example: Everyone in our group is from Germany.
-    BookingHash:
-      description: The hash of the booking. This identifies the booking.
-      example: WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M
+    BookingStatus:
+      enum:
+      - temp
+      - unconfirmed
+      - confirmed
+      - deleted
+      - canceled
+      - deleted_by_customer
+      - deleted_by_daemon
+      example: temp
       type: string
+      description: The status of the booking. > * `temp` the booking is temporary (added to a cart). * `unconfirmed` the booking is awaiting final confirmation by the supplier. For `free-sale` bookings this happens within a couple of minutes, for non-`free-sale` bookings this can take up to 48 hours. * `confirmed` the booking is confirmed and active. * `deleted` the booking got deleted from a cart before checkout. Only bookings in status `temp` can be deleted. * `canceled` a formerly confirmed booking got cancelled. Refunds apply here, if it got canceled within the `CancellationPolicy`. * `deleted_by_customer` same as `deleted`, with the additional information that a customer deleted the booking from the cart. * `deleted_by_daemon` same as `deleted`, with the additional information that it was automatically deleted from the cart after the `BookingExpirationTime` was reached.
     ParticipantQuestions:
       description: The questions at participant level that need to be answered for this booking.
       type: object
@@ -638,10 +375,139 @@ components:
               type: string
               description: Participant weight unit.
               example: kg
-    PhoneNumber:
-      description: International phone number, in the ITU E.123 standard.
-      example: '+49123456789'
+    BookingDeleteResponse:
+      type: object
+      properties:
+        bookings:
+          type: object
+          properties:
+            shopping_cart_id:
+              $ref: '#/components/schemas/ShoppingCartId'
+            shopping_cart_hash:
+              $ref: '#/components/schemas/ShoppingCartHash'
+            booking_id:
+              $ref: '#/components/schemas/BookingId'
+            booking_hash:
+              $ref: '#/components/schemas/BookingHash'
+            booking_status:
+              $ref: '#/components/schemas/BookingStatus'
+            return_code:
+              $ref: '#/components/schemas/ReturnCode'
+    Booking:
+      type: object
+      properties:
+        booking_id:
+          $ref: '#/components/schemas/BookingId'
+        booking_hash:
+          $ref: '#/components/schemas/BookingHash'
+        booking_status:
+          $ref: '#/components/schemas/BookingStatus'
+        shopping_cart_id:
+          $ref: '#/components/schemas/ShoppingCartId'
+        shopping_cart_hash:
+          $ref: '#/components/schemas/ShoppingCartHash'
+        bookable:
+          $ref: '#/components/schemas/Bookable'
+        ticket:
+          description: Only present if the booking is confirmed and active.
+          $ref: '#/components/schemas/Ticket'
+    Questions:
+      description: The questions that need to be answered for this booking.
+      type: object
+      properties:
+        booking_questions:
+          $ref: '#/components/schemas/BookingQuestions'
+        participant_questions:
+          type: array
+          items:
+            type: object
+            required:
+            - category_id
+            - participant_answers
+            properties:
+              category_id:
+                $ref: '#/components/schemas/CategoryId'
+              participant_answers:
+                $ref: '#/components/schemas/ParticipantQuestions'
+        conduction_language:
+          type: object
+          required:
+          - type
+          - value
+          properties:
+            type:
+              type: string
+              description: Conduction language type.
+              example: language_live
+            value:
+              type: string
+              description: Conduction language value.
+              example: en
+        free_text_question:
+          type: string
+          description: answer to the free-text-question.
+          example: Everyone in our group is from Germany.
+    BookingExpirationTime:
+      description: The expiration time of the booking in UTC. After this time the temporary booking will be automatically deleted, if the purchase has not yet been completed.
+      example: '2023-09-01T12:00:00Z'
+      format: date-time
       type: string
+    BookingCreateResponse:
+      type: object
+      properties:
+        shopping_cart_id:
+          $ref: '#/components/schemas/ShoppingCartId'
+        shopping_cart_hash:
+          $ref: '#/components/schemas/ShoppingCartHash'
+        booking_id:
+          $ref: '#/components/schemas/BookingId'
+        booking_hash:
+          $ref: '#/components/schemas/BookingHash'
+        status:
+          $ref: '#/components/schemas/BookingStatus'
+        return_code:
+          $ref: '#/components/schemas/ReturnCode'
+        reservation_expires_at:
+          $ref: '#/components/schemas/BookingExpirationTime'
+    Email:
+      description: Correspondence email.
+      example: address@example.com
+      format: email
+      type: string
+    DatetimeUTC:
+      description: The datetime in UTC of when the activity dates place.
+      example: '2017-09-01T04:00:00Z'
+      format: date-time
+      type: string
+    Ticket:
+      type: object
+      properties:
+        booking_reference:
+          type: string
+          example: GYG7VMWR9HZ3
+        supplier_booking_codes:
+          $ref: '#/components/schemas/SupplierBookingCodes'
+        emergency_phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        emergency_email:
+          $ref: '#/components/schemas/Email'
+        ticket_url:
+          type: string
+          format: uri
+          description: Download link for ticket PDF
+          example: https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG
+        ticket_hash:
+          type: string
+          example: 7H8N87D3QAH16XVABGPCR311U66XELRG
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+    BookingDeleteResponseEnvelope:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BookingDeleteResponse'
     BookingParameters:
       deprecated: true
       description: DEPRECATED! use questions instead
@@ -670,27 +536,6 @@ components:
             type: boolean
             description: The mandatory booking parameters can be retrieved from the options endpoint
             example: true
-    Latitude:
-      description: The latitude in ISO 6709 standard.
-      type: number
-      format: float
-      minimum: -90
-      maximum: 90
-      example: 28.3701884
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
-      type: string
-    BookingExpirationTime:
-      description: The expiration time of the booking in UTC. After this time the temporary booking will be automatically deleted, if the purchase has not yet been completed.
-      example: '2023-09-01T12:00:00Z'
-      format: date-time
-      type: string
-    ReturnCode:
-      description: The return code of the booking service.
-      example: 0
-      type: number
     SupplierBookingCodes:
       type: array
       items:
@@ -724,13 +569,174 @@ components:
           pricing_category_id:
             type: integer
             example: 2167696
-    Longitude:
-      description: The longitude in ISO 6709 standard.
+    Coordinates:
+      type: object
+      required:
+      - lat
+      - long
+      properties:
+        lat:
+          $ref: '#/components/schemas/Latitude'
+        long:
+          $ref: '#/components/schemas/Longitude'
+    DatetimeType:
+      description: Is the datetime a date or a datetime. This is needed as some activities only have a day on which they take place.
+      enum:
+      - date
+      - datetime
+      example: datetime
+      type: string
+    OptionId:
+      description: The ID of the tour option.
+      example: 69232
+      type: integer
+    TourId:
+      description: The ID of the tour.
+      example: 50872
+      type: integer
+    PhoneNumber:
+      description: International phone number, in the ITU E.123 standard.
+      example: '+49123456789'
+      type: string
+    CntLanguage:
+      description: ISO 639, Language of the text content.
+      enum:
+      - ar
+      - ca
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - et
+      - fi
+      - fr
+      - he
+      - hr
+      - hu
+      - id
+      - it
+      - ja
+      - ko
+      - lt
+      - lv
+      - ms
+      - nl
+      - 'no'
+      - pl
+      - pt
+      - ro
+      - ru
+      - sk
+      - sv
+      - th
+      - tr
+      - zh
+      - zh-hant
+      example: en
+      type: string
+    Latitude:
+      description: The latitude in ISO 6709 standard.
       type: number
       format: float
-      minimum: -180
-      maximum: 180
-      example: -81.5545306
+      minimum: -90
+      maximum: 90
+      example: 28.3701884
+    BookingCreateActivity:
+      type: object
+      properties:
+        base_data:
+          type: object
+          properties:
+            cnt_language:
+              $ref: '#/components/schemas/CntLanguage'
+            currency:
+              $ref: '#/components/schemas/PaymentCurrency'
+        data:
+          type: object
+          properties:
+            booking:
+              type: object
+              description: The booking object, you may specify an already existing shopping cart the booking shall be added to. If no `shopping_cart_hash` is specified a new cart is automatically created for the booking.
+              properties:
+                shopping_cart_hash:
+                  $ref: '#/components/schemas/ShoppingCartHash'
+                bookable:
+                  type: object
+                  properties:
+                    external_reference_id:
+                      $ref: '#/components/schemas/ExternalReferenceId'
+                    option_id:
+                      $ref: '#/components/schemas/OptionId'
+                    datetime:
+                      $ref: '#/components/schemas/Datetime'
+                    price:
+                      $ref: '#/components/schemas/PriceField'
+                    categories:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          category_id:
+                            $ref: '#/components/schemas/CategoryId'
+                          number_of_participants:
+                            type: integer
+                            example: 5
+                        required:
+                        - category_id
+                        - number_of_participants
+                    booking_parameters:
+                      $ref: '#/components/schemas/BookingParameters'
+                    questions:
+                      $ref: '#/components/schemas/Questions'
+                  required:
+                  - option_id
+                  - datetime
+                  - price
+                  - categories
+    MetaData:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          description: Status of the request
+          example: OK
+        query:
+          type: string
+          description: URL parameters used for the request sent
+          example: cnt_language=en&currency=eur
+        availableLanguages:
+          type: array
+          description: Available conduction languages aggregated across all tours
+          items:
+            $ref: '#/components/schemas/Language'
+          example:
+          - en
+          - es
+          - fr
+        exchange:
+          type: object
+          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
+          properties:
+            rate:
+              type: integer
+              example: 1
+            currency:
+              $ref: '#/components/schemas/Currency'
+        totalCount:
+          type: integer
+          description: Total amount of tours that match the search query
+          example: 127
+        limit:
+          $ref: '#/components/schemas/Limit'
+        offset:
+          $ref: '#/components/schemas/Offset'
     Bookable:
       type: object
       properties:
@@ -779,91 +785,26 @@ components:
           $ref: '#/components/schemas/BookingParameters'
         questions:
           $ref: '#/components/schemas/QuestionsOutput'
-    Error:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        apiVersion:
-          type: string
-          example: '1'
-        method:
-          type: string
-          example: getBookingByHashAction
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          example: ERROR
-        query:
-          type: string
-          example: cnt_language=en&currency=eur
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                description: GetYourGuide internal error code
-                type: integer
-                format: int32
-                example: 25
-              errorMessage:
-                description: Verbose description of the error.
-                type: string
-                example: Unauthorized. The access token is invalid.
-        helpURL:
-          type: string
-          example: https://api.getyourguide.com/doc
-    Offset:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      default: 0
-      example: 0
-    CntLanguage:
-      description: ISO 639, Language of the text content.
-      enum:
-      - ar
-      - ca
-      - cs
-      - da
-      - de
-      - el
-      - en
-      - es
-      - et
-      - fi
-      - fr
-      - he
-      - hr
-      - hu
-      - id
-      - it
-      - ja
-      - ko
-      - lt
-      - lv
-      - ms
-      - nl
-      - 'no'
-      - pl
-      - pt
-      - ro
-      - ru
-      - sk
-      - sv
-      - th
-      - tr
-      - zh
-      - zh-hant
-      example: en
+    ShoppingCartHash:
+      description: The hash of the shopping cart.
+      example: 0ESFMXPUANBNSGAOSLR4JWCOD7S4P18K
       type: string
-    TourId:
-      description: The ID of the tour.
-      example: 50872
-      type: integer
+    CancellationPolicyText:
+      description: Cancellation policy text. Kept for backwards compatibility, please use CancellationPolicy.cancellation_policy_text instead.
+      deprecated: true
+      example: Your activity is non-refundable
+      type: string
+    Longitude:
+      description: The longitude in ISO 6709 standard.
+      type: number
+      format: float
+      minimum: -180
+      maximum: 180
+      example: -81.5545306
+    BookingHash:
+      description: The hash of the booking. This identifies the booking.
+      example: WTLDAJ2S335O539FV3YCGZ0JMOCSTB5M
+      type: string
     BookingQuestions:
       description: The questions at booking level that need to be answered for this booking.
       type: object
@@ -967,27 +908,92 @@ components:
               type: string
               description: Booking wheelchair value.
               example: We would require a wheelchair
-    Ticket:
-      type: object
-      properties:
-        booking_reference:
-          type: string
-          example: GYG7VMWR9HZ3
-        supplier_booking_codes:
-          $ref: '#/components/schemas/SupplierBookingCodes'
-        emergency_phone_number:
-          $ref: '#/components/schemas/PhoneNumber'
-        emergency_email:
-          $ref: '#/components/schemas/Email'
-        ticket_url:
-          type: string
-          format: uri
-          description: Download link for ticket PDF
-          example: https://www.getyourguide.com/voucher/7H8N87D3QAH16XVABGPCR311U66XELRG
-        ticket_hash:
-          type: string
-          example: 7H8N87D3QAH16XVABGPCR311U66XELRG
+    BookingId:
+      deprecated: true
+      description: The id of the booking. (Use booking hash)
+      example: 13822240
+      type: integer
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
+    ShoppingCartId:
+      deprecated: true
+      description: The ID of the shopping cart. (Use shopping cart hash)
+      example: 32724458
+      type: number
+    CategoryId:
+      description: ID of the category.
+      example: 33
+      type: integer
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    Currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      enum:
+      - AED
+      - ARS
+      - AUD
+      - BGN
+      - CAD
+      - CHF
+      - CLP
+      - CNY
+      - COP
+      - CZK
+      - DKK
+      - EGP
+      - EUR
+      - GBP
+      - HKD
+      - HRK
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - JPY
+      - KRW
+      - MAD
+      - MXN
+      - MYR
+      - NOK
+      - NZD
+      - PHP
+      - PLN
+      - RON
+      - RUB
+      - SEK
+      - SGD
+      - THB
+      - TRY
+      - UAH
+      - USD
+      - UYU
+      - VND
+      - ZAR
+      example: USD
+      type: string
+    CurrentlyCancellableAtNoFee:
+      description: Indicates whether this booking is currently cancellable at no fee.
+      example: true
+      type: boolean
+    PriceField:
+      description: The value of the price.
+      example: 15.15
+      type: number
   parameters:
+    bookingHash:
+      in: path
+      name: booking_hash
+      required: true
+      schema:
+        $ref: '#/components/schemas/BookingHash'
     currency:
       description: ISO 4217, The currency with which you would like to pay.
       in: query
@@ -996,33 +1002,27 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/Currency'
-    version:
-      in: path
-      name: version
-      required: true
-      schema:
-        $ref: '#/components/schemas/Version'
-    bookingHash:
-      in: path
-      name: booking_hash
-      required: true
-      schema:
-        $ref: '#/components/schemas/BookingHash'
     cntLanguage:
       in: query
       name: cnt_language
       required: true
       schema:
         $ref: '#/components/schemas/CntLanguage'
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
   responses:
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
     4XX:
       description: HTTP 400, 401, 404 have the same response format.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Default:
-      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

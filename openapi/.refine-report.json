@@ -1,14 +1,7 @@
 {
   "provider": "getyourguide",
   "sources": [
-    "getyourguide-bookings-api-openapi.yml",
-    "getyourguide-carts-api-openapi.yml",
-    "getyourguide-categories-api-openapi.yml",
-    "getyourguide-configuration-api-openapi.yml",
-    "getyourguide-options-api-openapi.yml",
-    "getyourguide-reviews-api-openapi.yml",
-    "getyourguide-suppliers-api-openapi.yml",
-    "getyourguide-tours-api-openapi.yml"
+    "_original/getyourguide-partner-openapi.yml"
   ],
   "outputs": [
     "getyourguide-bookings-api-openapi.yml",
@@ -23,6 +16,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "getyourguide-partner-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "getyourguide-partner-openapi.yml: declared missing tag: Bookings",
+    "getyourguide-partner-openapi.yml: declared missing tag: Carts",
+    "getyourguide-partner-openapi.yml: declared missing tag: Categories",
+    "getyourguide-partner-openapi.yml: declared missing tag: Configuration",
+    "getyourguide-partner-openapi.yml: declared missing tag: Options",
+    "getyourguide-partner-openapi.yml: declared missing tag: Reviews",
+    "getyourguide-partner-openapi.yml: declared missing tag: Suppliers",
+    "getyourguide-partner-openapi.yml: declared missing tag: Tours",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "getyourguide-bookings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-carts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-options-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-reviews-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-suppliers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "getyourguide-tours-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
