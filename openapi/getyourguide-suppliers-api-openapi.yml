@@ -53,220 +53,7 @@ paths:
       summary: Suppliers
       x-summary-source: derived
 components:
-  parameters:
-    supplierId:
-      in: path
-      name: supplier_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/SupplierId'
-    currency:
-      description: ISO 4217, The currency with which you would like to pay.
-      in: query
-      name: currency
-      example: USD
-      required: true
-      schema:
-        $ref: '#/components/schemas/Currency'
-    cntLanguage:
-      in: query
-      name: cnt_language
-      required: true
-      schema:
-        $ref: '#/components/schemas/CntLanguage'
-    version:
-      in: path
-      name: version
-      required: true
-      schema:
-        $ref: '#/components/schemas/Version'
   schemas:
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
-      type: string
-    Rating:
-      description: The value of the rating.
-      minimum: 0
-      maximum: 5
-      example: 4.5
-      type: number
-      format: float
-    Address:
-      type: object
-      description: The structured address of the supplier.
-      properties:
-        street:
-          $ref: '#/components/schemas/Street'
-        zipCode:
-          $ref: '#/components/schemas/ZipCode'
-        country:
-          $ref: '#/components/schemas/CountryVerbose'
-        city:
-          $ref: '#/components/schemas/City-2'
-        state:
-          $ref: '#/components/schemas/State-2'
-    Error:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        apiVersion:
-          type: string
-          example: '1'
-        method:
-          type: string
-          example: getBookingByHashAction
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          example: ERROR
-        query:
-          type: string
-          example: cnt_language=en&currency=eur
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                description: GetYourGuide internal error code
-                type: integer
-                format: int32
-                example: 25
-              errorMessage:
-                description: Verbose description of the error.
-                type: string
-                example: Unauthorized. The access token is invalid.
-        helpURL:
-          type: string
-          example: https://api.getyourguide.com/doc
-    Offset:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      default: 0
-      example: 0
-    Supplier:
-      type: object
-      properties:
-        supplier_id:
-          type: integer
-          description: Supplier id
-          example: 26045
-        name:
-          type: string
-          description: Name of the supplier
-          example: GetYourGuide Tours & Tickets GmbH
-        email:
-          type: string
-          format: email
-          description: Deprecated, customers will receive the supplier contact details with their vouchers.
-          example: deprecated@email.address
-        phone_number:
-          $ref: '#/components/schemas/PhoneNumber'
-        description:
-          type: string
-          description: Description of the supplier
-          example: Description of the supplier
-        rating:
-          $ref: '#/components/schemas/Rating'
-        number_of_reviews:
-          type: integer
-          description: Overal number of reviews/ratings.
-          example: 5
-        categories:
-          type: array
-          description: List of categories in which the supplier offers tours.
-          items:
-            $ref: '#/components/schemas/TourCategory'
-        logo_url:
-          type: string
-          format: uri
-          description: URL to the logo of the supplier.
-          example: https://img-getyourguide-com.partner.gygtest.com/img/profile_picture-26045-1860042995-[format_id].jpg
-        address:
-          $ref: '#/components/schemas/Address'
-    CountryVerbose:
-      description: The verbose name of the country.
-      example: Germany
-      type: string
-    Language:
-      type: string
-      description: ISO 639 formatted language
-      example: en
-    TourCategory:
-      type: object
-      properties:
-        category_id:
-          $ref: '#/components/schemas/CategoryId'
-        name:
-          type: string
-          description: Name of the category.
-          example: Theme Parks & Amusement Parks
-        parent_id:
-          $ref: '#/components/schemas/CategoryId'
-        number_of_tours:
-          type: integer
-          description: Number of available tours in the category.
-          example: 10
-    State-2:
-      description: The state of the address.
-      example: Berlin
-      type: string
-    Street:
-      description: The street name and house number of the address.
-      example: Sonnenburger Straße 73
-      type: string
-    SupplierId:
-      description: The supplier id
-      type: integer
-      example: 90545
-    PhoneNumber:
-      description: International phone number, in the ITU E.123 standard.
-      example: '+49123456789'
-      type: string
-    CntLanguage:
-      description: ISO 639, Language of the text content.
-      enum:
-      - ar
-      - ca
-      - cs
-      - da
-      - de
-      - el
-      - en
-      - es
-      - et
-      - fi
-      - fr
-      - he
-      - hr
-      - hu
-      - id
-      - it
-      - ja
-      - ko
-      - lt
-      - lv
-      - ms
-      - nl
-      - 'no'
-      - pl
-      - pt
-      - ro
-      - ru
-      - sk
-      - sv
-      - th
-      - tr
-      - zh
-      - zh-hant
-      example: en
-      type: string
     MetaData:
       type: object
       properties:
@@ -309,25 +96,70 @@ components:
           $ref: '#/components/schemas/Limit'
         offset:
           $ref: '#/components/schemas/Offset'
-    ZipCode:
-      description: The zip code of the address.
-      example: '14050'
+    CountryVerbose:
+      description: The verbose name of the country.
+      example: Germany
       type: string
-    Limit:
-      description: Number of items to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 500
-      default: 10
-      example: 10
+    PhoneNumber:
+      description: International phone number, in the ITU E.123 standard.
+      example: '+49123456789'
+      type: string
+    TourCategory:
+      type: object
+      properties:
+        category_id:
+          $ref: '#/components/schemas/CategoryId'
+        name:
+          type: string
+          description: Name of the category.
+          example: Theme Parks & Amusement Parks
+        parent_id:
+          $ref: '#/components/schemas/CategoryId'
+        number_of_tours:
+          type: integer
+          description: Number of available tours in the category.
+          example: 10
     City-2:
       description: The name of the city
       example: Berlin
       type: string
-    CategoryId:
-      description: ID of the category.
-      example: 33
-      type: integer
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
     Version:
       description: The version of the API, currently only 1 is available.
       example: '1'
@@ -378,6 +210,174 @@ components:
       - ZAR
       example: USD
       type: string
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
+    Rating:
+      description: The value of the rating.
+      minimum: 0
+      maximum: 5
+      example: 4.5
+      type: number
+      format: float
+    CntLanguage:
+      description: ISO 639, Language of the text content.
+      enum:
+      - ar
+      - ca
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - et
+      - fi
+      - fr
+      - he
+      - hr
+      - hu
+      - id
+      - it
+      - ja
+      - ko
+      - lt
+      - lv
+      - ms
+      - nl
+      - 'no'
+      - pl
+      - pt
+      - ro
+      - ru
+      - sk
+      - sv
+      - th
+      - tr
+      - zh
+      - zh-hant
+      example: en
+      type: string
+    Street:
+      description: The street name and house number of the address.
+      example: Sonnenburger Straße 73
+      type: string
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
+    ZipCode:
+      description: The zip code of the address.
+      example: '14050'
+      type: string
+    State-2:
+      description: The state of the address.
+      example: Berlin
+      type: string
+    Supplier:
+      type: object
+      properties:
+        supplier_id:
+          type: integer
+          description: Supplier id
+          example: 26045
+        name:
+          type: string
+          description: Name of the supplier
+          example: GetYourGuide Tours & Tickets GmbH
+        email:
+          type: string
+          format: email
+          description: Deprecated, customers will receive the supplier contact details with their vouchers.
+          example: deprecated@email.address
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        description:
+          type: string
+          description: Description of the supplier
+          example: Description of the supplier
+        rating:
+          $ref: '#/components/schemas/Rating'
+        number_of_reviews:
+          type: integer
+          description: Overal number of reviews/ratings.
+          example: 5
+        categories:
+          type: array
+          description: List of categories in which the supplier offers tours.
+          items:
+            $ref: '#/components/schemas/TourCategory'
+        logo_url:
+          type: string
+          format: uri
+          description: URL to the logo of the supplier.
+          example: https://img-getyourguide-com.partner.gygtest.com/img/profile_picture-26045-1860042995-[format_id].jpg
+        address:
+          $ref: '#/components/schemas/Address'
+    CategoryId:
+      description: ID of the category.
+      example: 33
+      type: integer
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    SupplierId:
+      description: The supplier id
+      type: integer
+      example: 90545
+    Address:
+      type: object
+      description: The structured address of the supplier.
+      properties:
+        street:
+          $ref: '#/components/schemas/Street'
+        zipCode:
+          $ref: '#/components/schemas/ZipCode'
+        country:
+          $ref: '#/components/schemas/CountryVerbose'
+        city:
+          $ref: '#/components/schemas/City-2'
+        state:
+          $ref: '#/components/schemas/State-2'
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+  parameters:
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
+    currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      in: query
+      name: currency
+      example: USD
+      required: true
+      schema:
+        $ref: '#/components/schemas/Currency'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
+    supplierId:
+      in: path
+      name: supplier_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/SupplierId'
   responses:
     Default:
       description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
