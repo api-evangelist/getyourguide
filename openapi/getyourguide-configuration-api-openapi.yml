@@ -77,24 +77,52 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ConfigurationVersionResponse:
+    ConfigurationPaymentResponse:
       type: object
       properties:
-        configuration:
-          type: object
-          properties:
-            api_version:
-              description: The active version of the API
-              type: string
-              example: '1'
-            status:
-              description: The current status of the API
-              type: string
-              example: OK
-            url:
-              description: The base URL of the API. Endpoints to be appended at the end
-              type: string
-              example: https://api.getyourguide.com/1/
+        payment_methods:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                description: The name of the payment method.
+                type: string
+                example: encrypted_credit_card
+              public_key:
+                description: Required parameter by the encryption library to encrypt the users credit card information.
+                type: string
+                example: imagine_a_public_key
+              brands:
+                description: List of credit card brands available, results vary depending on the country parameter passed.
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 0
+                    name:
+                      description: The name of the brand.
+                      type: string
+                      example: VISA
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
     MetaData:
       type: object
       properties:
@@ -137,22 +165,24 @@ components:
           $ref: '#/components/schemas/Limit'
         offset:
           $ref: '#/components/schemas/Offset'
-    Version:
-      description: The version of the API, currently only 1 is available.
-      example: '1'
-      type: string
-      format: integer
-    Offset:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      default: 0
-      example: 0
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
-      type: string
+    ConfigurationVersionResponse:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties:
+            api_version:
+              description: The active version of the API
+              type: string
+              example: '1'
+            status:
+              description: The current status of the API
+              type: string
+              example: OK
+            url:
+              description: The base URL of the API. Endpoints to be appended at the end
+              type: string
+              example: https://api.getyourguide.com/1/
     Currency:
       description: ISO 4217, The currency with which you would like to pay.
       enum:
@@ -198,6 +228,53 @@ components:
       - ZAR
       example: USD
       type: string
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
     CntLanguage:
       description: ISO 639, Language of the text content.
       enum:
@@ -240,92 +317,16 @@ components:
       description: ISO code of the country of the location (ISO 3166-1).
       example: US
       type: string
-    Error:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        apiVersion:
-          type: string
-          example: '1'
-        method:
-          type: string
-          example: getBookingByHashAction
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          example: ERROR
-        query:
-          type: string
-          example: cnt_language=en&currency=eur
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                description: GetYourGuide internal error code
-                type: integer
-                format: int32
-                example: 25
-              errorMessage:
-                description: Verbose description of the error.
-                type: string
-                example: Unauthorized. The access token is invalid.
-        helpURL:
-          type: string
-          example: https://api.getyourguide.com/doc
-    Limit:
-      description: Number of items to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 500
-      default: 10
-      example: 10
-    ConfigurationPaymentResponse:
-      type: object
-      properties:
-        payment_methods:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                description: The name of the payment method.
-                type: string
-                example: encrypted_credit_card
-              public_key:
-                description: Required parameter by the encryption library to encrypt the users credit card information.
-                type: string
-                example: imagine_a_public_key
-              brands:
-                description: List of credit card brands available, results vary depending on the country parameter passed.
-                type: array
-                items:
-                  type: object
-                  properties:
-                    code:
-                      type: integer
-                      example: 0
-                    name:
-                      description: The name of the brand.
-                      type: string
-                      example: VISA
-    Language:
-      type: string
-      description: ISO 639 formatted language
-      example: en
+  responses:
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
+    4XX:
+      description: HTTP 400, 401, 404 have the same response format.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    country:
-      description: ISO 3166-1, The country where to payment originates. Should be the same value as the country_code field of the Billing Address Object.
-      in: query
-      name: country
-      example: US
-      required: true
-      schema:
-        $ref: '#/components/schemas/Country'
     currency:
       description: ISO 4217, The currency with which you would like to pay.
       in: query
@@ -334,27 +335,26 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/Currency'
-    cntLanguage:
-      in: query
-      name: cnt_language
-      required: true
-      schema:
-        $ref: '#/components/schemas/CntLanguage'
     version:
       in: path
       name: version
       required: true
       schema:
         $ref: '#/components/schemas/Version'
-  responses:
-    4XX:
-      description: HTTP 400, 401, 404 have the same response format.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Default:
-      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
+    country:
+      description: ISO 3166-1, The country where to payment originates. Should be the same value as the country_code field of the Billing Address Object.
+      in: query
+      name: country
+      example: US
+      required: true
+      schema:
+        $ref: '#/components/schemas/Country'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

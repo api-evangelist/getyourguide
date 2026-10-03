@@ -56,90 +56,87 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    MetaData:
+    StartingPrice:
+      type: object
+      description: Starting price. Should be read as e.g. "from XX.YY USD.
+      properties:
+        values:
+          type: object
+          properties:
+            amount:
+              $ref: '#/components/schemas/PriceField'
+        description:
+          type: string
+          description: Additional information about the pricing. E.g. 'per group' or 'per person' or 'per Group up to 10 people'.
+          example: individual
+    BoundingBox:
       type: object
       properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          description: Status of the request
-          example: OK
-        query:
-          type: string
-          description: URL parameters used for the request sent
-          example: cnt_language=en&currency=eur
-        availableLanguages:
-          type: array
-          description: Available conduction languages aggregated across all tours
-          items:
-            $ref: '#/components/schemas/Language'
-          example:
-          - en
-          - es
-          - fr
-        exchange:
-          type: object
-          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
-          properties:
-            rate:
-              type: integer
-              example: 1
-            currency:
-              $ref: '#/components/schemas/Currency'
-        totalCount:
-          type: integer
-          description: Total amount of tours that match the search query
-          example: 127
-        limit:
-          $ref: '#/components/schemas/Limit'
-        offset:
-          $ref: '#/components/schemas/Offset'
+        sw_lat:
+          type: number
+          format: double
+        sw_long:
+          type: number
+          format: double
+        ne_lat:
+          type: number
+          format: double
+        ne_long:
+          type: number
+          format: double
     FreeSale:
       type: boolean
       description: Indicates whether if the tour option's booking engine is free-sale (i.e. whether a booking does not require confirmation by the supplier).
       example: true
-    Error:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        apiVersion:
-          type: string
-          example: '1'
-        method:
-          type: string
-          example: getBookingByHashAction
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          example: ERROR
-        query:
-          type: string
-          example: cnt_language=en&currency=eur
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                description: GetYourGuide internal error code
-                type: integer
-                format: int32
-                example: 25
-              errorMessage:
-                description: Verbose description of the error.
-                type: string
-                example: Unauthorized. The access token is invalid.
-        helpURL:
-          type: string
-          example: https://api.getyourguide.com/doc
-    LogisticsArea:
+    ValidityUnit:
+      type: string
+      description: Unit of the validity field
+      enum:
+      - day
+      - hour
+      - minute
+      - month
+      - year
+      example: day
+    CntLanguage:
+      description: ISO 639, Language of the text content.
+      enum:
+      - ar
+      - ca
+      - cs
+      - da
+      - de
+      - el
+      - en
+      - es
+      - et
+      - fi
+      - fr
+      - he
+      - hr
+      - hu
+      - id
+      - it
+      - ja
+      - ko
+      - lt
+      - lv
+      - ms
+      - nl
+      - 'no'
+      - pl
+      - pt
+      - ro
+      - ru
+      - sk
+      - sv
+      - th
+      - tr
+      - zh
+      - zh-hant
+      example: en
+      type: string
+    LogisticsLocation:
       type: object
       required:
       - name
@@ -149,37 +146,22 @@ components:
       properties:
         name:
           type: string
-          description: Name of the area. Shorter than full_address e.g. "Manhattan".
+          description: Name of the location. Shorter than full_address e.g. Louvre Museum.
         full_address:
           type: string
-          description: Representing the area for the pick up location e.g. "Manhattan, New York, USA".
-        bounding_box:
-          $ref: '#/components/schemas/BoundingBox'
+          description: Representing the location for the pick up location e.g. Louvre Museum, Paris, France.
         coordinates:
           $ref: '#/components/schemas/Coordinates'
-    StartingPriceDiscounted:
+    Coordinates:
       type: object
-      description: Starting price and theoretic maximum possible discount. Should be read as e.g. "from XX.YY USD. The discounts are still bound to individual dates.
+      required:
+      - lat
+      - long
       properties:
-        values:
-          type: object
-          properties:
-            amount:
-              $ref: '#/components/schemas/PriceField'
-            special:
-              $ref: '#/components/schemas/Special'
-        description:
-          type: string
-          description: Additional information about the pricing. E.g. 'per group' or 'per person' or 'per Group up to 10 people'.
-          example: individual
-    DurationUnit:
-      type: string
-      description: Unit of the duration field
-      enum:
-      - day
-      - hour
-      - minute
-      example: hour
+        lat:
+          $ref: '#/components/schemas/Latitude'
+        long:
+          $ref: '#/components/schemas/Longitude'
     ValidityFrom:
       type: string
       description: When the validity period starts counting from.
@@ -188,6 +170,32 @@ components:
       - time_selected
       - time_activated
       example: time_booked
+    DurationUnit:
+      type: string
+      description: Unit of the duration field
+      enum:
+      - day
+      - hour
+      - minute
+      example: hour
+    OptionId:
+      description: The ID of the tour option.
+      example: 69232
+      type: integer
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
+    Longitude:
+      description: The longitude in ISO 6709 standard.
+      type: number
+      format: float
+      minimum: -180
+      maximum: 180
+      example: -81.5545306
     Special:
       type: object
       properties:
@@ -200,81 +208,18 @@ components:
         apps_only:
           type: boolean
           description: Flag if the special offer is only available for the GYG internal mobile apps.
-    TourId:
-      description: The ID of the tour.
-      example: 50872
-      type: integer
-    PriceField:
-      description: The value of the price.
-      example: 15.15
-      type: number
-    Longitude:
-      description: The longitude in ISO 6709 standard.
+    Latitude:
+      description: The latitude in ISO 6709 standard.
       type: number
       format: float
-      minimum: -180
-      maximum: 180
-      example: -81.5545306
-    Version:
-      description: The version of the API, currently only 1 is available.
-      example: '1'
-      type: string
-      format: integer
-    Currency:
-      description: ISO 4217, The currency with which you would like to pay.
-      enum:
-      - AED
-      - ARS
-      - AUD
-      - BGN
-      - CAD
-      - CHF
-      - CLP
-      - CNY
-      - COP
-      - CZK
-      - DKK
-      - EGP
-      - EUR
-      - GBP
-      - HKD
-      - HRK
-      - HUF
-      - IDR
-      - ILS
-      - INR
-      - JPY
-      - KRW
-      - MAD
-      - MXN
-      - MYR
-      - NOK
-      - NZD
-      - PHP
-      - PLN
-      - RON
-      - RUB
-      - SEK
-      - SGD
-      - THB
-      - TRY
-      - UAH
-      - USD
-      - UYU
-      - VND
-      - ZAR
-      example: USD
-      type: string
-    Coordinates:
-      type: object
-      required:
-      - lat
-      - long
-      properties:
-        lat:
-          $ref: '#/components/schemas/Latitude'
-        long:
-          $ref: '#/components/schemas/Longitude'
+      minimum: -90
+      maximum: 90
+      example: 28.3701884
+    Validity:
+      type: number
+      format: float
+      description: Validity period of the booking (to be used in combination with validity unit). Represents how long the ticket/voucher remains valid after booking or activation.
+      example: 30
     TourOption:
       description: Tour option
       type: object
@@ -476,114 +421,6 @@ components:
           - $ref: '#/components/schemas/StartingPriceDiscounted'
         free_sale:
           $ref: '#/components/schemas/FreeSale'
-    Validity:
-      type: number
-      format: float
-      description: Validity period of the booking (to be used in combination with validity unit). Represents how long the ticket/voucher remains valid after booking or activation.
-      example: 30
-    OptionId:
-      description: The ID of the tour option.
-      example: 69232
-      type: integer
-    Limit:
-      description: Number of items to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 500
-      default: 10
-      example: 10
-    BoundingBox:
-      type: object
-      properties:
-        sw_lat:
-          type: number
-          format: double
-        sw_long:
-          type: number
-          format: double
-        ne_lat:
-          type: number
-          format: double
-        ne_long:
-          type: number
-          format: double
-    Duration:
-      type: number
-      description: Duration of the tour (to be used in combination with duration unit).
-      example: 2.5
-    StartingPrice:
-      type: object
-      description: Starting price. Should be read as e.g. "from XX.YY USD.
-      properties:
-        values:
-          type: object
-          properties:
-            amount:
-              $ref: '#/components/schemas/PriceField'
-        description:
-          type: string
-          description: Additional information about the pricing. E.g. 'per group' or 'per person' or 'per Group up to 10 people'.
-          example: individual
-    LogisticsLocation:
-      type: object
-      required:
-      - name
-      - full_address
-      - bounding_box
-      - coordinates
-      properties:
-        name:
-          type: string
-          description: Name of the location. Shorter than full_address e.g. Louvre Museum.
-        full_address:
-          type: string
-          description: Representing the location for the pick up location e.g. Louvre Museum, Paris, France.
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-    CntLanguage:
-      description: ISO 639, Language of the text content.
-      enum:
-      - ar
-      - ca
-      - cs
-      - da
-      - de
-      - el
-      - en
-      - es
-      - et
-      - fi
-      - fr
-      - he
-      - hr
-      - hu
-      - id
-      - it
-      - ja
-      - ko
-      - lt
-      - lv
-      - ms
-      - nl
-      - 'no'
-      - pl
-      - pt
-      - ro
-      - ru
-      - sk
-      - sv
-      - th
-      - tr
-      - zh
-      - zh-hant
-      example: en
-      type: string
-    Offset:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      default: 0
-      example: 0
     PickUpLocation:
       type: object
       required:
@@ -616,11 +453,122 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransportationType'
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
+    MetaData:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          description: Status of the request
+          example: OK
+        query:
+          type: string
+          description: URL parameters used for the request sent
+          example: cnt_language=en&currency=eur
+        availableLanguages:
+          type: array
+          description: Available conduction languages aggregated across all tours
+          items:
+            $ref: '#/components/schemas/Language'
+          example:
+          - en
+          - es
+          - fr
+        exchange:
+          type: object
+          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
+          properties:
+            rate:
+              type: integer
+              example: 1
+            currency:
+              $ref: '#/components/schemas/Currency'
+        totalCount:
+          type: integer
+          description: Total amount of tours that match the search query
+          example: 127
+        limit:
+          $ref: '#/components/schemas/Limit'
+        offset:
+          $ref: '#/components/schemas/Offset'
+    Currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      enum:
+      - AED
+      - ARS
+      - AUD
+      - BGN
+      - CAD
+      - CHF
+      - CLP
+      - CNY
+      - COP
+      - CZK
+      - DKK
+      - EGP
+      - EUR
+      - GBP
+      - HKD
+      - HRK
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - JPY
+      - KRW
+      - MAD
+      - MXN
+      - MYR
+      - NOK
+      - NZD
+      - PHP
+      - PLN
+      - RON
+      - RUB
+      - SEK
+      - SGD
+      - THB
+      - TRY
+      - UAH
+      - USD
+      - UYU
+      - VND
+      - ZAR
+      example: USD
       type: string
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    LogisticsArea:
+      type: object
+      required:
+      - name
+      - full_address
+      - bounding_box
+      - coordinates
+      properties:
+        name:
+          type: string
+          description: Name of the area. Shorter than full_address e.g. "Manhattan".
+        full_address:
+          type: string
+          description: Representing the area for the pick up location e.g. "Manhattan, New York, USA".
+        bounding_box:
+          $ref: '#/components/schemas/BoundingBox'
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
     TransportationType:
       type: object
       required:
@@ -755,34 +703,100 @@ components:
             - trolley
 
             '
-    ValidityUnit:
-      type: string
-      description: Unit of the validity field
-      enum:
-      - day
-      - hour
-      - minute
-      - month
-      - year
-      example: day
+    TourId:
+      description: The ID of the tour.
+      example: 50872
+      type: integer
+    Duration:
+      type: number
+      description: Duration of the tour (to be used in combination with duration unit).
+      example: 2.5
+    StartingPriceDiscounted:
+      type: object
+      description: Starting price and theoretic maximum possible discount. Should be read as e.g. "from XX.YY USD. The discounts are still bound to individual dates.
+      properties:
+        values:
+          type: object
+          properties:
+            amount:
+              $ref: '#/components/schemas/PriceField'
+            special:
+              $ref: '#/components/schemas/Special'
+        description:
+          type: string
+          description: Additional information about the pricing. E.g. 'per group' or 'per person' or 'per Group up to 10 people'.
+          example: individual
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
     Language:
       type: string
       description: ISO 639 formatted language
       example: en
-    Latitude:
-      description: The latitude in ISO 6709 standard.
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    PriceField:
+      description: The value of the price.
+      example: 15.15
       type: number
-      format: float
-      minimum: -90
-      maximum: 90
-      example: 28.3701884
   parameters:
-    version:
-      in: path
-      name: version
+    currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      in: query
+      name: currency
+      example: USD
       required: true
       schema:
-        $ref: '#/components/schemas/Version'
+        $ref: '#/components/schemas/Currency'
+    optionId:
+      in: path
+      name: option_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/OptionId'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
     dates:
       allowReserved: true
       description: Check for tours that are offered on date or between dates.
@@ -804,35 +818,21 @@ components:
         items:
           $ref: '#/components/schemas/Datetime'
         type: array
-    currency:
-      description: ISO 4217, The currency with which you would like to pay.
-      in: query
-      name: currency
-      example: USD
-      required: true
-      schema:
-        $ref: '#/components/schemas/Currency'
-    cntLanguage:
-      in: query
-      name: cnt_language
-      required: true
-      schema:
-        $ref: '#/components/schemas/CntLanguage'
-    optionId:
+    version:
       in: path
-      name: option_id
+      name: version
       required: true
       schema:
-        $ref: '#/components/schemas/OptionId'
+        $ref: '#/components/schemas/Version'
   responses:
-    Default:
-      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
     4XX:
       description: HTTP 400, 401, 404 have the same response format.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
