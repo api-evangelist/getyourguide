@@ -86,6 +86,24 @@ paths:
           $ref: '#/components/responses/Default'
 components:
   parameters:
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        $ref: '#/components/schemas/Limit'
     currency:
       description: ISO 4217, The currency with which you would like to pay.
       in: query
@@ -94,37 +112,34 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/Currency'
-    cntLanguage:
-      in: query
-      name: cnt_language
-      required: true
-      schema:
-        $ref: '#/components/schemas/CntLanguage'
-    categoryId:
-      in: path
-      name: category_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/CategoryId'
     offset:
       in: query
       name: offset
       required: false
       schema:
         $ref: '#/components/schemas/Offset'
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        $ref: '#/components/schemas/Limit'
-    version:
+    categoryId:
       in: path
-      name: version
+      name: category_id
       required: true
       schema:
-        $ref: '#/components/schemas/Version'
+        $ref: '#/components/schemas/CategoryId'
   schemas:
+    TourCategory:
+      type: object
+      properties:
+        category_id:
+          $ref: '#/components/schemas/CategoryId'
+        name:
+          type: string
+          description: Name of the category.
+          example: Theme Parks & Amusement Parks
+        parent_id:
+          $ref: '#/components/schemas/CategoryId'
+        number_of_tours:
+          type: integer
+          description: Number of available tours in the category.
+          example: 10
     CategoryId:
       description: ID of the category.
       example: 33
@@ -167,6 +182,52 @@ components:
       - zh-hant
       example: en
       type: string
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
     Limit:
       description: Number of items to retrieve.
       type: integer
@@ -174,27 +235,6 @@ components:
       maximum: 500
       default: 10
       example: 10
-    TourCategory:
-      type: object
-      properties:
-        category_id:
-          $ref: '#/components/schemas/CategoryId'
-        name:
-          type: string
-          description: Name of the category.
-          example: Theme Parks & Amusement Parks
-        parent_id:
-          $ref: '#/components/schemas/CategoryId'
-        number_of_tours:
-          type: integer
-          description: Number of available tours in the category.
-          example: 10
-    Offset:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      default: 0
-      example: 0
     MetaData:
       type: object
       properties:
@@ -237,6 +277,17 @@ components:
           $ref: '#/components/schemas/Limit'
         offset:
           $ref: '#/components/schemas/Offset'
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
     Currency:
       description: ISO 4217, The currency with which you would like to pay.
       enum:
@@ -282,66 +333,15 @@ components:
       - ZAR
       example: USD
       type: string
-    Version:
-      description: The version of the API, currently only 1 is available.
-      example: '1'
-      type: string
-      format: integer
-    Error:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        apiVersion:
-          type: string
-          example: '1'
-        method:
-          type: string
-          example: getBookingByHashAction
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          example: ERROR
-        query:
-          type: string
-          example: cnt_language=en&currency=eur
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                description: GetYourGuide internal error code
-                type: integer
-                format: int32
-                example: 25
-              errorMessage:
-                description: Verbose description of the error.
-                type: string
-                example: Unauthorized. The access token is invalid.
-        helpURL:
-          type: string
-          example: https://api.getyourguide.com/doc
-    Language:
-      type: string
-      description: ISO 639 formatted language
-      example: en
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
-      type: string
   responses:
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
     4XX:
       description: HTTP 400, 401, 404 have the same response format.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Default:
-      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

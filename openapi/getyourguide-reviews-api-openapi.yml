@@ -62,6 +62,42 @@ paths:
       x-summary-source: derived
 components:
   parameters:
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
+    date:
+      description: Defines the date of the oldest review that should be returned.
+      in: query
+      name: date
+      required: false
+      schema:
+        $ref: '#/components/schemas/Datetime'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
+    sortfield:
+      description: Defines the sort field.
+      in: query
+      name: sortfield
+      required: false
+      schema:
+        enum:
+        - rating
+        - date
+        type: string
+    offset-2:
+      description: Defines the offset of the first review that should be returned. Currently limited to 300.
+      in: query
+      name: offset
+      required: false
+      schema:
+        $ref: '#/components/schemas/Offset-2'
     currency:
       description: ISO 4217, The currency with which you would like to pay.
       in: query
@@ -76,13 +112,6 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/TourId'
-    limit-2:
-      description: Number of reviews to retrieve. Maximum value for this endpoint is 50.
-      in: query
-      name: limit
-      required: false
-      schema:
-        $ref: '#/components/schemas/Limit-2'
     sortdirection:
       description: Defines the sort order. Ignored when `sortfield=popularity`.
       in: query
@@ -93,50 +122,18 @@ components:
         - DESC
         - ASC
         type: string
-    cntLanguage:
+    limit-2:
+      description: Number of reviews to retrieve. Maximum value for this endpoint is 50.
       in: query
-      name: cnt_language
-      required: true
-      schema:
-        $ref: '#/components/schemas/CntLanguage'
-    offset-2:
-      description: Defines the offset of the first review that should be returned. Currently limited to 300.
-      in: query
-      name: offset
+      name: limit
       required: false
       schema:
-        $ref: '#/components/schemas/Offset-2'
-    date:
-      description: Defines the date of the oldest review that should be returned.
-      in: query
-      name: date
-      required: false
-      schema:
-        $ref: '#/components/schemas/Datetime'
-    version:
-      in: path
-      name: version
-      required: true
-      schema:
-        $ref: '#/components/schemas/Version'
-    sortfield:
-      description: Defines the sort field.
-      in: query
-      name: sortfield
-      required: false
-      schema:
-        enum:
-        - rating
-        - date
-        type: string
+        $ref: '#/components/schemas/Limit-2'
   schemas:
-    Rating:
-      description: The value of the rating.
-      minimum: 0
-      maximum: 5
-      example: 4.5
-      type: number
-      format: float
+    SupplierId:
+      description: The supplier id
+      type: integer
+      example: 90545
     CntLanguage:
       description: ISO 639, Language of the text content.
       enum:
@@ -175,13 +172,6 @@ components:
       - zh-hant
       example: en
       type: string
-    Limit:
-      description: Number of items to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 500
-      default: 10
-      example: 10
     ReviewItems:
       type: array
       items:
@@ -219,6 +209,11 @@ components:
             $ref: '#/components/schemas/Rating'
           review_rating_safety:
             $ref: '#/components/schemas/Rating'
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
     Outline:
       type: array
       items:
@@ -238,19 +233,57 @@ components:
       type: string
       description: ISO 639 formatted language
       example: en
-    Offset:
-      description: Offset the list of returned results by this amount.
+    Limit-2:
+      description: Number of reviews to retrieve.
       type: integer
-      minimum: 0
-      default: 0
-      example: 0
-    Offset-2:
-      description: Offset the list of returned results by this amount.
+      minimum: 1
+      maximum: 50
+      default: 10
+      example: 10
+    Error:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        apiVersion:
+          type: string
+          example: '1'
+        method:
+          type: string
+          example: getBookingByHashAction
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          example: ERROR
+        query:
+          type: string
+          example: cnt_language=en&currency=eur
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                description: GetYourGuide internal error code
+                type: integer
+                format: int32
+                example: 25
+              errorMessage:
+                description: Verbose description of the error.
+                type: string
+                example: Unauthorized. The access token is invalid.
+        helpURL:
+          type: string
+          example: https://api.getyourguide.com/doc
+    Limit:
+      description: Number of items to retrieve.
       type: integer
-      minimum: 0
-      maximum: 300
-      default: 0
-      example: 0
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
     MetaData:
       type: object
       properties:
@@ -293,6 +326,35 @@ components:
           $ref: '#/components/schemas/Limit'
         offset:
           $ref: '#/components/schemas/Offset'
+    Rating:
+      description: The value of the rating.
+      minimum: 0
+      maximum: 5
+      example: 4.5
+      type: number
+      format: float
+    Offset-2:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      maximum: 300
+      default: 0
+      example: 0
+    TourId:
+      description: The ID of the tour.
+      example: 50872
+      type: integer
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
     Currency:
       description: ISO 4217, The currency with which you would like to pay.
       enum:
@@ -338,77 +400,15 @@ components:
       - ZAR
       example: USD
       type: string
-    Limit-2:
-      description: Number of reviews to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 50
-      default: 10
-      example: 10
-    Version:
-      description: The version of the API, currently only 1 is available.
-      example: '1'
-      type: string
-      format: integer
-    TourId:
-      description: The ID of the tour.
-      example: 50872
-      type: integer
-    Error:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        apiVersion:
-          type: string
-          example: '1'
-        method:
-          type: string
-          example: getBookingByHashAction
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          example: ERROR
-        query:
-          type: string
-          example: cnt_language=en&currency=eur
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                description: GetYourGuide internal error code
-                type: integer
-                format: int32
-                example: 25
-              errorMessage:
-                description: Verbose description of the error.
-                type: string
-                example: Unauthorized. The access token is invalid.
-        helpURL:
-          type: string
-          example: https://api.getyourguide.com/doc
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
-      type: string
-    SupplierId:
-      description: The supplier id
-      type: integer
-      example: 90545
   responses:
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
     4XX:
       description: HTTP 400, 401, 404 have the same response format.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Default:
-      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
