@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/getyourguide/integrations
+- https://n8n.io/integrations/getyourguide/
+- https://composio.dev/toolkits/getyourguide
+- https://monid.ai/tools/getyourguide
+checked:
+- https://composio.dev/toolkits/getyourguide
+- https://monid.ai/tools/getyourguide
+- https://n8n.io/integrations/getyourguide/
+- https://zapier.com/apps/getyourguide/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
