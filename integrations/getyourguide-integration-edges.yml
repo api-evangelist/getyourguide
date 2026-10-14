@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/getyourguide/integrations
 - https://n8n.io/integrations/getyourguide/
@@ -9,8 +9,24 @@ checked:
 - https://composio.dev/toolkits/getyourguide
 - https://monid.ai/tools/getyourguide
 - https://n8n.io/integrations/getyourguide/
+- https://plugins.jetbrains.com/
 - https://zapier.com/apps/getyourguide/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/GetYourGuide
+  listing_count: 1
+  apps:
+  - Paparazzi
+  publisher_name: GetYourGuide
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 templates: []
