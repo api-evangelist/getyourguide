@@ -61,79 +61,85 @@ paths:
       summary: Reviews
       x-summary-source: derived
 components:
-  parameters:
-    version:
-      in: path
-      name: version
-      required: true
-      schema:
-        $ref: '#/components/schemas/Version'
-    date:
-      description: Defines the date of the oldest review that should be returned.
-      in: query
-      name: date
-      required: false
-      schema:
-        $ref: '#/components/schemas/Datetime'
-    cntLanguage:
-      in: query
-      name: cnt_language
-      required: true
-      schema:
-        $ref: '#/components/schemas/CntLanguage'
-    sortfield:
-      description: Defines the sort field.
-      in: query
-      name: sortfield
-      required: false
-      schema:
-        enum:
-        - rating
-        - date
-        type: string
-    offset-2:
-      description: Defines the offset of the first review that should be returned. Currently limited to 300.
-      in: query
-      name: offset
-      required: false
-      schema:
-        $ref: '#/components/schemas/Offset-2'
-    currency:
-      description: ISO 4217, The currency with which you would like to pay.
-      in: query
-      name: currency
-      example: USD
-      required: true
-      schema:
-        $ref: '#/components/schemas/Currency'
-    tourId:
-      in: path
-      name: tour_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/TourId'
-    sortdirection:
-      description: Defines the sort order. Ignored when `sortfield=popularity`.
-      in: query
-      name: sortdirection
-      required: false
-      schema:
-        enum:
-        - DESC
-        - ASC
-        type: string
-    limit-2:
-      description: Number of reviews to retrieve. Maximum value for this endpoint is 50.
-      in: query
-      name: limit
-      required: false
-      schema:
-        $ref: '#/components/schemas/Limit-2'
   schemas:
+    Language:
+      type: string
+      description: ISO 639 formatted language
+      example: en
+    Datetime:
+      description: The local datetime format `Y-m-d T H:i:s`.
+      example: '2017-09-01T00:00:00'
+      format: date-time
+      type: string
+    Offset:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      default: 0
+      example: 0
+    Offset-2:
+      description: Offset the list of returned results by this amount.
+      type: integer
+      minimum: 0
+      maximum: 300
+      default: 0
+      example: 0
+    Outline:
+      type: array
+      items:
+        type: object
+        properties:
+          rating:
+            $ref: '#/components/schemas/Rating'
+          number_of_reviews:
+            type: integer
+            description: The number of reviews for this rating.
+            example: 20
+          share:
+            type: number
+            description: The percentage of all reviews that have this rating.
+            example: 96
     SupplierId:
       description: The supplier id
       type: integer
       example: 90545
+    ReviewItems:
+      type: array
+      items:
+        type: object
+        properties:
+          review_id:
+            type: integer
+            description: The review ID.
+            example: 786101
+          tour_id:
+            $ref: '#/components/schemas/TourId'
+          supplier_id:
+            $ref: '#/components/schemas/SupplierId'
+          review_date:
+            $ref: '#/components/schemas/Datetime'
+          subject:
+            type: string
+            description: The subject of the review.
+            example: Very good
+          comment:
+            type: string
+            description: A comment of the user about the tour.
+            example: Super
+          reviewer_name:
+            type: string
+            description: The name of the person who did the review.
+            example: Reichenbach – France
+          review_rating:
+            $ref: '#/components/schemas/Rating'
+          review_rating_service:
+            $ref: '#/components/schemas/Rating'
+          review_rating_orga:
+            $ref: '#/components/schemas/Rating'
+          review_rating_value:
+            $ref: '#/components/schemas/Rating'
+          review_rating_safety:
+            $ref: '#/components/schemas/Rating'
     CntLanguage:
       description: ISO 639, Language of the text content.
       enum:
@@ -172,74 +178,6 @@ components:
       - zh-hant
       example: en
       type: string
-    ReviewItems:
-      type: array
-      items:
-        type: object
-        properties:
-          review_id:
-            type: integer
-            description: The review ID.
-            example: 786101
-          tour_id:
-            $ref: '#/components/schemas/TourId'
-          supplier_id:
-            $ref: '#/components/schemas/SupplierId'
-          review_date:
-            $ref: '#/components/schemas/Datetime'
-          subject:
-            type: string
-            description: The subject of the review.
-            example: Very good
-          comment:
-            type: string
-            description: A comment of the user about the tour.
-            example: Super
-          reviewer_name:
-            type: string
-            description: The name of the person who did the review.
-            example: Reichenbach – France
-          review_rating:
-            $ref: '#/components/schemas/Rating'
-          review_rating_service:
-            $ref: '#/components/schemas/Rating'
-          review_rating_orga:
-            $ref: '#/components/schemas/Rating'
-          review_rating_value:
-            $ref: '#/components/schemas/Rating'
-          review_rating_safety:
-            $ref: '#/components/schemas/Rating'
-    Version:
-      description: The version of the API, currently only 1 is available.
-      example: '1'
-      type: string
-      format: integer
-    Outline:
-      type: array
-      items:
-        type: object
-        properties:
-          rating:
-            $ref: '#/components/schemas/Rating'
-          number_of_reviews:
-            type: integer
-            description: The number of reviews for this rating.
-            example: 20
-          share:
-            type: number
-            description: The percentage of all reviews that have this rating.
-            example: 96
-    Language:
-      type: string
-      description: ISO 639 formatted language
-      example: en
-    Limit-2:
-      description: Number of reviews to retrieve.
-      type: integer
-      minimum: 1
-      maximum: 50
-      default: 10
-      example: 10
     Error:
       type: object
       properties:
@@ -277,84 +215,17 @@ components:
         helpURL:
           type: string
           example: https://api.getyourguide.com/doc
-    Limit:
-      description: Number of items to retrieve.
+    Limit-2:
+      description: Number of reviews to retrieve.
       type: integer
       minimum: 1
-      maximum: 500
+      maximum: 50
       default: 10
       example: 10
-    MetaData:
-      type: object
-      properties:
-        descriptor:
-          type: string
-          example: GetYourGuide AG
-        date:
-          $ref: '#/components/schemas/Datetime'
-        status:
-          type: string
-          description: Status of the request
-          example: OK
-        query:
-          type: string
-          description: URL parameters used for the request sent
-          example: cnt_language=en&currency=eur
-        availableLanguages:
-          type: array
-          description: Available conduction languages aggregated across all tours
-          items:
-            $ref: '#/components/schemas/Language'
-          example:
-          - en
-          - es
-          - fr
-        exchange:
-          type: object
-          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
-          properties:
-            rate:
-              type: integer
-              example: 1
-            currency:
-              $ref: '#/components/schemas/Currency'
-        totalCount:
-          type: integer
-          description: Total amount of tours that match the search query
-          example: 127
-        limit:
-          $ref: '#/components/schemas/Limit'
-        offset:
-          $ref: '#/components/schemas/Offset'
-    Rating:
-      description: The value of the rating.
-      minimum: 0
-      maximum: 5
-      example: 4.5
-      type: number
-      format: float
-    Offset-2:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      maximum: 300
-      default: 0
-      example: 0
     TourId:
       description: The ID of the tour.
       example: 50872
       type: integer
-    Datetime:
-      description: The local datetime format `Y-m-d T H:i:s`.
-      example: '2017-09-01T00:00:00'
-      format: date-time
-      type: string
-    Offset:
-      description: Offset the list of returned results by this amount.
-      type: integer
-      minimum: 0
-      default: 0
-      example: 0
     Currency:
       description: ISO 4217, The currency with which you would like to pay.
       enum:
@@ -400,15 +271,144 @@ components:
       - ZAR
       example: USD
       type: string
+    MetaData:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          example: GetYourGuide AG
+        date:
+          $ref: '#/components/schemas/Datetime'
+        status:
+          type: string
+          description: Status of the request
+          example: OK
+        query:
+          type: string
+          description: URL parameters used for the request sent
+          example: cnt_language=en&currency=eur
+        availableLanguages:
+          type: array
+          description: Available conduction languages aggregated across all tours
+          items:
+            $ref: '#/components/schemas/Language'
+          example:
+          - en
+          - es
+          - fr
+        exchange:
+          type: object
+          description: Deprecated! Please do not use to calculate prices, but pass a different currency parameter in the request URL.
+          properties:
+            rate:
+              type: integer
+              example: 1
+            currency:
+              $ref: '#/components/schemas/Currency'
+        totalCount:
+          type: integer
+          description: Total amount of tours that match the search query
+          example: 127
+        limit:
+          $ref: '#/components/schemas/Limit'
+        offset:
+          $ref: '#/components/schemas/Offset'
+    Version:
+      description: The version of the API, currently only 1 is available.
+      example: '1'
+      type: string
+      format: integer
+    Limit:
+      description: Number of items to retrieve.
+      type: integer
+      minimum: 1
+      maximum: 500
+      default: 10
+      example: 10
+    Rating:
+      description: The value of the rating.
+      minimum: 0
+      maximum: 5
+      example: 4.5
+      type: number
+      format: float
+  parameters:
+    sortdirection:
+      description: Defines the sort order. Ignored when `sortfield=popularity`.
+      in: query
+      name: sortdirection
+      required: false
+      schema:
+        enum:
+        - DESC
+        - ASC
+        type: string
+    sortfield:
+      description: Defines the sort field.
+      in: query
+      name: sortfield
+      required: false
+      schema:
+        enum:
+        - rating
+        - date
+        type: string
+    date:
+      description: Defines the date of the oldest review that should be returned.
+      in: query
+      name: date
+      required: false
+      schema:
+        $ref: '#/components/schemas/Datetime'
+    version:
+      in: path
+      name: version
+      required: true
+      schema:
+        $ref: '#/components/schemas/Version'
+    offset-2:
+      description: Defines the offset of the first review that should be returned. Currently limited to 300.
+      in: query
+      name: offset
+      required: false
+      schema:
+        $ref: '#/components/schemas/Offset-2'
+    limit-2:
+      description: Number of reviews to retrieve. Maximum value for this endpoint is 50.
+      in: query
+      name: limit
+      required: false
+      schema:
+        $ref: '#/components/schemas/Limit-2'
+    cntLanguage:
+      in: query
+      name: cnt_language
+      required: true
+      schema:
+        $ref: '#/components/schemas/CntLanguage'
+    tourId:
+      in: path
+      name: tour_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/TourId'
+    currency:
+      description: ISO 4217, The currency with which you would like to pay.
+      in: query
+      name: currency
+      example: USD
+      required: true
+      schema:
+        $ref: '#/components/schemas/Currency'
   responses:
-    Default:
-      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
     4XX:
       description: HTTP 400, 401, 404 have the same response format.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Default:
+      description: Other HTTP status codes which do not provide additional information are 403, 405, 429 and 500.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
