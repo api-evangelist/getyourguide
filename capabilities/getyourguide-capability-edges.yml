@@ -1,0 +1,47 @@
+slug: getyourguide
+provider: GetYourGuide
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Travel & Hospitality
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Bookings
+  spec_file: getyourguide-bookings-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.93
+  evidence: POST /{version}/bookings BookingsCreate 'Create a new booking'; DELETE /{version}/bookings/{booking_hash}
+    'Delete (Cancel) a booking'; schemas Booking, BookingId, CancellationPolicyText
+  reason: Operations create, retrieve and cancel reservations for tours/activities — squarely the reservation
+    lifecycle. Spans both capture and cancellation sub-capabilities, so held at L1.
+- tag: Carts
+  spec_file: getyourguide-carts-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.8
+  evidence: POST /{version}/carts CartsConfirm 'Confirm a shopping cart'; schemas PaymentMethod, PaymentInfoConfirmed,
+    BillingBase, Booking, TravelerBase
+  reason: Cart confirmation turns a shopping cart into confirmed bookings with traveller and payment/billing
+    data — reservation capture plus booking-level payment; which sub-capability dominates is ambiguous,
+    so L1 only.
+- tag: Tours
+  spec_file: getyourguide-tours-api-openapi.yml
+  capability_id: BC-4000.30
+  capability_id_l1: BC-4000
+  capability_name: Tour & Package Product Management
+  confidence: 0.7
+  evidence: GET /{version}/tours/{tour_id}/availability 'Find availability of a tour'; GET /{version}/tours/{tour_id}/options;
+    POST /{version}/tours/{tour_id}/price-breakdown; schemas Itinerary, ItineraryItem, Option, CancellationPolicy
+  reason: Catalog search plus itinerary, option, availability and price detail for packaged tour/activity
+    products — definition and inventory visibility of the travel product. Distribution reading is possible
+    but the surface is product-centric.
