@@ -5,6 +5,22 @@ info:
   description: >-
     Search the GetYourGuide marketplace, pick a tour option, check availability,
     then create and confirm a booking via the two-step cart flow.
+  x-realizes-capability-ids:
+  - BC-4000.30
+  - BC-4020
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-4000.30
+      capability_name: Tour & Package Product Management
+      spec: getyourguide-tours-api-openapi.yml
+      confidence: 0.7
+    - capability_id: BC-4020
+      capability_name: Reservation & Booking Management
+      spec: getyourguide-carts-api-openapi.yml
+      confidence: 0.8
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: bookingsApi
   url: ../openapi/getyourguide-bookings-api-openapi.yml
