@@ -64,6 +64,133 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-GetYourGuide is a company surfaced as a portfolio company of battery-ventures, softbank-vision-fund and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+GetYourGuide is a Berlin-based online travel marketplace for booking tours, activities, attraction tickets, and experiences in destinations around the world. Founded in 2009, the company connects travelers with local activity suppliers and operators, and exposes a public Partner API that gives affiliates, agencies, and technology partners programmatic access to the GetYourGuide marketplace catalog — searching tours and activities, retrieving categories, options, availability, price breakdowns, supplier details, and reviews, and creating shopping carts and bookings. The RESTful Partner API uses JSON, is secured over TLS with an API access token (X-ACCESS-TOKEN header), and publishes its OpenAPI specification as open source on GitHub. GetYourGuide is backed by Battery Ventures and SoftBank Vision Fund.
 
-Backed by: battery-ventures, softbank-vision-fund
+**Areas:** Company · Travel · Tourism · Tours and Activities · Marketplace · Booking · Experience · Affiliates · Partner API · E-Commerce
+
+## GetYourGuide on APIs.io
+
+Everything profiled for GetYourGuide is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/getyourguide/](https://apis.io/providers/getyourguide/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [GetYourGuide Bookings API](https://apis.io/apis/getyourguide/getyourguide-bookings-api/) — The Bookings API from GetYourGuide — 2 operation(s) for bookings.
+- [GetYourGuide Carts API](https://apis.io/apis/getyourguide/getyourguide-carts-api/) — The Carts API from GetYourGuide — 2 operation(s) for carts.
+- [GetYourGuide Categories API](https://apis.io/apis/getyourguide/getyourguide-categories-api/) — The Categories API from GetYourGuide — 2 operation(s) for categories.
+- [GetYourGuide Configuration API](https://apis.io/apis/getyourguide/getyourguide-configuration-api/) — The Configuration API from GetYourGuide — 2 operation(s) for configuration.
+- [GetYourGuide Options API](https://apis.io/apis/getyourguide/getyourguide-options-api/) — The Options API from GetYourGuide — 1 operation(s) for options.
+- [GetYourGuide Reviews API](https://apis.io/apis/getyourguide/getyourguide-reviews-api/) — The Reviews API from GetYourGuide — 1 operation(s) for reviews.
+- [GetYourGuide Suppliers API](https://apis.io/apis/getyourguide/getyourguide-suppliers-api/) — The Suppliers API from GetYourGuide — 1 operation(s) for suppliers.
+- [GetYourGuide Tours API](https://apis.io/apis/getyourguide/getyourguide-tours-api/) — The Tours API from GetYourGuide — 5 operation(s) for tours.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (1)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Search a tour and create a booking](https://apis.io/arazzos/getyourguide/getyourguide-search-and-book/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [getyourguide-partner](https://apis.io/servers/getyourguide/getyourguide-partner/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Partner Api Bookings API](https://apis.io/collections/getyourguide/open-getyourguide-bookings-api/)
+- [Partner Api Bookings Carts API](https://apis.io/collections/getyourguide/open-getyourguide-carts-api/)
+- [Partner Api Bookings Categories API](https://apis.io/collections/getyourguide/open-getyourguide-categories-api/)
+- [Partner Api Bookings Configuration API](https://apis.io/collections/getyourguide/open-getyourguide-configuration-api/)
+- [Partner Api Bookings Options API](https://apis.io/collections/getyourguide/open-getyourguide-options-api/)
+- [Partner Api Bookings Suppliers API](https://apis.io/collections/getyourguide/open-getyourguide-suppliers-api/)
+- [Partner Api Bookings Tours API](https://apis.io/collections/getyourguide/open-getyourguide-tours-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Getyourguide Partner Overlay](https://apis.io/overlays/getyourguide/getyourguide-partner-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Getyourguide Authentication](https://apis.io/security/getyourguide/getyourguide-authentication/)
+- [Getyourguide Domain Security](https://apis.io/security/getyourguide/getyourguide-domain-security/)
+- [Getyourguide Vulnerability Disclosure](https://apis.io/security/getyourguide/getyourguide-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://getyourguide.com)
+- [Documentation](https://github.com/getyourguide/partner-api-spec)
+- [Getting started](https://github.com/getyourguide/partner-api-spec/wiki/Getting-started)
+- [API reference](https://code.getyourguide.com/partner-api-spec/)
+- [Support](https://supply.getyourguide.support/)
+- [Blog](https://www.getyourguide.careers/category/tech-engineering)
+- [Security](https://www.getyourguide.com/security)
+- [Terms of service](https://www.getyourguide.com/terms_of_use/)
+- [Privacy policy](https://www.getyourguide.com/privacy_policy/)
+- [GitHub](https://github.com/getyourguide)
+
+## API Evangelist rating
+
+**Kin Score 30.1** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 6.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 21.1 |
+
+**Agent readiness 5.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/getyourguide/](https://apis.io/providers/getyourguide/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for GetYourGuide: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/getyourguide/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
